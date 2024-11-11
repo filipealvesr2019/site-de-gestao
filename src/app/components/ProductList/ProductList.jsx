@@ -1,12 +1,42 @@
 "use cliente"
 
-import { useState, useEffect } from 'react';
-
+import { useState, useEffect, useRef } from 'react';
+import styles from './ProductList.module.css'
 function ProductList() {
+    const modalRef = useRef(null);
+
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  
+  const [openModal, setOpenModal] = useState(false);
+
+  const handleClickOpenModal = () => {
+    setOpenModal(true);
+  };
+
+  const handleClickCloseModal = () => {
+    setOpenModal(false);
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        modalRef.current &&
+        !modalRef.current.contains(event.target) &&
+        (openModal )
+      ) {
+        setOpenModal(false);
+      
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [openModal, ]);
+
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -32,6 +62,20 @@ function ProductList() {
 
   return (
     <div>
+        <button onClick={handleClickOpenModal}>criar Receita</button>
+        {openModal && (
+              <div className={styles.Modal}>
+                <div ref={modalRef} className={styles.ModalContent}>
+                  <span  className={styles.cartClose}
+                    onClick={handleClickCloseModal}>X</span>
+              
+                  <span>option 1</span>
+                  <span>option 2</span>
+                  <span>option 2</span>
+
+                </div>
+              </div>
+            )}
       <h2>Lista de Produtos</h2>
       {products.length === 0 ? (
         <p>Nenhum produto encontrado.</p>
