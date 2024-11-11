@@ -107,6 +107,16 @@ function ProductList() {
 
   if (loading) return <p>Carregando produtos...</p>;
   if (error) return <p>{error}</p>;
+  const handleStatusCss = (status) => {
+    switch(status) {
+        case 'pendente':
+            return styles.pendente; // Retorna a classe 'pendente'
+        case 'pago':
+            return styles.pago; // Pode adicionar um estilo para o status 'pago', se necessário
+        default:
+            return ''; // Se não for 'pendente' nem 'pago', retorna uma string vazia
+    }
+};
 
   return (
     <div style={{
@@ -187,7 +197,7 @@ function ProductList() {
         
                 Data de Vencimento: {formatDate(product.dataDeVencimento)}
               </p>
-              <p>Status de Pagamento: {product.statusDePagamento}</p>
+              <p className={handleStatusCss(product.statusDePagamento) || ''}>Status de Pagamento: {product.statusDePagamento}</p>
               <p>Data de Criação: {formatDate(product.dataCriacao)}</p>
             </li>
           ))}
