@@ -4,12 +4,15 @@ import { ClerkProvider, RedirectToSignIn, SignedIn, SignedOut, SignInButton, Use
 export default function RootLayout({ children }) {
   return (
     <ClerkProvider dynamic>
-      <html lang="en">
+
+          <html lang="en">
         <body>
         
           {children}
         </body>
       </html>
+
+
     </ClerkProvider>
   );
 }
