@@ -39,7 +39,7 @@ const checkAndUpdateProductsStatus = async () => {
 };
 
 // Agendar o cron job para rodar todos os dias às 00:00
-cron.schedule('*/30 * * * * *', checkAndUpdateProductsStatus); // Executa a cada 30 segundos
+cron.schedule('0 0 * * *', checkAndUpdateProductsStatus); // Executa todos os dias à meia-noite
 
 // Caso queira rodar imediatamente para testar
 checkAndUpdateProductsStatus();
