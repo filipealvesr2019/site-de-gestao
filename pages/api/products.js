@@ -32,6 +32,7 @@ export default async function handler(req, res) {
         res.status(500).json({ error: 'Erro ao criar o produto.' });
       }
     } else if (req.method === 'GET') {
+        
       try {
         const products = await Product.find({});
         res.status(200).json({ products });

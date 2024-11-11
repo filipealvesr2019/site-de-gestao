@@ -28,7 +28,11 @@
     font-weight: 500;
   }
   .pendente {
-    color: yellow;
+    color: orange;
+}
+
+.vencido {
+    color: red; /* Exemplo de cor para "pago" */
 }
 
 .pago {

@@ -1,6 +1,7 @@
 import cron from 'node-cron';
-import Product from '../models/Product';
 import dbConnect from '../utils/dbConnect';
+import Product from '../models/Product';
+
 
 // Conectar ao banco de dados uma vez ao iniciar o cron job
 const connectDb = async () => {
@@ -38,7 +39,9 @@ const checkAndUpdateProductsStatus = async () => {
 };
 
 // Agendar o cron job para rodar todos os dias às 00:00
-cron.schedule('0 0 * * *', checkAndUpdateProductsStatus); // Executa todo dia às 00:00
+cron.schedule('*/30 * * * * *', checkAndUpdateProductsStatus); // Executa a cada 30 segundos
 
 // Caso queira rodar imediatamente para testar
 checkAndUpdateProductsStatus();
+
+export default checkAndUpdateProductsStatus

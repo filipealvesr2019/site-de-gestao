@@ -113,6 +113,8 @@ function ProductList() {
             return styles.pendente; // Retorna a classe 'pendente'
         case 'pago':
             return styles.pago; // Pode adicionar um estilo para o status 'pago', se necessário
+        case 'vencido':
+                return styles.vencido; // Pode adicionar um estilo para o status 'pago', se necessário
         default:
             return ''; // Se não for 'pendente' nem 'pago', retorna uma string vazia
     }

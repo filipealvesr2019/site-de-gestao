@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import checkAndUpdateProductsStatus from '../api/cronJobs';
 
 const MONGODB_URI = process.env.MONGODB_URI;
 
@@ -25,5 +26,6 @@ async function dbConnect() {
   cached.conn = await cached.promise;
   return cached.conn;
 }
-
+// Iniciar o cron job ao rodar o servidor
+checkAndUpdateProductsStatus();
 export default dbConnect;
