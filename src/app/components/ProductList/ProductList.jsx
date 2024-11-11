@@ -30,7 +30,7 @@ function ProductList() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const formattedDataDeVencimento = new Date(formData.dataDeVencimento).toISOString().split('T')[0]; // Converte a data para o formato correto
+    const formattedDataDeVencimento = formData.dataDeVencimento; // A data já está no formato correto
     
     const response = await fetch('http://localhost:3000/api/products', {
       method: 'POST',
@@ -95,13 +95,22 @@ function ProductList() {
 
     fetchProducts();
   }, []);
+  const formatDate = (date) => {
+    const d = new Date(date);
+    const day = String(d.getUTCDate()).padStart(2, '0'); // Usa getUTCDate() para garantir a data correta
+    const month = String(d.getUTCMonth() + 1).padStart(2, '0'); // getUTCMonth() retorna 0-11, então adicionamos 1
+    const year = d.getUTCFullYear(); // Usa getUTCFullYear() para o ano correto
+  
+    return `${day}/${month}/${year}`; // Retorna a data no formato dd/mm/yyyy
+  };
+  
 
   if (loading) return <p>Carregando produtos...</p>;
   if (error) return <p>{error}</p>;
 
   return (
     <div style={{
-        marginTop:"40rem"
+        marginTop:"150rem"
     }}>
       <button onClick={handleClickOpenModal}>Criar Produto</button>
       {openModal && (
@@ -175,10 +184,11 @@ function ProductList() {
               <h3>{product.nome}</h3>
               <p>Preço: R${product.preco.toFixed(2)}</p>
               <p>
-                Data de Vencimento: {new Date(product.dataDeVencimento).toLocaleDateString()}
+        
+                Data de Vencimento: {formatDate(product.dataDeVencimento)}
               </p>
               <p>Status de Pagamento: {product.statusDePagamento}</p>
-              <p>Data de Criação: {new Date(product.dataCriacao).toLocaleDateString()}</p>
+              <p>Data de Criação: {formatDate(product.dataCriacao)}</p>
             </li>
           ))}
         </ul>

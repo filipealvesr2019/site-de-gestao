@@ -22,7 +22,7 @@ export default async function handler(req, res) {
         const newProduct = new Product({
           nome,
           preco,
-          dataDeVencimento: new Date(dataDeVencimento),  // Garantir que a data seja convertida corretamente
+          dataDeVencimento: dataDeVencimento, // Salve como string, sem usar 'new Date()'
           statusDePagamento: statusDePagamento || 'pendente',
         });
   
