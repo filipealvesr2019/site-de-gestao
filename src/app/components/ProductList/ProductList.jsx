@@ -30,32 +30,34 @@ function ProductList() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const response = await fetch('http://localhost:3000/api/products', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (!response.ok) {
-        throw new Error('Erro ao criar o produto');
-      }
-
-      const data = await response.json();
-      setProducts((prevProducts) => [...prevProducts, data.product]);
-      setOpenModal(false);
-      setFormData({
-        nome: '',
-        preco: '',
-        dataDeVencimento: '',
-        statusDePagamento: 'pendente',
-      });
-    } catch (error) {
-      setError(error.message);
+    const formattedDataDeVencimento = new Date(formData.dataDeVencimento).toISOString().split('T')[0]; // Converte a data para o formato correto
+    
+    const response = await fetch('http://localhost:3000/api/products', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        ...formData,
+        dataDeVencimento: formattedDataDeVencimento,
+      }),
+    });
+  
+    if (!response.ok) {
+      throw new Error('Erro ao criar o produto');
     }
+  
+    const data = await response.json();
+    setProducts((prevProducts) => [...prevProducts, data.product]);
+    setOpenModal(false);
+    setFormData({
+      nome: '',
+      preco: '',
+      dataDeVencimento: '',
+      statusDePagamento: 'pendente',
+    });
   };
+  
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -98,7 +100,9 @@ function ProductList() {
   if (error) return <p>{error}</p>;
 
   return (
-    <div>
+    <div style={{
+        marginTop:"40rem"
+    }}>
       <button onClick={handleClickOpenModal}>Criar Produto</button>
       {openModal && (
         <div className={styles.Modal}>
