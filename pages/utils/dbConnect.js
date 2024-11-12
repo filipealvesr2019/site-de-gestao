@@ -23,9 +23,14 @@ async function dbConnect() {
       return mongoose;
     });
   }
+
   cached.conn = await cached.promise;
+
+  // Chamar o cron job após a conexão com o banco de dados
+  checkAndUpdateProductsStatus();
+
   return cached.conn;
 }
+
 // Iniciar o cron job ao rodar o servidor
-checkAndUpdateProductsStatus();
 export default dbConnect;

@@ -1,4 +1,3 @@
-"use client"; // Garantindo que o código seja executado no cliente
 
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 import styles from "./page.module.css";
