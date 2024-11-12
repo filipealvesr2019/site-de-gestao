@@ -34,7 +34,7 @@ export default async function handler(req, res) {
     } else if (req.method === 'GET') {
         
       try {
-        const products = await Product.find({});
+        const products = await Product.find({}).sort({ dataCriacao: -1 });
         res.status(200).json({ products });
       } catch (error) {
         res.status(500).json({ error: 'Erro ao buscar produtos.' });

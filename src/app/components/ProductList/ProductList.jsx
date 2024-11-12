@@ -121,17 +121,12 @@ function ProductList() {
 };
 
   return (
-    <div style={{
-        marginTop:"150rem"
-    }}>
+    <div className={styles.container}>
       <button onClick={handleClickOpenModal}>Criar Produto</button>
       {openModal && (
-        <div className={styles.Modal}>
-          <div ref={modalRef} className={styles.ModalContent}>
-            <span
-              className={styles.cartClose}
-              onClick={handleClickCloseModal}
-            >
+        <div className={styles.modal}>
+          <div ref={modalRef} className={styles.modalContent}>
+            <span className={styles.cartClose} onClick={handleClickCloseModal}>
               X
             </span>
 
@@ -178,6 +173,7 @@ function ProductList() {
                 >
                   <option value="pendente">Pendente</option>
                   <option value="pago">Pago</option>
+                  <option value="vencido">Vencido</option>
                 </select>
               </div>
               <button type="submit">Cadastrar</button>
@@ -190,20 +186,30 @@ function ProductList() {
       {products.length === 0 ? (
         <p>Nenhum produto encontrado.</p>
       ) : (
-        <ul>
-          {products.map((product) => (
-            <li key={product._id}>
-              <h3>{product.nome}</h3>
-              <p>Preço: R${product.preco.toFixed(2)}</p>
-              <p>
-        
-                Data de Vencimento: {formatDate(product.dataDeVencimento)}
-              </p>
-              <p className={handleStatusCss(product.statusDePagamento) || ''}>Status de Pagamento: {product.statusDePagamento}</p>
-              <p>Data de Criação: {formatDate(product.dataCriacao)}</p>
-            </li>
-          ))}
-        </ul>
+        <table className={styles.productTable}>
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Preço</th>
+              <th>Data de Vencimento</th>
+              <th>Status de Pagamento</th>
+              <th>Data de Criação</th>
+            </tr>
+          </thead>
+          <tbody>
+            {products.map((product) => (
+              <tr key={product._id}>
+                <td>{product.nome}</td>
+                <td>R${product.preco.toFixed(2)}</td>
+                <td>{formatDate(product.dataDeVencimento)}</td>
+                <td className={handleStatusCss(product.statusDePagamento)}>
+                  {product.statusDePagamento}
+                </td>
+                <td>{formatDate(product.dataCriacao)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       )}
     </div>
   );

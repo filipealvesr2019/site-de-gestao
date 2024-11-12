@@ -10,8 +10,7 @@ export default function ComponenteProtegido() {
 
   return (
     <div>
-      <h1>Bem-vindo! Você está autenticado.</h1>
-      <p>Este é o conteúdo protegido que apenas usuários autenticados podem ver.</p>
+    
     </div>
   );
 }

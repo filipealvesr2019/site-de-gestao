@@ -38,3 +38,62 @@
 .pago {
     color: green; /* Exemplo de cor para "pago" */
 }
+
+.container {
+  padding: 20px;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalContent {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 300px;
+}
+
+.cartClose {
+  cursor: pointer;
+  float: right;
+}
+
+.productTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.productTable th, .productTable td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.productTable th {
+  background-color: #f2f2f2;
+}
+
+.pendente {
+  color: orange;
+  font-weight: bold;
+}
+
+.pago {
+  color: green;
+  font-weight: bold;
+}
+
+.vencido {
+  color: red;
+  font-weight: bold;
+}
