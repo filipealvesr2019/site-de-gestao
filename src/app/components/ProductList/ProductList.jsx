@@ -8,12 +8,14 @@ function ProductList() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [openModal, setOpenModal] = useState(false);
-
+  
   const [formData, setFormData] = useState({
     nome: '',
     preco: '',
     dataDeVencimento: '',
     statusDePagamento: 'pendente',
+    tipo: 'receita', 
+
   });
 
   const handleClickOpenModal = () => {
@@ -25,13 +27,22 @@ function ProductList() {
   };
 
   const handleChange = (e) => {
+    console.log('Mudança no campo', e.target.name, 'valor:', e.target.value); // Verifique o log
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formattedDataDeVencimento = formData.dataDeVencimento; // A data já está no formato correto
-    
+    console.log('Dados enviados:', formData); // Verifique se o tipo está presente aqui
+  
+    // Verifique se 'tipo' não está vazio antes de enviar
+    if (!formData.tipo) {  // Alterado de 'tipo' para 'formData.tipo'
+      alert("O tipo é obrigatório.");
+      return;
+    }
+  
     const response = await fetch('http://localhost:3000/api/products', {
       method: 'POST',
       headers: {
@@ -55,8 +66,11 @@ function ProductList() {
       preco: '',
       dataDeVencimento: '',
       statusDePagamento: 'pendente',
+      tipo: '', // Resetar o campo tipo após o envio
     });
+    console.log('tipo', formData.tipo); // Agora deve exibir corretamente o valor de "tipo"
   };
+  
   
 
   useEffect(() => {
@@ -130,7 +144,7 @@ function ProductList() {
               X
             </span>
 
-            <h3>Cadastrar Novo Produto</h3>
+            <h3>Cadastrar Receita ou despesa</h3>
             <form onSubmit={handleSubmit}>
               <div>
                 <label>Nome:</label>
@@ -176,6 +190,22 @@ function ProductList() {
                   <option value="vencido">Vencido</option>
                 </select>
               </div>
+<div>
+  <label>Tipo:</label>
+  <select
+  name="tipo"
+  value={formData.tipo}
+  onChange={handleChange}  // Certifique-se de que a função handleChange está sendo chamada corretamente
+  required
+>
+  <option value="receita">Receita</option>
+  <option value="despesa">Despesa</option>
+</select>
+
+</div>
+
+
+
               <button type="submit">Cadastrar</button>
             </form>
           </div>
@@ -189,16 +219,19 @@ function ProductList() {
         <table className={styles.productTable}>
           <thead>
             <tr>
+            <th>Tipo</th>
               <th>Nome</th>
               <th>Preço</th>
               <th>Data de Vencimento</th>
               <th>Status de Pagamento</th>
               <th>Data de Criação</th>
+          
             </tr>
           </thead>
           <tbody>
             {products.map((product) => (
               <tr key={product._id}>
+                <td>{product.tipo}</td>
                 <td>{product.nome}</td>
                 <td>R${product.preco.toFixed(2)}</td>
                 <td>{formatDate(product.dataDeVencimento)}</td>
@@ -206,6 +239,8 @@ function ProductList() {
                   {product.statusDePagamento}
                 </td>
                 <td>{formatDate(product.dataCriacao)}</td>
+                
+
               </tr>
             ))}
           </tbody>

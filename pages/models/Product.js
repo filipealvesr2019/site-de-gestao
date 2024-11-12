@@ -9,7 +9,8 @@ const ProductSchema = new mongoose.Schema({
     enum: ['pendente', 'vencido', 'pago'], 
     default: 'pendente' 
   },
-  dataCriacao: { type: Date, default: Date.now }, // Data de criação automática
+  dataCriacao: { type: Date, default: Date.now }, 
+  tipo: { type: String, required: true }, // Campo tipo corretamente definido
 });
 
 export default mongoose.models.Product || mongoose.model('Product', ProductSchema);

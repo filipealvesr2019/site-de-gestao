@@ -7,23 +7,25 @@ export default async function handler(req, res) {
   await dbConnect();
 
 
-    await dbConnect();
+    
   
     if (req.method === 'POST') {
-      const { nome, preco, dataDeVencimento, statusDePagamento } = req.body;
-  
-      if (!nome || !preco || !dataDeVencimento) {
+      const { nome, preco, dataDeVencimento, statusDePagamento, tipo } = req.body;
+      console.log("Dados recebidos:", req.body);
+
+      if (!nome || !preco || !dataDeVencimento || !tipo) {
         return res.status(400).json({ error: 'Todos os campos são obrigatórios.' });
       }
   
       try {
         console.log("Data recebida: ", dataDeVencimento);  // Verifique a data aqui
-  
+        console.log("Tipo recebido:", tipo);    
         const newProduct = new Product({
           nome,
           preco,
           dataDeVencimento: dataDeVencimento, // Salve como string, sem usar 'new Date()'
           statusDePagamento: statusDePagamento || 'pendente',
+          tipo
         });
   
         await newProduct.save();
