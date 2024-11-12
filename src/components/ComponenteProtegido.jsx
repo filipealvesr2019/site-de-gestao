@@ -10,7 +10,8 @@ export default function ComponenteProtegido() {
 
   return (
     <div>
-    
+
+
     </div>
   );
 }
