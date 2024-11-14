@@ -3,6 +3,8 @@
 import { useState, useEffect, useRef } from "react";
 import styles from "./ProductList.module.css";
 function ProductList() {
+  const [totalReceitasPagas, setTotalReceitasPagas] = useState(0); // Novo estado para o total de receitas do mês
+
   const modalRef = useRef(null);
 
   const [products, setProducts] = useState([]);
@@ -112,6 +114,8 @@ function ProductList() {
         }
         const data = await response.json();
         setProducts(data.products);
+        setTotalReceitasPagas(data.totalReceitasPagas); // Atualiza o estado com a receita do mês
+
         setLoading(false);
       } catch (error) {
         setError(error.message);
@@ -165,6 +169,11 @@ function ProductList() {
   
   return (
     <div className={styles.container}>
+<h3>
+  Total de Receitas do Mês: R$
+  {isNaN(totalReceitasPagas) ? '0.00' : totalReceitasPagas.toFixed(2)}
+</h3>
+
       <button onClick={handleClickOpenModal}>Criar Produto</button>
       {openModal && (
         <div className={styles.modal}>

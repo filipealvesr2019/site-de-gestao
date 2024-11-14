@@ -31,9 +31,33 @@ export default async function handler(req, res) {
       res.status(201).json({ message: 'Produto criado com sucesso!', product: newProduct });
     } 
     else if (req.method === 'GET') {
-      // Buscar todos os produtos e retornar
+      // Consultar todos os produtos
       const products = await Product.find({}).sort({ dataCriacao: -1 });
-      res.status(200).json({ products });
+
+      // Calcular o total de receitas pagas do mês
+      const currentDate = new Date();
+      const startOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+      const endOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
+
+      const totalPaid = await Product.aggregate([
+        {
+          $match: {
+            statusDePagamento: 'pago',
+            dataDeVencimento: { $gte: startOfMonth, $lte: endOfMonth }
+          }
+        },
+        {
+          $group: {
+            _id: null,
+            totalReceitas: { $sum: "$preco" }
+          }
+        }
+      ]);
+
+      const totalReceitasPagas = totalPaid.length > 0 ? totalPaid[0].totalReceitas : 0;
+
+      // Retornar os produtos e o total de receitas pagas
+      res.status(200).json({ products, totalReceitasPagas });
     } 
     else if (req.method === 'DELETE') {
       // Lógica para excluir um produto
@@ -48,7 +72,7 @@ export default async function handler(req, res) {
       }
 
       res.status(200).json({ message: 'Produto excluído com sucesso!' });
-    }
+    } 
     else {
       // Retornar erro caso o método não seja permitido
       res.status(405).json({ error: 'Método não permitido.' });
