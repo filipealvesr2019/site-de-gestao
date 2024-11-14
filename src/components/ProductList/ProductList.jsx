@@ -12,8 +12,8 @@ function ProductList() {
   const [error, setError] = useState(null);
   const [openModal, setOpenModal] = useState(false);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
+  const [openUpdateModal, setOpenUpdateModal] = useState(false); // Modal de atualização
 
-  
   const [formData, setFormData] = useState({
     nome: "",
     preco: "",
@@ -23,13 +23,21 @@ function ProductList() {
   });
   const [selectedProductId, setSelectedProductId] = useState(null);
 
-
   const handleClickOpenModal = () => {
     setOpenModal(true);
   };
 
   const handleClickCloseModal = () => {
     setOpenModal(false);
+  };
+
+  const handleClickOpenUpdateModal = (productId, currentStatus) => {
+    setSelectedProductId(productId); // Armazena o id do produto
+    setOpenUpdateModal(true);
+  };
+
+  const handleClickCloseUpdateModal = () => {
+    setOpenUpdateModal(false);
   };
 
   const handleClickOpenDeleteModal = (productId) => {
@@ -91,10 +99,11 @@ function ProductList() {
       if (
         modalRef.current &&
         !modalRef.current.contains(event.target) &&
-        (openModal || openDeleteModal)
+        (openModal || openDeleteModal || openUpdateModal)
       ) {
         setOpenModal(false);
         setOpenDeleteModal(false);
+        setOpenUpdateModal(false);
       }
     };
 
@@ -103,7 +112,7 @@ function ProductList() {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [openModal, openDeleteModal]);
+  }, [openModal, openDeleteModal, openUpdateModal]);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -126,23 +135,51 @@ function ProductList() {
     fetchProducts();
   }, []);
 
-
   const handleDelete = async (productId) => {
-  const response = await fetch(`http://localhost:3000/api/products?id=${productId}`, {
-    method: 'DELETE',
-  });
+    const response = await fetch(
+      `http://localhost:3000/api/products?id=${productId}`,
+      {
+        method: "DELETE",
+      }
+    );
 
-  if (response.ok) {
-    setProducts((prevProducts) => prevProducts.filter((product) => product._id !== productId));
-    setOpenDeleteModal(false); // Fechar o modal após a exclusão
-  } else {
-    alert('Erro ao excluir o produto.');
-  }
-};
+    if (response.ok) {
+      setProducts((prevProducts) =>
+        prevProducts.filter((product) => product._id !== productId)
+      );
+      setOpenDeleteModal(false); // Fechar o modal após a exclusão
+    } else {
+      alert("Erro ao excluir o produto.");
+    }
+  };
 
+  const handleUpdateStatus = async () => {
+    const product = products.find((p) => p._id === selectedProductId);
+    const newStatus =
+      product.statusDePagamento === "pendente" ? "pago" : "pendente";
 
+    const response = await fetch(`/api/products?id=${selectedProductId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ statusDePagamento: newStatus }),
+    });
 
-  
+    if (response.ok) {
+      setProducts((prevProducts) =>
+        prevProducts.map((product) =>
+          product._id === selectedProductId
+            ? { ...product, statusDePagamento: newStatus }
+            : product
+        )
+      );
+      setOpenUpdateModal(false); // Fechar o modal após a atualização
+    } else {
+      alert("Erro ao atualizar status de pagamento.");
+    }
+  };
+
   const formatDate = (date) => {
     const d = new Date(date);
     const day = String(d.getUTCDate()).padStart(2, "0"); // Usa getUTCDate() para garantir a data correta
@@ -166,13 +203,13 @@ function ProductList() {
         return ""; // Se não for 'pendente' nem 'pago', retorna uma string vazia
     }
   };
-  
+
   return (
     <div className={styles.container}>
-<h3>
-  Total de Receitas do Mês: R$
-  {isNaN(totalReceitasPagas) ? '0.00' : totalReceitasPagas.toFixed(2)}
-</h3>
+      <h3>
+        Total de Receitas do Mês: R$
+        {isNaN(totalReceitasPagas) ? "0.00" : totalReceitasPagas.toFixed(2)}
+      </h3>
 
       <button onClick={handleClickOpenModal}>Criar Produto</button>
       {openModal && (
@@ -270,36 +307,71 @@ function ProductList() {
                 <td>{product.nome}</td>
                 <td>R${product.preco.toFixed(2)}</td>
                 <td>{formatDate(product.dataDeVencimento)}</td>
-                <td className={handleStatusCss(product.statusDePagamento)}>
+                <td
+                  className={handleStatusCss(product.statusDePagamento)}
+                  onClick={() =>
+                    handleClickOpenUpdateModal(
+                      product._id,
+                      product.statusDePagamento
+                    )
+                  }
+                >
                   {product.statusDePagamento}
                 </td>
+
                 <td>{formatDate(product.dataCriacao)}</td>
                 <td onClick={() => handleClickOpenDeleteModal(product._id)}>
-                  <img src="https://i.imgur.com/flqGals.png" alt="" style={{
-                    width:"1rem"
-                  }} />
+                  <img
+                    src="https://i.imgur.com/flqGals.png"
+                    alt=""
+                    style={{
+                      width: "1rem",
+                    }}
+                  />
                 </td>
-             
               </tr>
             ))}
           </tbody>
         </table>
       )}
-         {openDeleteModal && (
-                  <>
-                  <div className={styles.DeleteModal} >
-                  <span className={styles.cartClose}  onClick={handleClickCloseDeleteModal}>
+      {openDeleteModal && (
+        <>
+          <div className={styles.DeleteModal}>
+            <span
+              className={styles.cartClose}
+              onClick={handleClickCloseDeleteModal}
+            >
               X
             </span>
-                    <div ref={modalRef} className={styles.DeleteModalContent}>
-                    <p>Tem certeza que deseja excluir este produto?</p>
-      <button onClick={() => handleDelete(selectedProductId)}>Sim</button>
-      <button onClick={handleClickCloseDeleteModal}>Não</button>
-                    </div>
-                  </div>
-                 
-                  </>
-                )}
+            <div ref={modalRef} className={styles.DeleteModalContent}>
+              <p>Tem certeza que deseja excluir este produto?</p>
+              <button onClick={() => handleDelete(selectedProductId)}>
+                Sim
+              </button>
+              <button onClick={handleClickCloseDeleteModal}>Não</button>
+            </div>
+          </div>
+        </>
+      )}
+
+      {openUpdateModal && (
+        <>
+          <div className={styles.UpdateModal}>
+            <span
+              className={styles.closeUpdateModal}
+              onClick={handleClickCloseUpdateModal}
+            >
+              X
+            </span>
+            <div ref={modalRef} className={styles.UpdateModalContent}>
+              <p>Tem certeza que deseja mudar o status de pagamento?</p>
+              <button onClick={handleUpdateStatus}>Sim</button>{" "}
+              {/* Chama a função para atualizar o status */}
+              <button onClick={handleClickCloseUpdateModal}>Não</button>
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 }

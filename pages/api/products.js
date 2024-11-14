@@ -72,7 +72,33 @@ export default async function handler(req, res) {
       }
 
       res.status(200).json({ message: 'Produto excluído com sucesso!' });
-    } 
+    } else if (req.method === 'PUT') {
+      const { id } = req.query; // Obter o ID do produto a partir da query
+      const { statusDePagamento } = req.body; // O novo statusDePagamento
+
+      // Verificar se o statusDePagamento é válido
+      if (!statusDePagamento || !['pendente', 'pago'].includes(statusDePagamento)) {
+        return res.status(400).json({ error: 'Status de pagamento inválido.' });
+      }
+
+      // Verificar se o ID do produto foi fornecido
+      if (!id) {
+        return res.status(400).json({ error: 'ID do produto é obrigatório.' });
+      }
+
+      // Atualizar o produto com o novo statusDePagamento
+      const updatedProduct = await Product.findByIdAndUpdate(
+        id, 
+        { statusDePagamento },
+        { new: true } // Retorna o produto atualizado
+      );
+
+      if (!updatedProduct) {
+        return res.status(404).json({ error: 'Produto não encontrado.' });
+      }
+
+      res.status(200).json({ message: 'Status de pagamento atualizado com sucesso!', product: updatedProduct });
+    }
     else {
       // Retornar erro caso o método não seja permitido
       res.status(405).json({ error: 'Método não permitido.' });

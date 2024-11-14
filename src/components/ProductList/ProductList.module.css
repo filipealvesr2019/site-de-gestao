@@ -30,6 +30,30 @@
 
   
 
+.UpdateModal {
+  display: block;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+
+}
+
+.UpdateModalContent {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80vw;
+  height: 40vh;
+  border-radius: 10px;
+  
+}
+
 .DeleteModal {
   display: block;
   position: fixed;
@@ -53,6 +77,8 @@
   border-radius: 10px;
   
 }
+
+
   .pendente {
     color: orange;
 }
