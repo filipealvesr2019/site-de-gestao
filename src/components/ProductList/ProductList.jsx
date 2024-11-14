@@ -1,8 +1,7 @@
 "use client";
 
-import { useState, useEffect, useRef } from 'react';
-import styles from './ProductList.module.css';
-
+import { useState, useEffect, useRef } from "react";
+import styles from "./ProductList.module.css";
 function ProductList() {
   const modalRef = useRef(null);
 
@@ -10,15 +9,18 @@ function ProductList() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [openModal, setOpenModal] = useState(false);
+  const [openDeleteModal, setOpenDeleteModal] = useState(false);
+
   
   const [formData, setFormData] = useState({
-    nome: '',
-    preco: '',
-    dataDeVencimento: '',
-    statusDePagamento: 'pendente',
-    tipo: 'receita', 
-
+    nome: "",
+    preco: "",
+    dataDeVencimento: "",
+    statusDePagamento: "pendente",
+    tipo: "receita",
   });
+  const [selectedProductId, setSelectedProductId] = useState(null);
+
 
   const handleClickOpenModal = () => {
     setOpenModal(true);
@@ -28,77 +30,85 @@ function ProductList() {
     setOpenModal(false);
   };
 
+  const handleClickOpenDeleteModal = (productId) => {
+    setSelectedProductId(productId);
+    setOpenDeleteModal(true);
+  };
+
+  const handleClickCloseDeleteModal = () => {
+    setOpenDeleteModal(false);
+  };
+
   const handleChange = (e) => {
-    console.log('Mudança no campo', e.target.name, 'valor:', e.target.value); // Verifique o log
+    console.log("Mudança no campo", e.target.name, "valor:", e.target.value); // Verifique o log
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formattedDataDeVencimento = formData.dataDeVencimento; // A data já está no formato correto
-    console.log('Dados enviados:', formData); // Verifique se o tipo está presente aqui
-  
+    console.log("Dados enviados:", formData); // Verifique se o tipo está presente aqui
+
     // Verifique se 'tipo' não está vazio antes de enviar
-    if (!formData.tipo) {  // Alterado de 'tipo' para 'formData.tipo'
+    if (!formData.tipo) {
+      // Alterado de 'tipo' para 'formData.tipo'
       alert("O tipo é obrigatório.");
       return;
     }
-  
-    const response = await fetch('http://localhost:3000/api/products', {
-      method: 'POST',
+
+    const response = await fetch("http://localhost:3000/api/products", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         ...formData,
         dataDeVencimento: formattedDataDeVencimento,
       }),
     });
-  
+
     if (!response.ok) {
-      throw new Error('Erro ao criar o produto');
+      throw new Error("Erro ao criar o produto");
     }
-  
+
     const data = await response.json();
     setProducts((prevProducts) => [...prevProducts, data.product]);
     setOpenModal(false);
     setFormData({
-      nome: '',
-      preco: '',
-      dataDeVencimento: '',
-      statusDePagamento: 'pendente',
-      tipo: '', // Resetar o campo tipo após o envio
+      nome: "",
+      preco: "",
+      dataDeVencimento: "",
+      statusDePagamento: "pendente",
+      tipo: "", // Resetar o campo tipo após o envio
     });
-    console.log('tipo', formData.tipo); // Agora deve exibir corretamente o valor de "tipo"
+    console.log("tipo", formData.tipo); // Agora deve exibir corretamente o valor de "tipo"
   };
-  
-  
 
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
         modalRef.current &&
         !modalRef.current.contains(event.target) &&
-        openModal
+        (openModal || openDeleteModal)
       ) {
         setOpenModal(false);
+        setOpenDeleteModal(false);
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [openModal]);
+  }, [openModal, openDeleteModal]);
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/products');
+        const response = await fetch("http://localhost:3000/api/products");
         if (!response.ok) {
-          throw new Error('Erro ao buscar produtos');
+          throw new Error("Erro ao buscar produtos");
         }
         const data = await response.json();
         setProducts(data.products);
@@ -111,31 +121,48 @@ function ProductList() {
 
     fetchProducts();
   }, []);
+
+
+  const handleDelete = async (productId) => {
+  const response = await fetch(`http://localhost:3000/api/products?id=${productId}`, {
+    method: 'DELETE',
+  });
+
+  if (response.ok) {
+    setProducts((prevProducts) => prevProducts.filter((product) => product._id !== productId));
+    setOpenDeleteModal(false); // Fechar o modal após a exclusão
+  } else {
+    alert('Erro ao excluir o produto.');
+  }
+};
+
+
+
+  
   const formatDate = (date) => {
     const d = new Date(date);
-    const day = String(d.getUTCDate()).padStart(2, '0'); // Usa getUTCDate() para garantir a data correta
-    const month = String(d.getUTCMonth() + 1).padStart(2, '0'); // getUTCMonth() retorna 0-11, então adicionamos 1
+    const day = String(d.getUTCDate()).padStart(2, "0"); // Usa getUTCDate() para garantir a data correta
+    const month = String(d.getUTCMonth() + 1).padStart(2, "0"); // getUTCMonth() retorna 0-11, então adicionamos 1
     const year = d.getUTCFullYear(); // Usa getUTCFullYear() para o ano correto
-  
+
     return `${day}/${month}/${year}`; // Retorna a data no formato dd/mm/yyyy
   };
-  
 
   if (loading) return <p>Carregando produtos...</p>;
   if (error) return <p>{error}</p>;
   const handleStatusCss = (status) => {
-    switch(status) {
-        case 'pendente':
-            return styles.pendente; // Retorna a classe 'pendente'
-        case 'pago':
-            return styles.pago; // Pode adicionar um estilo para o status 'pago', se necessário
-        case 'vencido':
-                return styles.vencido; // Pode adicionar um estilo para o status 'pago', se necessário
-        default:
-            return ''; // Se não for 'pendente' nem 'pago', retorna uma string vazia
+    switch (status) {
+      case "pendente":
+        return styles.pendente; // Retorna a classe 'pendente'
+      case "pago":
+        return styles.pago; // Pode adicionar um estilo para o status 'pago', se necessário
+      case "vencido":
+        return styles.vencido; // Pode adicionar um estilo para o status 'pago', se necessário
+      default:
+        return ""; // Se não for 'pendente' nem 'pago', retorna uma string vazia
     }
-};
-
+  };
+  
   return (
     <div className={styles.container}>
       <button onClick={handleClickOpenModal}>Criar Produto</button>
@@ -192,21 +219,18 @@ function ProductList() {
                   <option value="vencido">Vencido</option>
                 </select>
               </div>
-<div>
-  <label>Tipo:</label>
-  <select
-  name="tipo"
-  value={formData.tipo}
-  onChange={handleChange}  // Certifique-se de que a função handleChange está sendo chamada corretamente
-  required
->
-  <option value="receita">Receita</option>
-  <option value="despesa">Despesa</option>
-</select>
-
-</div>
-
-
+              <div>
+                <label>Tipo:</label>
+                <select
+                  name="tipo"
+                  value={formData.tipo}
+                  onChange={handleChange} // Certifique-se de que a função handleChange está sendo chamada corretamente
+                  required
+                >
+                  <option value="receita">Receita</option>
+                  <option value="despesa">Despesa</option>
+                </select>
+              </div>
 
               <button type="submit">Cadastrar</button>
             </form>
@@ -221,13 +245,13 @@ function ProductList() {
         <table className={styles.productTable}>
           <thead>
             <tr>
-            <th>Tipo</th>
+              <th>Tipo</th>
               <th>Nome</th>
               <th>Preço</th>
               <th>Data de Vencimento</th>
               <th>Status de Pagamento</th>
               <th>Data de Criação</th>
-          
+              <th>Excluir</th>
             </tr>
           </thead>
           <tbody>
@@ -241,13 +265,32 @@ function ProductList() {
                   {product.statusDePagamento}
                 </td>
                 <td>{formatDate(product.dataCriacao)}</td>
-                
-
+                <td onClick={() => handleClickOpenDeleteModal(product._id)}>
+                  <img src="https://i.imgur.com/flqGals.png" alt="" style={{
+                    width:"1rem"
+                  }} />
+                </td>
+             
               </tr>
             ))}
           </tbody>
         </table>
       )}
+         {openDeleteModal && (
+                  <>
+                  <div className={styles.DeleteModal} >
+                  <span className={styles.cartClose}  onClick={handleClickCloseDeleteModal}>
+              X
+            </span>
+                    <div ref={modalRef} className={styles.DeleteModalContent}>
+                    <p>Tem certeza que deseja excluir este produto?</p>
+      <button onClick={() => handleDelete(selectedProductId)}>Sim</button>
+      <button onClick={handleClickCloseDeleteModal}>Não</button>
+                    </div>
+                  </div>
+                 
+                  </>
+                )}
     </div>
   );
 }

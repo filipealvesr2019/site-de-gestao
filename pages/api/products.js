@@ -35,6 +35,20 @@ export default async function handler(req, res) {
       const products = await Product.find({}).sort({ dataCriacao: -1 });
       res.status(200).json({ products });
     } 
+    else if (req.method === 'DELETE') {
+      // Lógica para excluir um produto
+      const { id } = req.query; // Obtemos o ID do produto a partir da query
+      if (!id) {
+        return res.status(400).json({ error: 'ID do produto é obrigatório.' });
+      }
+
+      const deletedProduct = await Product.findByIdAndDelete(id);
+      if (!deletedProduct) {
+        return res.status(404).json({ error: 'Produto não encontrado.' });
+      }
+
+      res.status(200).json({ message: 'Produto excluído com sucesso!' });
+    }
     else {
       // Retornar erro caso o método não seja permitido
       res.status(405).json({ error: 'Método não permitido.' });
