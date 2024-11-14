@@ -1,6 +1,7 @@
 import Product from "../models/Product";
 import dbConnect from "../utils/dbConnect";
 
+
 // A função handler será responsável por lidar com a requisição
 export default async function handler(req, res) {
   try {
@@ -34,30 +35,9 @@ export default async function handler(req, res) {
       // Consultar todos os produtos
       const products = await Product.find({}).sort({ dataCriacao: -1 });
 
-      // Calcular o total de receitas pagas do mês
-      const currentDate = new Date();
-      const startOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
-      const endOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
-
-      const totalPaid = await Product.aggregate([
-        {
-          $match: {
-            statusDePagamento: 'pago',
-            dataDeVencimento: { $gte: startOfMonth, $lte: endOfMonth }
-          }
-        },
-        {
-          $group: {
-            _id: null,
-            totalReceitas: { $sum: "$preco" }
-          }
-        }
-      ]);
-
-      const totalReceitasPagas = totalPaid.length > 0 ? totalPaid[0].totalReceitas : 0;
 
       // Retornar os produtos e o total de receitas pagas
-      res.status(200).json({ products, totalReceitasPagas });
+      res.status(200).json({ products });
     } 
     else if (req.method === 'DELETE') {
       // Lógica para excluir um produto
