@@ -126,16 +126,30 @@ function ProductList() {
         }
         const data = await response.json();
         setProducts(data.products);
-        setTotalReceitasPagas(data.totalReceitasPagas); // Atualiza o estado com a receita do mês
-
+        
         setLoading(false);
       } catch (error) {
         setError(error.message);
         setLoading(false);
       }
     };
-
+    const fetchRevenue = async () => {
+      try {
+        const response = await fetch("http://localhost:3000/api/receitas");
+        if (!response.ok) {
+          throw new Error("Erro ao buscar receitas");
+        }
+        const data = await response.json();
+        setTotalReceitasPagas(data.totalReceitasPagas);
+        setLoading(false);
+      } catch (error) {
+        setError(error.message);
+        setLoading(false);
+      }
+    };
+    
     fetchProducts();
+    fetchRevenue();
   }, []);
 
   const handleDelete = async (productId) => {
