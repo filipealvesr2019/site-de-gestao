@@ -7,7 +7,7 @@ export default function RootLayout({ children }) {
   return (
     <ClerkProvider dynamic localization={ptBR}>
 
-          <html lang="en">
+          <html >
         <body>
         
           {children}
