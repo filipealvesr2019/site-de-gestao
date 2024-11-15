@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import styles from "./ProductList.module.css";
 
 function ProductList() {
+  
   const [totalReceitasPagas, setTotalReceitasPagas] = useState(0); // Novo estado para o total de receitas do mês
 
   const modalRef = useRef(null);
@@ -91,7 +92,7 @@ function ProductList() {
       preco: "",
       dataDeVencimento: "",
       statusDePagamento: "pendente",
-      tipo: "", // Resetar o campo tipo após o envio
+      tipo: "receita", // Resetar o campo tipo após o envio
       
     });
     console.log("tipo", formData.tipo); // Agora deve exibir corretamente o valor de "tipo"
