@@ -4,7 +4,8 @@ import { useState, useEffect, useRef } from "react";
 import styles from "./ProductList.module.css";
 
 function ProductList() {
-  
+  const [selectedProducts, setSelectedProducts] = useState([]); // Para armazenar os produtos selecionados
+
   const [totalReceitasPagas, setTotalReceitasPagas] = useState(0); // Novo estado para o total de receitas do mês
 
   const modalRef = useRef(null);
@@ -221,6 +222,68 @@ function ProductList() {
         return ""; // Se não for 'pendente' nem 'pago', retorna uma string vazia
     }
   };
+  
+  const handleCheckboxChange = (productId) => {
+    setSelectedProducts((prevSelected) =>
+      prevSelected.includes(productId)
+        ? prevSelected.filter((id) => id !== productId)
+        : [...prevSelected, productId]
+    );
+  };
+
+  const handlePrintInvoice = () => {
+    // Filtrar os produtos selecionados
+    const selectedItems = products.filter((product) =>
+      selectedProducts.includes(product._id)
+    );
+  
+    // Lógica para gerar a nota com os produtos selecionados
+    if (selectedItems.length === 0) {
+      alert("Nenhum produto selecionado para gerar a nota.");
+      return;
+    }
+  
+    // Gerar a HTML da nota
+    const invoiceContent = `
+      <div style="font-family: Arial, sans-serif; padding: 20px;">
+        <h2>Nota Fiscal</h2>
+        <p><strong>Data:</strong> ${new Date().toLocaleDateString()}</p>
+        <table style="width: 100%; border-collapse: collapse;">
+          <thead>
+            <tr>
+              <th style="text-align: left; padding: 8px; border: 1px solid #ccc;">Produto</th>
+              <th style="text-align: left; padding: 8px; border: 1px solid #ccc;">Preço</th>
+              <th style="text-align: left; padding: 8px; border: 1px solid #ccc;">Data de Vencimento</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${selectedItems
+              .map(
+                (item) => `
+              <tr>
+                <td style="padding: 8px; border: 1px solid #ccc;">${item.nome}</td>
+                <td style="padding: 8px; border: 1px solid #ccc;">R$${item.preco.toFixed(2)}</td>
+                <td style="padding: 8px; border: 1px solid #ccc;">${formatDate(item.dataDeVencimento)}</td>
+              </tr>`
+              )
+              .join("")}
+          </tbody>
+        </table>
+        <h3 style="margin-top: 20px;">Total: R$${selectedItems
+          .reduce((total, item) => total + item.preco, 0)
+          .toFixed(2)}</h3>
+      </div>
+    `;
+  
+    // Criar uma nova janela e carregar o conteúdo da nota nela
+    const printWindow = window.open("", "_blank", "width=800,height=600");
+    printWindow.document.write(invoiceContent);
+    printWindow.document.close();
+  
+    // Abrir a interface de impressão
+    printWindow.print();
+  };
+  
 
   return (
     <div className={styles.container}>
@@ -301,6 +364,7 @@ function ProductList() {
           </div>
         </div>
       )}
+      <button onClick={handlePrintInvoice}>Imprimir Nota</button>
 
       <h2>Lista de Produtos</h2>
       {products.length === 0 ? (
@@ -309,6 +373,8 @@ function ProductList() {
         <table className={styles.productTable}>
           <thead>
             <tr>
+            <th>Selecionar</th>
+
               <th>Tipo</th>
               <th>Nome</th>
               <th>Preço</th>
@@ -321,7 +387,14 @@ function ProductList() {
           <tbody>
             {products.map((product) => (
               <tr key={product._id}>
-                <td>{product.tipo}</td>
+                 <td>
+                 <input
+              type="checkbox"
+              checked={selectedProducts.includes(product._id)}
+              onChange={() => handleCheckboxChange(product._id)}
+            />
+                </td>
+                <td>ss{product.tipo}</td>
                 <td>{product.nome}</td>
                 <td>R${product.preco.toFixed(2)}</td>
                 <td>{formatDate(product.dataDeVencimento)}</td>
