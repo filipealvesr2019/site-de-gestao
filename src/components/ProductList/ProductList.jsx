@@ -2,6 +2,8 @@
 
 import { useState, useEffect, useRef } from "react";
 import styles from "./ProductList.module.css";
+import { jsPDF } from "jspdf"; // Importar a biblioteca jsPDF
+import "jspdf-autotable"; // Import the autoTable plugin
 
 function ProductList() {
   const [selectedProducts, setSelectedProducts] = useState([]); // Para armazenar os produtos selecionados
@@ -23,7 +25,6 @@ function ProductList() {
     dataDeVencimento: "",
     statusDePagamento: "pendente",
     tipo: "receita",
-
   });
   const [selectedProductId, setSelectedProductId] = useState(null);
 
@@ -94,7 +95,6 @@ function ProductList() {
       dataDeVencimento: "",
       statusDePagamento: "pendente",
       tipo: "receita", // Resetar o campo tipo após o envio
-      
     });
     console.log("tipo", formData.tipo); // Agora deve exibir corretamente o valor de "tipo"
   };
@@ -128,7 +128,7 @@ function ProductList() {
         }
         const data = await response.json();
         setProducts(data.products);
-        
+
         setLoading(false);
       } catch (error) {
         setError(error.message);
@@ -149,7 +149,7 @@ function ProductList() {
         setLoading(false);
       }
     };
-    
+
     fetchProducts();
     fetchRevenue();
   }, []);
@@ -222,7 +222,7 @@ function ProductList() {
         return ""; // Se não for 'pendente' nem 'pago', retorna uma string vazia
     }
   };
-  
+
   const handleCheckboxChange = (productId) => {
     setSelectedProducts((prevSelected) =>
       prevSelected.includes(productId)
@@ -236,13 +236,13 @@ function ProductList() {
     const selectedItems = products.filter((product) =>
       selectedProducts.includes(product._id)
     );
-  
+
     // Lógica para gerar a nota com os produtos selecionados
     if (selectedItems.length === 0) {
       alert("Nenhum produto selecionado para gerar a nota.");
       return;
     }
-  
+
     // Gerar a HTML da nota
     const invoiceContent = `
       <div style="font-family: Arial, sans-serif; padding: 20px;">
@@ -261,9 +261,15 @@ function ProductList() {
               .map(
                 (item) => `
               <tr>
-                <td style="padding: 8px; border: 1px solid #ccc;">${item.nome}</td>
-                <td style="padding: 8px; border: 1px solid #ccc;">R$${item.preco.toFixed(2)}</td>
-                <td style="padding: 8px; border: 1px solid #ccc;">${formatDate(item.dataDeVencimento)}</td>
+                <td style="padding: 8px; border: 1px solid #ccc;">${
+                  item.nome
+                }</td>
+                <td style="padding: 8px; border: 1px solid #ccc;">R$${item.preco.toFixed(
+                  2
+                )}</td>
+                <td style="padding: 8px; border: 1px solid #ccc;">${formatDate(
+                  item.dataDeVencimento
+                )}</td>
               </tr>`
               )
               .join("")}
@@ -274,16 +280,47 @@ function ProductList() {
           .toFixed(2)}</h3>
       </div>
     `;
-  
+
     // Criar uma nova janela e carregar o conteúdo da nota nela
     const printWindow = window.open("", "_blank", "width=800,height=600");
     printWindow.document.write(invoiceContent);
     printWindow.document.close();
-  
+
     // Abrir a interface de impressão
     printWindow.print();
   };
-  
+
+  const handleDownloadInvoice = () => {
+    const selectedItems = products.filter((product) =>
+      selectedProducts.includes(product._id)
+    );
+
+    if (selectedItems.length === 0) {
+      alert("Nenhum produto selecionado para gerar a nota.");
+      return;
+    }
+
+    const doc = new jsPDF();
+    doc.setFont("helvetica", "normal");
+    doc.text("Nota Fiscal", 20, 20);
+    doc.text(`Data: ${new Date().toLocaleDateString()}`, 20, 30);
+    doc.autoTable({
+      startY: 40,
+      head: [["Produto", "Preço", "Data de Vencimento"]],
+      body: selectedItems.map((item) => [
+        item.nome,
+        `R$${item.preco.toFixed(2)}`,
+        formatDate(item.dataDeVencimento),
+      ]),
+    });
+
+    const total = selectedItems
+      .reduce((sum, item) => sum + item.preco, 0)
+      .toFixed(2);
+    doc.text(`Total: R$${total}`, 20, doc.lastAutoTable.finalY + 10);
+
+    doc.save("nota_fiscal.pdf");
+  };
 
   return (
     <div className={styles.container}>
@@ -365,6 +402,7 @@ function ProductList() {
         </div>
       )}
       <button onClick={handlePrintInvoice}>Imprimir Nota</button>
+      <button onClick={handleDownloadInvoice}>Baixar Nota Fiscal</button>
 
       <h2>Lista de Produtos</h2>
       {products.length === 0 ? (
@@ -373,7 +411,7 @@ function ProductList() {
         <table className={styles.productTable}>
           <thead>
             <tr>
-            <th>Selecionar</th>
+              <th>Selecionar</th>
 
               <th>Tipo</th>
               <th>Nome</th>
@@ -387,12 +425,12 @@ function ProductList() {
           <tbody>
             {products.map((product) => (
               <tr key={product._id}>
-                 <td>
-                 <input
-              type="checkbox"
-              checked={selectedProducts.includes(product._id)}
-              onChange={() => handleCheckboxChange(product._id)}
-            />
+                <td>
+                  <input
+                    type="checkbox"
+                    checked={selectedProducts.includes(product._id)}
+                    onChange={() => handleCheckboxChange(product._id)}
+                  />
                 </td>
                 <td>ss{product.tipo}</td>
                 <td>{product.nome}</td>
