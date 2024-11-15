@@ -1,15 +1,19 @@
 import Product from "../models/Product";
 import dbConnect from "../utils/dbConnect";
+import { getAuth } from '@clerk/nextjs/server'
 
 
 // A função handler será responsável por lidar com a requisição
 export default async function handler(req, res) {
+  const { userId } = getAuth(req)
+
   try {
     // Conectar ao banco de dados uma vez, antes de executar a lógica da requisição
     await dbConnect();
 
     // Verificar o método da requisição
     if (req.method === 'POST') {
+      
       const { nome, preco, dataDeVencimento, statusDePagamento, tipo } = req.body;
       console.log("Dados recebidos:", req.body);
 
@@ -24,7 +28,9 @@ export default async function handler(req, res) {
         preco,
         dataDeVencimento: dataDeVencimento, // Armazenar como string
         statusDePagamento: statusDePagamento || 'pendente',
-        tipo
+        tipo, 
+        userId 
+        
       });
 
       // Salvar o produto no banco de dados
@@ -33,11 +39,11 @@ export default async function handler(req, res) {
     } 
     else if (req.method === 'GET') {
       // Consultar todos os produtos
-      const products = await Product.find({}).sort({ dataCriacao: -1 });
+      const products = await Product.find({ userId }).sort({ dataCriacao: -1 });
 
 
       // Retornar os produtos e o total de receitas pagas
-      res.status(200).json({ products });
+      res.status(200).json({ products});
     } 
     else if (req.method === 'DELETE') {
       // Lógica para excluir um produto

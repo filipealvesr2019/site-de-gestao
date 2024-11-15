@@ -11,6 +11,8 @@ const ProductSchema = new mongoose.Schema({
   },
   dataCriacao: { type: Date, default: Date.now }, 
   tipo: { type: String, required: true }, // Campo tipo corretamente definido
+  userId: { type: String, required: true }, // Relaciona o produto ao cliente
+
 });
 
 export default mongoose.models.Product || mongoose.model('Product', ProductSchema);

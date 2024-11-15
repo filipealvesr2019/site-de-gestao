@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import styles from "./ProductList.module.css";
+
 function ProductList() {
   const [totalReceitasPagas, setTotalReceitasPagas] = useState(0); // Novo estado para o total de receitas do mês
 
@@ -20,6 +21,7 @@ function ProductList() {
     dataDeVencimento: "",
     statusDePagamento: "pendente",
     tipo: "receita",
+
   });
   const [selectedProductId, setSelectedProductId] = useState(null);
 
@@ -90,6 +92,7 @@ function ProductList() {
       dataDeVencimento: "",
       statusDePagamento: "pendente",
       tipo: "", // Resetar o campo tipo após o envio
+      
     });
     console.log("tipo", formData.tipo); // Agora deve exibir corretamente o valor de "tipo"
   };
