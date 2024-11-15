@@ -6,7 +6,6 @@ import {
   SignInButton,
   UserButton,
 } from "@clerk/nextjs";
-import { ptBR } from "@clerk/localizations";
 import ComponenteProtegido from "@/components/ComponenteProtegido";
 export default function Login() {
   return (
