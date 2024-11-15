@@ -1,7 +1,6 @@
 "use client";
 import {
-  ClerkProvider,
-  RedirectToSignIn,
+ 
   SignedIn,
   SignedOut,
   SignInButton,
@@ -12,7 +11,7 @@ import ComponenteProtegido from "@/components/ComponenteProtegido";
 export default function Login() {
   return (
     <>
-      <ClerkProvider dynamic localization={ptBR}>
+     
         <SignedOut>
           {/* Exibe o botão de login somente quando o usuário não estiver autenticado */}
           <SignInButton />
@@ -31,7 +30,7 @@ export default function Login() {
         <SignedOut>
           <p>Por favor, faça login para acessar o conteúdo.</p>
         </SignedOut>
-      </ClerkProvider>
+ 
     </>
   );
 }
