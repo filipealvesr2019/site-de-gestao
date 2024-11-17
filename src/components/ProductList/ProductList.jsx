@@ -9,6 +9,10 @@ function ProductList() {
   const [selectedProducts, setSelectedProducts] = useState([]); // Para armazenar os produtos selecionados
 
   const [totalReceitasPagas, setTotalReceitasPagas] = useState(0); // Novo estado para o total de receitas do mês
+  const [totalDespesas, setTotalDespesas] = useState(0); // Novo estado para o total de receitas do mês
+  const [diferenca, setTotalDiferenca] = useState(0); // Novo estado para o total de receitas do mês
+
+  
 
   const modalRef = useRef(null);
 
@@ -135,6 +139,8 @@ function ProductList() {
         setLoading(false);
       }
     };
+
+    
     const fetchRevenue = async () => {
       try {
         const response = await fetch("http://localhost:3000/api/receitas");
@@ -150,8 +156,45 @@ function ProductList() {
       }
     };
 
+    const fetchExpenses = async () => {
+      try {
+        const response = await fetch("http://localhost:3000/api/despesas");
+        if (!response.ok) {
+          throw new Error("Erro ao buscar receitas");
+        }
+        const data = await response.json();
+        setTotalDespesas(data.totalDespesas);
+        console.log("fetchExpenses", data)
+        setLoading(false);
+      } catch (error) {
+        setError(error.message);
+        setLoading(false);
+      }
+    };
+
+
+    
+    const fetchProfit = async () => {
+      try {
+        const response = await fetch("http://localhost:3000/api/diferenca");
+        if (!response.ok) {
+          throw new Error("Erro ao buscar receitas");
+        }
+        const data = await response.json();
+        setTotalDiferenca(data.diferenca);
+        console.log("setTotalDiferenca", data)
+        setLoading(false);
+      } catch (error) {
+        setError(error.message);
+        setLoading(false);
+      }
+    };
+
+    fetchExpenses();
     fetchProducts();
     fetchRevenue();
+    fetchProfit();
+    
   }, []);
 
   const handleDelete = async (productId) => {
@@ -193,7 +236,15 @@ function ProductList() {
             : product
         )
       );
+
+    // Calcular o total de receitas pagas
+    if (newStatus === "pago") {
+      setTotalReceitasPagas((prevTotal) => prevTotal + product.preco);
+    } else {
+      setTotalReceitasPagas((prevTotal) => prevTotal - product.preco);
+    }
       setOpenUpdateModal(false); // Fechar o modal após a atualização
+ 
     } else {
       alert("Erro ao atualizar status de pagamento.");
     }
@@ -328,8 +379,16 @@ function ProductList() {
         Total de Receitas do Mês: R$
         {isNaN(totalReceitasPagas) ? "0.00" : totalReceitasPagas.toFixed(2)}
       </h3>
+      <h3>
+        Total de despesas do Mês: R$
+        {isNaN(totalDespesas) ? "0.00" : totalDespesas.toFixed(2)}
+      </h3>
+      <h3>
+        Total de diferença do Mês: R$
+        {isNaN(diferenca) ? "0.00" : diferenca.toFixed(2)}
+      </h3>
 
-      <button onClick={handleClickOpenModal}>Criar Produto</button>
+      <button onClick={handleClickOpenModal}>Nova Movimentação</button>
       {openModal && (
         <div className={styles.modal}>
           <div ref={modalRef} className={styles.modalContent}>
@@ -432,7 +491,7 @@ function ProductList() {
                     onChange={() => handleCheckboxChange(product._id)}
                   />
                 </td>
-                <td>ss{product.tipo}</td>
+                <td>{product.tipo}</td>
                 <td>{product.nome}</td>
                 <td>R${product.preco.toFixed(2)}</td>
                 <td>{formatDate(product.dataDeVencimento)}</td>

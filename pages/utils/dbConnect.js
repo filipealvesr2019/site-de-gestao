@@ -6,7 +6,8 @@ if (!MONGODB_URI) {
   throw new Error('Por favor, defina a variável de ambiente MONGODB_URI');
 }
 
-let cached = global.mongoose;
+// Check if we are in development mode to cache the connection
+let cached = global.mongoose || { conn: null, promise: null };
 
 async function dbConnect() {
   if (cached.conn) {
@@ -14,8 +15,8 @@ async function dbConnect() {
   }
 
   if (!cached.promise) {
-    cached.promise = mongoose.connect(MONGODB_URI, {}).then((mongoose) => {
-      return mongoose;
+    cached.promise = mongoose.connect(MONGODB_URI).then((mongooseInstance) => {
+      return mongooseInstance;
     });
   }
 
