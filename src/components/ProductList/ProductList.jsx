@@ -448,9 +448,14 @@ function ProductList() {
       </div>
 
       </div>
- 
 
+
+      <div className={styles.buttonsContainer}>
       <button onClick={handleClickOpenModal}>Nova Movimentação</button>
+      <button onClick={handlePrintInvoice}>Imprimir Nota</button>
+      <button onClick={handleDownloadInvoice}>Baixar Nota Fiscal</button>
+
+      </div>
       {openModal && (
         <div className={styles.modal}>
           <div ref={modalRef} className={styles.modalContent}>
@@ -522,8 +527,7 @@ function ProductList() {
           </div>
         </div>
       )}
-      <button onClick={handlePrintInvoice}>Imprimir Nota</button>
-      <button onClick={handleDownloadInvoice}>Baixar Nota Fiscal</button>
+     
       <div>
         {/* Input de pesquisa */}
         <input
@@ -560,7 +564,7 @@ function ProductList() {
                 </td>
                 <td>{product.tipo}</td>
                 <td>{product.nome}</td>
-                <td>R${product.preco.toFixed(2)}</td>
+                <td className={handleStatusCss(product.statusDePagamento)}>R${product.preco.toFixed(2)}</td>
                 <td>{formatDate(product.dataDeVencimento)}</td>
                 <td
                   className={handleStatusCss(product.statusDePagamento)}
