@@ -129,7 +129,7 @@ function ProductList() {
   // Função para buscar produtos com base no nome
   // Função para filtrar produtos com base na pesquisa
   const filterProducts = (term) => {
-    const lowercasedTerm = term.toLowerCase().trim();;
+    const lowercasedTerm = term.toLowerCase().trim();
     const filtered = products.filter((product) =>
       product.nome.toLowerCase().trim().includes(lowercasedTerm)
     );
@@ -228,8 +228,6 @@ function ProductList() {
       }
     };
 
- 
-
     fetchExpenses();
     fetchProducts();
     fetchRevenue();
@@ -286,11 +284,10 @@ function ProductList() {
             : product
         )
       );
-  // Chama as funções para buscar os dados atualizados
-  await fetchExpenses();
-  await fetchRevenue();
-  await fetchProfit();
-
+      // Chama as funções para buscar os dados atualizados
+      await fetchExpenses();
+      await fetchRevenue();
+      await fetchProfit();
 
       setOpenUpdateModal(false); // Fechar o modal após a atualização
     } else {
@@ -424,37 +421,30 @@ function ProductList() {
   return (
     <div className={styles.container}>
       <div className={styles.cardsContainer}>
-
-      <div className={styles.stylesTotalReceitas}>
-      <h3>
-        Total de Receitas do Mês: R$
-        {isNaN(totalReceitasPagas) ? "0.00" : totalReceitasPagas.toFixed(2)}
-      </h3>
-
+        <div className={styles.stylesTotalReceitas}>
+          <h3>
+            Total de Receitas do Mês: R$
+            {isNaN(totalReceitasPagas) ? "0.00" : totalReceitasPagas.toFixed(2)}
+          </h3>
+        </div>
+        <div className={styles.stylesTotalDespesas}>
+          <h3>
+            Total de despesas do Mês: R$
+            {isNaN(totalDespesas) ? "0.00" : totalDespesas.toFixed(2)}
+          </h3>
+        </div>
+        <div className={styles.stylesDiferenca}>
+          <h3>
+            Total de diferença do Mês: R$
+            {isNaN(diferenca) ? "0.00" : diferenca.toFixed(2)}
+          </h3>
+        </div>
       </div>
-      <div className={styles.stylesTotalDespesas}>
-
-      <h3>
-        Total de despesas do Mês: R$
-        {isNaN(totalDespesas) ? "0.00" : totalDespesas.toFixed(2)}
-      </h3>
-      </div>
-      <div className={styles.stylesDiferenca}>
-      <h3>
-        Total de diferença do Mês: R$
-        {isNaN(diferenca) ? "0.00" : diferenca.toFixed(2)}
-      </h3>
-
-      </div>
-
-      </div>
-
 
       <div className={styles.buttonsContainer}>
-      <button onClick={handleClickOpenModal}>Nova Movimentação</button>
-      <button onClick={handlePrintInvoice}>Imprimir Nota</button>
-      <button onClick={handleDownloadInvoice}>Baixar Nota Fiscal</button>
-
+        <button onClick={handleClickOpenModal}>Nova Movimentação</button>
+        <button onClick={handlePrintInvoice}>Imprimir Nota</button>
+        <button onClick={handleDownloadInvoice}>Baixar Nota Fiscal</button>
       </div>
       {openModal && (
         <div className={styles.modal}>
@@ -527,7 +517,7 @@ function ProductList() {
           </div>
         </div>
       )}
-     
+
       <div>
         {/* Input de pesquisa */}
         <input
@@ -537,6 +527,82 @@ function ProductList() {
           onKeyDown={handleKeyDown} // Aciona a pesquisa ao pressionar Enter
           placeholder="Pesquisar produto"
         />
+        <div className={styles.tableWrapper}>
+          {displayedProducts.map((product) => (
+            <div key={product._id} className={styles.row}>
+              <div className={styles.cell}>
+                <span>Selecionar</span>{" "}
+                <input
+                  type="checkbox"
+                  checked={selectedProducts.includes(product._id)}
+                  onChange={() => handleCheckboxChange(product._id)}
+                />
+              </div>
+              <div className={styles.cell}>
+                <span>Tipo</span>
+                <div
+                  className={`${styles.cell} ${
+                    product.tipo === "receita" ? styles.pago : styles.vencido
+                  }`}
+                >
+                  {product.tipo}
+                </div>
+              </div>
+              <div className={styles.cell}>
+              <span>Nome</span>
+
+              <div className={styles.cell}>{product.nome}</div>
+              </div>
+              <div
+                className={`${styles.cell} ${handleStatusCss(
+                  product.statusDePagamento
+                )}`}
+              >
+                R${product.preco.toFixed(2)}
+              </div>
+              <div className={styles.cell}>
+                <span>Data de Vencimento	</span>
+                {formatDate(product.dataDeVencimento)}
+              </div>
+              <div className={styles.cell}>
+              <span>Status de Pagamento	</span>
+
+              <div
+                className={`${handleStatusCss(
+                  product.statusDePagamento
+                )}`}
+                onClick={() =>
+                  handleClickOpenUpdateModal(
+                    product._id,
+                    product.statusDePagamento
+                  )
+                }
+              >
+
+                {product.statusDePagamento}
+              </div>
+              </div>
+              <div className={styles.cell}>
+              <span>Data de Criação</span>
+
+                {formatDate(product.dataCriacao)}
+              </div>
+              <div
+                className={styles.cell}
+                onClick={() => handleClickOpenDeleteModal(product._id)}
+              >
+                <span>Excluir</span>
+                <img
+                  src="https://i.imgur.com/flqGals.png"
+                  alt=""
+                  style={{
+                    width: "1rem",
+                  }}
+                />
+              </div>
+            </div>
+          ))}
+        </div>
 
         <table className={styles.productTable}>
           <thead>
@@ -562,9 +628,17 @@ function ProductList() {
                     onChange={() => handleCheckboxChange(product._id)}
                   />
                 </td>
-                <td className={product.tipo === 'receita' ? styles.pago : styles.vencido}>{product.tipo}</td>
+                <td
+                  className={
+                    product.tipo === "receita" ? styles.pago : styles.vencido
+                  }
+                >
+                  {product.tipo}
+                </td>
                 <td>{product.nome}</td>
-                <td className={handleStatusCss(product.statusDePagamento)}>R${product.preco.toFixed(2)}</td>
+                <td className={handleStatusCss(product.statusDePagamento)}>
+                  R${product.preco.toFixed(2)}
+                </td>
                 <td>{formatDate(product.dataDeVencimento)}</td>
                 <td
                   className={handleStatusCss(product.statusDePagamento)}
@@ -613,65 +687,7 @@ function ProductList() {
           />
         </div>
       </div>
-      {/* <h2>Lista de Produtos</h2>
-      {products.length === 0 ? (
-        <p>Nenhum produto encontrado.</p>
-      ) : (
-        <table className={styles.productTable}>
-          <thead>
-            <tr>
-              <th>Selecionar</th>
 
-              <th>Tipo</th>
-              <th>Nome</th>
-              <th>Preço</th>
-              <th>Data de Vencimento</th>
-              <th>Status de Pagamento</th>
-              <th>Data de Criação</th>
-              <th>Excluir</th>
-            </tr>
-          </thead>
-          <tbody>
-            {products.map((product) => (
-              <tr key={product._id}>
-                <td>
-                  <input
-                    type="checkbox"
-                    checked={selectedProducts.includes(product._id)}
-                    onChange={() => handleCheckboxChange(product._id)}
-                  />
-                </td>
-                <td>{product.tipo}</td>
-                <td>{product.nome}</td>
-                <td>R${product.preco.toFixed(2)}</td>
-                <td>{formatDate(product.dataDeVencimento)}</td>
-                <td
-                  className={handleStatusCss(product.statusDePagamento)}
-                  onClick={() =>
-                    handleClickOpenUpdateModal(
-                      product._id,
-                      product.statusDePagamento
-                    )
-                  }
-                >
-                  {product.statusDePagamento}
-                </td>
-
-                <td>{formatDate(product.dataCriacao)}</td>
-                <td onClick={() => handleClickOpenDeleteModal(product._id)}>
-                  <img
-                    src="https://i.imgur.com/flqGals.png"
-                    alt=""
-                    style={{
-                      width: "1rem",
-                    }}
-                  />
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      )} */}
       {openDeleteModal && (
         <>
           <div className={styles.DeleteModal}>
