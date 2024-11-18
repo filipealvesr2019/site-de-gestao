@@ -562,7 +562,7 @@ function ProductList() {
                     onChange={() => handleCheckboxChange(product._id)}
                   />
                 </td>
-                <td>{product.tipo}</td>
+                <td className={product.tipo === 'receita' ? styles.pago : styles.vencido}>{product.tipo}</td>
                 <td>{product.nome}</td>
                 <td className={handleStatusCss(product.statusDePagamento)}>R${product.preco.toFixed(2)}</td>
                 <td>{formatDate(product.dataDeVencimento)}</td>
