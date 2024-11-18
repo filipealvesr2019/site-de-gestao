@@ -7,6 +7,9 @@ import "jspdf-autotable"; // Import the autoTable plugin
 
 function ProductList() {
   const [selectedProducts, setSelectedProducts] = useState([]); // Para armazenar os produtos selecionados
+  // Estados para paginação
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10; // Número de produtos por página
 
   const [totalReceitasPagas, setTotalReceitasPagas] = useState(0); // Novo estado para o total de receitas do mês
   const [totalDespesas, setTotalDespesas] = useState(0); // Novo estado para o total de receitas do mês
@@ -124,14 +127,32 @@ function ProductList() {
   }, [openModal, openDeleteModal, openUpdateModal]);
 
   // Função para buscar produtos com base no nome
-  const filterProducts = (term) => {
-    const lowercasedTerm = term.toLowerCase();
-    const filtered = products.filter((product) =>
-      product.nome.toLowerCase().includes(lowercasedTerm)
-    );
-    setFilteredProducts(filtered); // Atualiza filteredProducts
+ // Função para filtrar produtos com base na pesquisa
+ const filterProducts = (term) => {
+  const lowercasedTerm = term.toLowerCase();
+  const filtered = products.filter((product) =>
+    product.nome.toLowerCase().includes(lowercasedTerm)
+  );
+  setFilteredProducts(filtered);
+  setCurrentPage(1); // Resetar para a primeira página
+};
+
+  // Funções para navegação na paginação
+  const handleNextPage = () => {
+    if (currentPage < Math.ceil(filteredProducts.length / itemsPerPage)) {
+      setCurrentPage(currentPage + 1);
+    }
   };
 
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+  // Calcular o índice dos produtos para a página atual
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const displayedProducts = filteredProducts.slice(startIndex, endIndex);
   // Função chamada quando o valor de pesquisa muda
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
@@ -519,7 +540,7 @@ function ProductList() {
             </tr>
           </thead>
           <tbody>
-            {filteredProducts.map((product) => (
+            {displayedProducts.map((product) => (
               <tr key={product._id}>
                 <td>
                   <input
@@ -558,6 +579,21 @@ function ProductList() {
             ))}
           </tbody>
         </table>
+        <div className={styles.pagination}>
+        <button onClick={handlePrevPage} disabled={currentPage === 1}>
+          Anterior
+        </button>
+        <span>
+          Página {currentPage} de{" "}
+          {Math.ceil(filteredProducts.length / itemsPerPage)}
+        </span>
+        <button
+          onClick={handleNextPage}
+          disabled={currentPage === Math.ceil(filteredProducts.length / itemsPerPage)}
+        >
+          Próxima
+        </button>
+      </div>
       </div>
       {/* <h2>Lista de Produtos</h2>
       {products.length === 0 ? (
