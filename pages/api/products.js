@@ -38,6 +38,14 @@ export default async function handler(req, res) {
       res.status(201).json({ message: 'Produto criado com sucesso!', product: newProduct });
     } 
     else if (req.method === 'GET') {
+      const { nome } = req.query; // Obtém o parâmetro de nome da query
+
+      // Consultar produtos com base no nome, se fornecido
+      const query = { userId };
+      if (nome) {
+        query.nome = { $regex: nome, $options: 'i' }; // Pesquisa case-insensitive
+      }
+    
       // Consultar todos os produtos
       const products = await Product.find({ userId }).sort({ dataCriacao: -1 });
 

@@ -11,8 +11,7 @@ function ProductList() {
   const [totalReceitasPagas, setTotalReceitasPagas] = useState(0); // Novo estado para o total de receitas do mês
   const [totalDespesas, setTotalDespesas] = useState(0); // Novo estado para o total de receitas do mês
   const [diferenca, setTotalDiferenca] = useState(0); // Novo estado para o total de receitas do mês
-
-  
+  const [filteredProducts, setFilteredProducts] = useState([]); // Usar filteredProducts aqui
 
   const modalRef = useRef(null);
 
@@ -22,6 +21,7 @@ function ProductList() {
   const [openModal, setOpenModal] = useState(false);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const [openUpdateModal, setOpenUpdateModal] = useState(false); // Modal de atualização
+  const [searchTerm, setSearchTerm] = useState(""); // Para armazenar o termo de pesquisa
 
   const [formData, setFormData] = useState({
     nome: "",
@@ -123,6 +123,26 @@ function ProductList() {
     };
   }, [openModal, openDeleteModal, openUpdateModal]);
 
+  // Função para buscar produtos com base no nome
+  const filterProducts = (term) => {
+    const lowercasedTerm = term.toLowerCase();
+    const filtered = products.filter((product) =>
+      product.nome.toLowerCase().includes(lowercasedTerm)
+    );
+    setFilteredProducts(filtered); // Atualiza filteredProducts
+  };
+
+  // Função chamada quando o valor de pesquisa muda
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
+  // Função que é chamada ao pressionar Enter no input
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      filterProducts(searchTerm); // Filtra os produtos quando Enter é pressionado
+    }
+  };
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -132,6 +152,7 @@ function ProductList() {
         }
         const data = await response.json();
         setProducts(data.products);
+        setFilteredProducts(data.products); // Inicialmente, exibe todos os produtos
 
         setLoading(false);
       } catch (error) {
@@ -140,7 +161,6 @@ function ProductList() {
       }
     };
 
-    
     const fetchRevenue = async () => {
       try {
         const response = await fetch("http://localhost:3000/api/receitas");
@@ -164,7 +184,7 @@ function ProductList() {
         }
         const data = await response.json();
         setTotalDespesas(data.totalDespesas);
-        console.log("fetchExpenses", data)
+        console.log("fetchExpenses", data);
         setLoading(false);
       } catch (error) {
         setError(error.message);
@@ -172,8 +192,6 @@ function ProductList() {
       }
     };
 
-
-    
     const fetchProfit = async () => {
       try {
         const response = await fetch("http://localhost:3000/api/diferenca");
@@ -182,7 +200,7 @@ function ProductList() {
         }
         const data = await response.json();
         setTotalDiferenca(data.diferenca);
-        console.log("setTotalDiferenca", data)
+        console.log("setTotalDiferenca", data);
         setLoading(false);
       } catch (error) {
         setError(error.message);
@@ -194,7 +212,6 @@ function ProductList() {
     fetchProducts();
     fetchRevenue();
     fetchProfit();
-    
   }, []);
 
   const handleDelete = async (productId) => {
@@ -208,6 +225,11 @@ function ProductList() {
     if (response.ok) {
       setProducts((prevProducts) =>
         prevProducts.filter((product) => product._id !== productId)
+      
+      );
+      setFilteredProducts((prevProducts) =>
+        prevProducts.filter((product) => product._id !== productId)
+      
       );
       setOpenDeleteModal(false); // Fechar o modal após a exclusão
     } else {
@@ -235,16 +257,26 @@ function ProductList() {
             ? { ...product, statusDePagamento: newStatus }
             : product
         )
+        
       );
 
-    // Calcular o total de receitas pagas
-    if (newStatus === "pago") {
-      setTotalReceitasPagas((prevTotal) => prevTotal + product.preco);
-    } else {
-      setTotalReceitasPagas((prevTotal) => prevTotal - product.preco);
-    }
+      setFilteredProducts((prevProducts) =>
+        prevProducts.map((product) =>
+          product._id === selectedProductId
+            ? { ...product, statusDePagamento: newStatus }
+            : product
+        )
+        
+      );
+      
+
+      // Calcular o total de receitas pagas
+      if (newStatus === "pago") {
+        setTotalReceitasPagas((prevTotal) => prevTotal + product.preco);
+      } else {
+        setTotalReceitasPagas((prevTotal) => prevTotal - product.preco);
+      }
       setOpenUpdateModal(false); // Fechar o modal após a atualização
- 
     } else {
       alert("Erro ao atualizar status de pagamento.");
     }
@@ -462,8 +494,72 @@ function ProductList() {
       )}
       <button onClick={handlePrintInvoice}>Imprimir Nota</button>
       <button onClick={handleDownloadInvoice}>Baixar Nota Fiscal</button>
+      <div>
+        {/* Input de pesquisa */}
+        <input
+          type="text"
+          value={searchTerm}
+          onChange={handleSearchChange}
+          onKeyDown={handleKeyDown} // Aciona a pesquisa ao pressionar Enter
+          placeholder="Pesquisar produto"
+        />
 
-      <h2>Lista de Produtos</h2>
+        <table className={styles.productTable}>
+          <thead>
+            <tr>
+              <th>Selecionar</th>
+
+              <th>Tipo</th>
+              <th>Nome</th>
+              <th>Preço</th>
+              <th>Data de Vencimento</th>
+              <th>Status de Pagamento</th>
+              <th>Data de Criação</th>
+              <th>Excluir</th>
+            </tr>
+          </thead>
+          <tbody>
+            {filteredProducts.map((product) => (
+              <tr key={product._id}>
+                <td>
+                  <input
+                    type="checkbox"
+                    checked={selectedProducts.includes(product._id)}
+                    onChange={() => handleCheckboxChange(product._id)}
+                  />
+                </td>
+                <td>{product.tipo}</td>
+                <td>{product.nome}</td>
+                <td>R${product.preco.toFixed(2)}</td>
+                <td>{formatDate(product.dataDeVencimento)}</td>
+                <td
+                  className={handleStatusCss(product.statusDePagamento)}
+                  onClick={() =>
+                    handleClickOpenUpdateModal(
+                      product._id,
+                      product.statusDePagamento
+                    )
+                  }
+                >
+                  {product.statusDePagamento}
+                </td>
+
+                <td>{formatDate(product.dataCriacao)}</td>
+                <td onClick={() => handleClickOpenDeleteModal(product._id)}>
+                  <img
+                    src="https://i.imgur.com/flqGals.png"
+                    alt=""
+                    style={{
+                      width: "1rem",
+                    }}
+                  />
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      {/* <h2>Lista de Produtos</h2>
       {products.length === 0 ? (
         <p>Nenhum produto encontrado.</p>
       ) : (
@@ -521,7 +617,7 @@ function ProductList() {
             ))}
           </tbody>
         </table>
-      )}
+      )} */}
       {openDeleteModal && (
         <>
           <div className={styles.DeleteModal}>
