@@ -17,6 +17,7 @@ export default async function handler(req, res) {
           $match: {
             dataDeVencimento: { $gte: startOfMonth, $lte: endOfMonth },
             tipo: 'despesa', // Filtra para despesas
+            statusDePagamento: { $in: ['pendente', 'vencido'] }, // Verifica se o status é "pendente" ou "vencido"
           },
         },
         {

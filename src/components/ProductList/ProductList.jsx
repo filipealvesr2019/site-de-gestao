@@ -164,6 +164,52 @@ function ProductList() {
       filterProducts(searchTerm); // Filtra os produtos quando Enter é pressionado
     }
   };
+  const fetchRevenue = async () => {
+    try {
+      const response = await fetch("http://localhost:3000/api/receitas");
+      if (!response.ok) {
+        throw new Error("Erro ao buscar receitas");
+      }
+      const data = await response.json();
+      setTotalReceitasPagas(data.totalReceitasPagas);
+      setLoading(false);
+    } catch (error) {
+      setError(error.message);
+      setLoading(false);
+    }
+  };
+
+  const fetchExpenses = async () => {
+    try {
+      const response = await fetch("http://localhost:3000/api/despesas");
+      if (!response.ok) {
+        throw new Error("Erro ao buscar receitas");
+      }
+      const data = await response.json();
+      setTotalDespesas(data.totalDespesas);
+      console.log("fetchExpenses", data);
+      setLoading(false);
+    } catch (error) {
+      setError(error.message);
+      setLoading(false);
+    }
+  };
+
+  const fetchProfit = async () => {
+    try {
+      const response = await fetch("http://localhost:3000/api/diferenca");
+      if (!response.ok) {
+        throw new Error("Erro ao buscar receitas");
+      }
+      const data = await response.json();
+      setTotalDiferenca(data.diferenca);
+      console.log("setTotalDiferenca", data);
+      setLoading(false);
+    } catch (error) {
+      setError(error.message);
+      setLoading(false);
+    }
+  };
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -182,52 +228,7 @@ function ProductList() {
       }
     };
 
-    const fetchRevenue = async () => {
-      try {
-        const response = await fetch("http://localhost:3000/api/receitas");
-        if (!response.ok) {
-          throw new Error("Erro ao buscar receitas");
-        }
-        const data = await response.json();
-        setTotalReceitasPagas(data.totalReceitasPagas);
-        setLoading(false);
-      } catch (error) {
-        setError(error.message);
-        setLoading(false);
-      }
-    };
-
-    const fetchExpenses = async () => {
-      try {
-        const response = await fetch("http://localhost:3000/api/despesas");
-        if (!response.ok) {
-          throw new Error("Erro ao buscar receitas");
-        }
-        const data = await response.json();
-        setTotalDespesas(data.totalDespesas);
-        console.log("fetchExpenses", data);
-        setLoading(false);
-      } catch (error) {
-        setError(error.message);
-        setLoading(false);
-      }
-    };
-
-    const fetchProfit = async () => {
-      try {
-        const response = await fetch("http://localhost:3000/api/diferenca");
-        if (!response.ok) {
-          throw new Error("Erro ao buscar receitas");
-        }
-        const data = await response.json();
-        setTotalDiferenca(data.diferenca);
-        console.log("setTotalDiferenca", data);
-        setLoading(false);
-      } catch (error) {
-        setError(error.message);
-        setLoading(false);
-      }
-    };
+ 
 
     fetchExpenses();
     fetchProducts();
@@ -285,13 +286,12 @@ function ProductList() {
             : product
         )
       );
+  // Chama as funções para buscar os dados atualizados
+  await fetchExpenses();
+  await fetchRevenue();
+  await fetchProfit();
 
-      // Calcular o total de receitas pagas
-      if (newStatus === "pago") {
-        setTotalReceitasPagas((prevTotal) => prevTotal + product.preco);
-      } else {
-        setTotalReceitasPagas((prevTotal) => prevTotal - product.preco);
-      }
+
       setOpenUpdateModal(false); // Fechar o modal após a atualização
     } else {
       alert("Erro ao atualizar status de pagamento.");
