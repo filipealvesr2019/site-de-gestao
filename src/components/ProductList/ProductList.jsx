@@ -127,15 +127,15 @@ function ProductList() {
   }, [openModal, openDeleteModal, openUpdateModal]);
 
   // Função para buscar produtos com base no nome
- // Função para filtrar produtos com base na pesquisa
- const filterProducts = (term) => {
-  const lowercasedTerm = term.toLowerCase();
-  const filtered = products.filter((product) =>
-    product.nome.toLowerCase().includes(lowercasedTerm)
-  );
-  setFilteredProducts(filtered);
-  setCurrentPage(1); // Resetar para a primeira página
-};
+  // Função para filtrar produtos com base na pesquisa
+  const filterProducts = (term) => {
+    const lowercasedTerm = term.toLowerCase().trim();;
+    const filtered = products.filter((product) =>
+      product.nome.toLowerCase().trim().includes(lowercasedTerm)
+    );
+    setFilteredProducts(filtered);
+    setCurrentPage(1); // Resetar para a primeira página
+  };
 
   // Funções para navegação na paginação
   const handleNextPage = () => {
@@ -246,11 +246,9 @@ function ProductList() {
     if (response.ok) {
       setProducts((prevProducts) =>
         prevProducts.filter((product) => product._id !== productId)
-      
       );
       setFilteredProducts((prevProducts) =>
         prevProducts.filter((product) => product._id !== productId)
-      
       );
       setOpenDeleteModal(false); // Fechar o modal após a exclusão
     } else {
@@ -278,7 +276,6 @@ function ProductList() {
             ? { ...product, statusDePagamento: newStatus }
             : product
         )
-        
       );
 
       setFilteredProducts((prevProducts) =>
@@ -287,9 +284,7 @@ function ProductList() {
             ? { ...product, statusDePagamento: newStatus }
             : product
         )
-        
       );
-      
 
       // Calcular o total de receitas pagas
       if (newStatus === "pago") {
@@ -428,18 +423,32 @@ function ProductList() {
 
   return (
     <div className={styles.container}>
+      <div className={styles.cardsContainer}>
+
+      <div className={styles.stylesTotalReceitas}>
       <h3>
         Total de Receitas do Mês: R$
         {isNaN(totalReceitasPagas) ? "0.00" : totalReceitasPagas.toFixed(2)}
       </h3>
+
+      </div>
+      <div className={styles.stylesTotalDespesas}>
+
       <h3>
         Total de despesas do Mês: R$
         {isNaN(totalDespesas) ? "0.00" : totalDespesas.toFixed(2)}
       </h3>
+      </div>
+      <div className={styles.stylesDiferenca}>
       <h3>
         Total de diferença do Mês: R$
         {isNaN(diferenca) ? "0.00" : diferenca.toFixed(2)}
       </h3>
+
+      </div>
+
+      </div>
+ 
 
       <button onClick={handleClickOpenModal}>Nova Movimentação</button>
       {openModal && (
@@ -580,20 +589,25 @@ function ProductList() {
           </tbody>
         </table>
         <div className={styles.pagination}>
-        <button onClick={handlePrevPage} disabled={currentPage === 1}>
-          Anterior
-        </button>
-        <span>
-          Página {currentPage} de{" "}
-          {Math.ceil(filteredProducts.length / itemsPerPage)}
-        </span>
-        <button
-          onClick={handleNextPage}
-          disabled={currentPage === Math.ceil(filteredProducts.length / itemsPerPage)}
-        >
-          Próxima
-        </button>
-      </div>
+          <img
+            src="https://i.imgur.com/yYJQoeE.png"
+            onClick={handlePrevPage}
+            disabled={currentPage === 1}
+            style={{ width: "1.5rem" }}
+          />
+          <span>
+            Página {currentPage} de{" "}
+            {Math.ceil(filteredProducts.length / itemsPerPage)}
+          </span>
+          <img
+            src="https://i.imgur.com/sTDQSBz.png"
+            onClick={handleNextPage}
+            disabled={
+              currentPage === Math.ceil(filteredProducts.length / itemsPerPage)
+            }
+            style={{ width: "1.5rem" }}
+          />
+        </div>
       </div>
       {/* <h2>Lista de Produtos</h2>
       {products.length === 0 ? (
