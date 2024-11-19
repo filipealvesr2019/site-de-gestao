@@ -1,6 +1,7 @@
 
 import ProductList from "@/components/ProductList/ProductList";
 import Login from "./Login";
+import UserAuth from "@/components/UserAuth/UserAuth";
 
 export default function Home() {
   
@@ -8,7 +9,7 @@ export default function Home() {
     <div >
 
 <Login />
-<ProductList />
+<UserAuth />
 
     </div>
   );
