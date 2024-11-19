@@ -567,7 +567,7 @@ function ProductList() {
               <div className={styles.cell}>
               <span>Cliente</span>
 
-              <div className={styles.cell}>{product.client}</div>
+              <div className={styles.cell}>{product.client ? product.client : 'nenhum'}</div>
               
               </div>
               <div className={styles.cell}>
@@ -662,7 +662,7 @@ function ProductList() {
                 </td>
                 <td>{product.nome}</td>
                 <td>
-                {product.client ? product.client : 'nemhum' }
+                {product.client ? product.client : 'nenhum' }
 
 
                 </td>
