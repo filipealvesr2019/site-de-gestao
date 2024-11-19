@@ -14,7 +14,7 @@ export default async function handler(req, res) {
     // Verificar o método da requisição
     if (req.method === 'POST') {
       
-      const { nome, preco, dataDeVencimento, statusDePagamento, tipo } = req.body;
+      const { nome, client,  preco, dataDeVencimento, statusDePagamento, tipo } = req.body;
       console.log("Dados recebidos:", req.body);
 
       // Verificar se todos os campos necessários estão presentes
@@ -24,6 +24,7 @@ export default async function handler(req, res) {
 
       // Criar o novo produto
       const newProduct = new Product({
+        client,
         nome,
         preco,
         dataDeVencimento: dataDeVencimento, // Armazenar como string

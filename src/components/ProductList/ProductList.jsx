@@ -27,6 +27,7 @@ function ProductList() {
   const [searchTerm, setSearchTerm] = useState(""); // Para armazenar o termo de pesquisa
 
   const [formData, setFormData] = useState({
+    client: "",
     nome: "",
     preco: "",
     dataDeVencimento: "",
@@ -97,6 +98,7 @@ function ProductList() {
     setProducts((prevProducts) => [...prevProducts, data.product]);
     setOpenModal(false);
     setFormData({
+      client: "",
       nome: "",
       preco: "",
       dataDeVencimento: "",
@@ -466,6 +468,18 @@ function ProductList() {
                 />
               </div>
               <div>
+                <label>Cliente(opcional):</label>
+                <input
+                  type="text"
+                  name="client"
+                  value={formData.client}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+
+              
+              <div>
                 <label>Preço:</label>
                 <input
                   type="number"
@@ -548,6 +562,14 @@ function ProductList() {
                   {product.tipo}
                 </div>
               </div>
+
+              
+              <div className={styles.cell}>
+              <span>Cliente</span>
+
+              <div className={styles.cell}>{product.client}</div>
+              
+              </div>
               <div className={styles.cell}>
               <span>Nome</span>
 
@@ -608,9 +630,11 @@ function ProductList() {
           <thead>
             <tr>
               <th>Selecionar</th>
-
               <th>Tipo</th>
+              
               <th>Nome</th>
+              <th>Cliente</th>
+
               <th>Preço</th>
               <th>Data de Vencimento</th>
               <th>Status de Pagamento</th>
@@ -628,6 +652,7 @@ function ProductList() {
                     onChange={() => handleCheckboxChange(product._id)}
                   />
                 </td>
+               
                 <td
                   className={
                     product.tipo === "receita" ? styles.pago : styles.vencido
@@ -636,6 +661,10 @@ function ProductList() {
                   {product.tipo}
                 </td>
                 <td>{product.nome}</td>
+                <td>
+                {product.client}
+
+                </td>
                 <td className={handleStatusCss(product.statusDePagamento)}>
                   R${product.preco.toFixed(2)}
                 </td>
