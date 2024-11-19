@@ -662,7 +662,8 @@ function ProductList() {
                 </td>
                 <td>{product.nome}</td>
                 <td>
-                {product.client}
+                {product.client ? product.client : 'nemhum' }
+
 
                 </td>
                 <td className={handleStatusCss(product.statusDePagamento)}>
