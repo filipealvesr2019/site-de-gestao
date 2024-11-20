@@ -26,6 +26,24 @@ function ProductList() {
   const [openUpdateModal, setOpenUpdateModal] = useState(false); // Modal de atualização
   const [searchTerm, setSearchTerm] = useState(""); // Para armazenar o termo de pesquisa
 
+  const [action, setAction] = useState(""); // Novo estado para controlar a ação selecionada
+
+  // Função para verificar se há produtos selecionados
+  const hasSelectedProducts = selectedProducts.length > 0;
+
+  const handleActionChange = (e) => {
+    const selectedAction = e.target.value;
+    setAction(selectedAction);
+
+    // Chama a função apropriada com base na seleção
+    if (selectedAction === "imprimir") {
+      handlePrintInvoice();
+      setAction(""); // Resetar a ação após a execução
+    } else if (selectedAction === "baixar") {
+      handleDownloadInvoice();
+      setAction(""); // Resetar a ação após a execução
+    }
+  };
   const [formData, setFormData] = useState({
     client: "",
     nome: "",
@@ -133,12 +151,12 @@ function ProductList() {
   const filterProducts = (term) => {
     const lowercasedTerm = term.toLowerCase().trim();
     const filtered = products.filter((product) =>
-      product.nome.toLowerCase().trim().includes(lowercasedTerm)
+      product.nome.toLowerCase().trim().includes(lowercasedTerm) ||
+      (product.client && product.client.toLowerCase().trim().includes(lowercasedTerm))
     );
     setFilteredProducts(filtered);
     setCurrentPage(1); // Resetar para a primeira página
   };
-
   // Funções para navegação na paginação
   const handleNextPage = () => {
     if (currentPage < Math.ceil(filteredProducts.length / itemsPerPage)) {
@@ -158,12 +176,14 @@ function ProductList() {
   // Função chamada quando o valor de pesquisa muda
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
+   
   };
 
   // Função que é chamada ao pressionar Enter no input
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
       filterProducts(searchTerm); // Filtra os produtos quando Enter é pressionado
+      console.log(e.target.value)
     }
   };
   const fetchRevenue = async () => {
@@ -443,10 +463,53 @@ function ProductList() {
         </div>
       </div>
 
-      <div className={styles.buttonsContainer}>
-        <button onClick={handleClickOpenModal}>Nova Movimentação</button>
-        <button onClick={handlePrintInvoice}>Imprimir Nota</button>
-        <button onClick={handleDownloadInvoice}>Baixar Nota Fiscal</button>
+      <div className={styles.buttonsContainerDesktop}>
+        {/* Input de pesquisa */}
+        <input
+          type="text"
+          value={searchTerm}
+          onChange={handleSearchChange}
+          onKeyDown={handleKeyDown} // Aciona a pesquisa ao pressionar Enter
+          placeholder="Pesquisar produto"
+        />
+        <div className={styles.buttonsStyles}>
+          <button onClick={handleClickOpenModal} className={styles.buttons}>
+            Nova Movimentação
+          </button>
+          <button onClick={handlePrintInvoice} className={styles.buttons}>
+            Imprimir Nota
+          </button>
+          <button onClick={handleDownloadInvoice} className={styles.buttons}>
+            Baixar Nota Fiscal
+          </button>
+        </div>
+      </div>
+      <div className={styles.buttonsContainerMobile}>
+        {/* Input de pesquisa */}
+        <input
+          type="text"
+          value={searchTerm}
+          onChange={handleSearchChange}
+          onKeyDown={handleKeyDown} // Aciona a pesquisa ao pressionar Enter
+          placeholder="Pesquisar produto"
+        />
+        <div className={styles.buttonsStylesMobile}>
+          <button onClick={handleClickOpenModal} className={styles.buttons}>
+            Nova Movimentação
+          </button>
+
+          {/* Select para ações */}
+          <select
+            value={action}
+            onChange={handleActionChange}
+            className={styles.select}
+            disabled={!hasSelectedProducts}
+          >
+            <option value="">Selecionar Ação</option>
+            <option value="imprimir">Imprimir Nota</option>
+            <option value="baixar">Baixar Nota Fiscal</option>
+          </select>
+        </div>
       </div>
       {openModal && (
         <div className={styles.modal}>
@@ -478,7 +541,6 @@ function ProductList() {
                 />
               </div>
 
-              
               <div>
                 <label>Preço:</label>
                 <input
@@ -533,14 +595,6 @@ function ProductList() {
       )}
 
       <div>
-        {/* Input de pesquisa */}
-        <input
-          type="text"
-          value={searchTerm}
-          onChange={handleSearchChange}
-          onKeyDown={handleKeyDown} // Aciona a pesquisa ao pressionar Enter
-          placeholder="Pesquisar produto"
-        />
         <div className={styles.tableWrapper}>
           {displayedProducts.map((product) => (
             <div key={product._id} className={styles.row}>
@@ -563,17 +617,17 @@ function ProductList() {
                 </div>
               </div>
 
-              
               <div className={styles.cell}>
-              <span>Cliente</span>
+                <span>Cliente</span>
 
-              <div className={styles.cell}>{product.client ? product.client : 'nenhum'}</div>
-              
+                <div className={styles.cell}>
+                  {product.client ? product.client : "nenhum"}
+                </div>
               </div>
               <div className={styles.cell}>
-              <span>Nome</span>
+                <span>Nome</span>
 
-              <div className={styles.cell}>{product.nome}</div>
+                <div className={styles.cell}>{product.nome}</div>
               </div>
               <div
                 className={`${styles.cell} ${handleStatusCss(
@@ -583,29 +637,26 @@ function ProductList() {
                 R${product.preco.toFixed(2)}
               </div>
               <div className={styles.cell}>
-                <span>Data de Vencimento	</span>
+                <span>Data de Vencimento </span>
                 {formatDate(product.dataDeVencimento)}
               </div>
               <div className={styles.cell}>
-              <span>Status de Pagamento	</span>
+                <span>Status de Pagamento </span>
 
-              <div
-                className={`${handleStatusCss(
-                  product.statusDePagamento
-                )}`}
-                onClick={() =>
-                  handleClickOpenUpdateModal(
-                    product._id,
-                    product.statusDePagamento
-                  )
-                }
-              >
-
-                {product.statusDePagamento}
-              </div>
+                <div
+                  className={`${handleStatusCss(product.statusDePagamento)}`}
+                  onClick={() =>
+                    handleClickOpenUpdateModal(
+                      product._id,
+                      product.statusDePagamento
+                    )
+                  }
+                >
+                  {product.statusDePagamento}
+                </div>
               </div>
               <div className={styles.cell}>
-              <span>Data de Criação</span>
+                <span>Data de Criação</span>
 
                 {formatDate(product.dataCriacao)}
               </div>
@@ -625,78 +676,74 @@ function ProductList() {
             </div>
           ))}
         </div>
+
         <div className={styles.tableContainer}>
+          <table className={styles.productTable}>
+            <thead>
+              <tr>
+                <th>Selecionar</th>
+                <th>Tipo</th>
 
-        <table className={styles.productTable} >
-          <thead>
-            <tr>
-              <th>Selecionar</th>
-              <th>Tipo</th>
-              
-              <th>Nome</th>
-              <th>Cliente</th>
+                <th>Nome</th>
+                <th>Cliente</th>
 
-              <th>Preço</th>
-              <th>Data de Vencimento</th>
-              <th>Status de Pagamento</th>
-              <th>Data de Criação</th>
-              <th>Excluir</th>
-            </tr>
-          </thead>
-          <tbody>
-            {displayedProducts.map((product) => (
-              <tr key={product._id}>
-                <td>
-                  <input
-                    type="checkbox"
-                    checked={selectedProducts.includes(product._id)}
-                    onChange={() => handleCheckboxChange(product._id)}
-                  />
-                </td>
-               
-                <td
-                  className={
-                    product.tipo === "receita" ? styles.pago : styles.vencido
-                  }
-                >
-                  {product.tipo}
-                </td>
-                <td>{product.nome}</td>
-                <td>
-                {product.client ? product.client : 'nenhum' }
-
-
-                </td>
-                <td className={handleStatusCss(product.statusDePagamento)}>
-                  R${product.preco.toFixed(2)}
-                </td>
-                <td>{formatDate(product.dataDeVencimento)}</td>
-                <td
-                  className={handleStatusCss(product.statusDePagamento)}
-                  onClick={() =>
-                    handleClickOpenUpdateModal(
-                      product._id,
-                      product.statusDePagamento
-                    )
-                  }
-                >
-                  {product.statusDePagamento}
-                </td>
-
-                <td>{formatDate(product.dataCriacao)}</td>
-                <td onClick={() => handleClickOpenDeleteModal(product._id)}>
-                  <img
-                    src="https://i.imgur.com/flqGals.png"
-                    alt=""
-                    style={{
-                      width: "1rem",
-                    }}
-                  />
-                </td>
+                <th>Preço</th>
+                <th>Data de Vencimento</th>
+                <th>Status de Pagamento</th>
+                <th>Data de Criação</th>
+                <th>Excluir</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {displayedProducts.map((product) => (
+                <tr key={product._id}>
+                  <td>
+                    <input
+                      type="checkbox"
+                      checked={selectedProducts.includes(product._id)}
+                      onChange={() => handleCheckboxChange(product._id)}
+                    />
+                  </td>
+
+                  <td
+                    className={
+                      product.tipo === "receita" ? styles.pago : styles.vencido
+                    }
+                  >
+                    {product.tipo}
+                  </td>
+                  <td>{product.nome}</td>
+                  <td>{product.client ? product.client : "nenhum"}</td>
+                  <td className={handleStatusCss(product.statusDePagamento)}>
+                    R${product.preco.toFixed(2)}
+                  </td>
+                  <td>{formatDate(product.dataDeVencimento)}</td>
+                  <td
+                    className={handleStatusCss(product.statusDePagamento)}
+                    onClick={() =>
+                      handleClickOpenUpdateModal(
+                        product._id,
+                        product.statusDePagamento
+                      )
+                    }
+                  >
+                    {product.statusDePagamento}
+                  </td>
+
+                  <td>{formatDate(product.dataCriacao)}</td>
+                  <td onClick={() => handleClickOpenDeleteModal(product._id)}>
+                    <img
+                      src="https://i.imgur.com/flqGals.png"
+                      alt=""
+                      style={{
+                        width: "1rem",
+                      }}
+                    />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
         <div className={styles.pagination}>
           <img

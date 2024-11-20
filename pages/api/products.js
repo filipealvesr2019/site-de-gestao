@@ -39,12 +39,20 @@ export default async function handler(req, res) {
       res.status(201).json({ message: 'Produto criado com sucesso!', product: newProduct });
     } 
     else if (req.method === 'GET') {
-      const { nome } = req.query; // Obtém o parâmetro de nome da query
+      const { nome, client } = req.query;
+      console.log('Parâmetros de busca recebidos:', { nome, client });
 
-      // Consultar produtos com base no nome, se fornecido
-      const query = { userId };
+      // Cria o filtro com base no usuário logado
+      const query = { userId: req.userId }; // O userId deve vir do usuário logado, por exemplo, via JWT ou sessão
+    
+      // Adiciona os filtros para nome e client, se fornecidos
       if (nome) {
         query.nome = { $regex: nome, $options: 'i' }; // Pesquisa case-insensitive
+      }
+      if (client) {
+        query.client = { $regex: client, $options: 'i' }; // Pesquisa case-insensitiv
+        console.log('Filtro para cliente adicionado:', query.client);
+        
       }
     
       // Consultar todos os produtos
