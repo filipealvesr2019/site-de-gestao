@@ -625,8 +625,9 @@ function ProductList() {
             </div>
           ))}
         </div>
+        <div className={styles.tableContainer}>
 
-        <table className={styles.productTable}>
+        <table className={styles.productTable} >
           <thead>
             <tr>
               <th>Selecionar</th>
@@ -696,6 +697,7 @@ function ProductList() {
             ))}
           </tbody>
         </table>
+        </div>
         <div className={styles.pagination}>
           <img
             src="https://i.imgur.com/yYJQoeE.png"
