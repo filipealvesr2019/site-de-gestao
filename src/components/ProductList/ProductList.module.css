@@ -226,6 +226,16 @@ justify-content: space-evenly;
   visibility: visible;
   
 }
+.inputMobile{
+  width: 100%;
+  padding: .5rem;
+  border: 1px solid gray;
+  margin-bottom: 2rem;
+  border-radius: 5px;
+}
+.inputDesktop{
+  visibility: hidden;
+}
 @media only screen and (min-width: 700px) {
   .productTable{
     visibility: visible;
@@ -250,6 +260,20 @@ justify-content: space-evenly;
     justify-content: space-between;
   }
   .buttonsContainerMobile{
+    display: none;
+  }
+  .cardsContainer{
+    margin-bottom: 4rem;
+  }
+  .inputDesktop{
+    visibility: visible;
+    width: 25%;
+    border: 1px solid gray;
+
+    border-radius: 5px;
+    padding: .5rem;
+  }
+  .inputMobile{
     display: none;
   }
 }

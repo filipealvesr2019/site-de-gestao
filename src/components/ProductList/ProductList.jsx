@@ -471,7 +471,8 @@ function ProductList() {
           value={searchTerm}
           onChange={handleSearchChange}
           onKeyDown={handleKeyDown} // Aciona a pesquisa ao pressionar Enter
-          placeholder="Pesquisar produto ou nome do cliente..."
+          placeholder="Pesquisar produto, serviço ou nome do cliente..."
+          className={styles.inputDesktop}
         />
         <div className={styles.buttonsStyles}>
           <button onClick={handleClickOpenModal} className={styles.buttons}>
@@ -492,7 +493,8 @@ function ProductList() {
           value={searchTerm}
           onChange={handleSearchChange}
           onKeyDown={handleKeyDown} // Aciona a pesquisa ao pressionar Enter
-          placeholder="Pesquisar produto ou serviço..."
+          placeholder="Pesquisar produto, serviço ou nome do cliente..."
+          className={styles.inputMobile}
         />
         <div className={styles.buttonsStylesMobile}>
           <button onClick={handleClickOpenModal} className={styles.buttons}>
@@ -685,7 +687,7 @@ function ProductList() {
                 <th>Selecionar</th>
                 <th>Tipo</th>
 
-                <th>Nome</th>
+                <th>Descrição</th>
                 <th>Cliente</th>
 
                 <th>Preço</th>
