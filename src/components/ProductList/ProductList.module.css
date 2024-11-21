@@ -276,4 +276,9 @@ justify-content: space-evenly;
   .inputMobile{
     display: none;
   }
+  .buttonsStyles{
+    display: flex;
+    justify-content: space-between;
+    width: 32%;
+  }
 }
