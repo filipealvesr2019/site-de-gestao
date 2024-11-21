@@ -1,8 +1,11 @@
 import Product from "../models/Product";
 import dbConnect from "../utils/dbConnect";
+import { getAuth } from '@clerk/nextjs/server'
 
 
 export default async function handler(req, res) {
+  const { userId } = getAuth(req)
+
   try {
     await dbConnect();
 
@@ -15,6 +18,7 @@ export default async function handler(req, res) {
       const totalPaid = await Product.aggregate([
         {
           $match: {
+            userId: userId, // Filtra pelo userId
             statusDePagamento: 'pago',
             dataDeVencimento: { $gte: startOfMonth, $lte: endOfMonth },
             tipo: 'receita', // Filtra para receitas

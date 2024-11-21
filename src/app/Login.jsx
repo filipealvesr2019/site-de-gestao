@@ -1,6 +1,6 @@
 "use client";
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
-import UserAuth from "@/components/UserAuth/UserAuth";
+import styles from './Login.module.css'
 export default function Login() {
   return (
     <>
@@ -8,19 +8,7 @@ export default function Login() {
         <SignInButton>
           {/* Personalize o botão com classes ou estilos inline */}
           <button
-            style={{
-              backgroundColor: "#367af5",
-              color: "white",
-              padding: "10px 20px",
-              border: "none",
-              borderRadius: "5px",
-              cursor: "pointer",
-              fontSize: "16px",
-              fontFamily:
-                "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
-              fontWeight: "500",
-              width:"10%"
-            }}
+           className={styles.button}
           >
             Entrar
           </button>

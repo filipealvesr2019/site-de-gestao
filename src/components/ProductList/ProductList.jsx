@@ -447,19 +447,19 @@ function ProductList() {
         <div className={styles.stylesTotalReceitas}>
           <h3>
             Total de Receitas do Mês: R$
-            {isNaN(totalReceitasPagas) ? "0.00" : totalReceitasPagas.toFixed(2)}
+            {isNaN(totalReceitasPagas) ? "0.0" : totalReceitasPagas.toFixed(2)}
           </h3>
         </div>
         <div className={styles.stylesTotalDespesas}>
           <h3>
             Total de despesas do Mês: R$
-            {isNaN(totalDespesas) ? "0.00" : totalDespesas.toFixed(2)}
+            {isNaN(totalDespesas) ? "0.0" : totalDespesas.toFixed(2)}
           </h3>
         </div>
         <div className={styles.stylesDiferenca}>
           <h3>
             Total de diferença do Mês: R$
-            {isNaN(diferenca) ? "0.00" : diferenca.toFixed(2)}
+            {isNaN(diferenca) ? "0.0" : diferenca.toFixed(2)}
           </h3>
         </div>
       </div>
@@ -471,7 +471,7 @@ function ProductList() {
           value={searchTerm}
           onChange={handleSearchChange}
           onKeyDown={handleKeyDown} // Aciona a pesquisa ao pressionar Enter
-          placeholder="Pesquisar produto"
+          placeholder="Pesquisar produto ou nome do cliente..."
         />
         <div className={styles.buttonsStyles}>
           <button onClick={handleClickOpenModal} className={styles.buttons}>
@@ -492,7 +492,7 @@ function ProductList() {
           value={searchTerm}
           onChange={handleSearchChange}
           onKeyDown={handleKeyDown} // Aciona a pesquisa ao pressionar Enter
-          placeholder="Pesquisar produto"
+          placeholder="Pesquisar produto ou serviço..."
         />
         <div className={styles.buttonsStylesMobile}>
           <button onClick={handleClickOpenModal} className={styles.buttons}>

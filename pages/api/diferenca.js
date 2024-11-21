@@ -1,7 +1,10 @@
 import Product from "../models/Product";
 import dbConnect from "../utils/dbConnect";
+import { getAuth } from '@clerk/nextjs/server'
 
 export default async function handler(req, res) {
+  const { userId } = getAuth(req)
+
   try {
     await dbConnect();
 
@@ -22,6 +25,7 @@ export default async function handler(req, res) {
       const totalPaid = await Product.aggregate([
         {
           $match: {
+            userId: userId, // Filtra pelo userId
             statusDePagamento: "pago",
             dataDeVencimento: { $gte: startOfMonth, $lte: endOfMonth },
             tipo: "receita", // Filtra para receitas
@@ -33,6 +37,7 @@ export default async function handler(req, res) {
             totalReceitas: { $sum: "$preco" },
           },
         },
+        
       ]);
 
       const totalReceitasPagas =
@@ -42,6 +47,8 @@ export default async function handler(req, res) {
       const totalExpenses = await Product.aggregate([
         {
           $match: {
+            userId: userId, // Filtra pelo userId
+
             dataDeVencimento: { $gte: startOfMonth, $lte: endOfMonth },
             tipo: "despesa", // Filtra para despesas
             statusDePagamento: { $in: ["pendente", "vencido"] }, // Verifica se o status é "pendente" ou "vencido"
