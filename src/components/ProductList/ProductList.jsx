@@ -123,7 +123,7 @@ function ProductList() {
       statusDePagamento: "pendente",
       tipo: "receita", // Resetar o campo tipo após o envio
     });
-    console.log("tipo", formData.tipo); // Agora deve exibir corretamente o valor de "tipo"
+   await fetchProducts()
   };
 
   useEffect(() => {
@@ -232,23 +232,24 @@ function ProductList() {
       setLoading(false);
     }
   };
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await fetch("http://localhost:3000/api/products");
-        if (!response.ok) {
-          throw new Error("Erro ao buscar produtos");
-        }
-        const data = await response.json();
-        setProducts(data.products);
-        setFilteredProducts(data.products); // Inicialmente, exibe todos os produtos
-
-        setLoading(false);
-      } catch (error) {
-        setError(error.message);
-        setLoading(false);
+  const fetchProducts = async () => {
+    try {
+      const response = await fetch("http://localhost:3000/api/products");
+      if (!response.ok) {
+        throw new Error("Erro ao buscar produtos");
       }
-    };
+      const data = await response.json();
+      setProducts(data.products);
+      setFilteredProducts(data.products); // Inicialmente, exibe todos os produtos
+
+      setLoading(false);
+    } catch (error) {
+      setError(error.message);
+      setLoading(false);
+    }
+  };
+  useEffect(() => {
+   
 
     fetchExpenses();
     fetchProducts();
