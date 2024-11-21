@@ -466,6 +466,7 @@ function ProductList() {
 
       <div className={styles.buttonsContainerDesktop}>
         {/* Input de pesquisa */}
+        
         <input
           type="text"
           value={searchTerm}
@@ -540,7 +541,6 @@ function ProductList() {
                   name="client"
                   value={formData.client}
                   onChange={handleChange}
-                  required
                 />
               </div>
 

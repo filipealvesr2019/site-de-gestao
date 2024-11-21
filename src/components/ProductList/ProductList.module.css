@@ -236,6 +236,16 @@ justify-content: space-evenly;
 .inputDesktop{
   visibility: hidden;
 }
+.pagination{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: .5rem;
+  margin-top: 2rem;
+}
+.tableContainer{
+  display: none;
+}
 @media only screen and (min-width: 700px) {
   .productTable{
     visibility: visible;
