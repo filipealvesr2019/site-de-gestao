@@ -18,17 +18,11 @@ export default function LandinPage() {
         </div>
 
         <div className={styles.containerB}>
-          <div className={styles.containerB__texts}>
+        
             <h1 style={styles.heading}>
               Cadastre Serviços, Produtos e Controle Tudo o que Entra e Sai
             </h1>
-            <p style={styles.paragraph}>
-              Simplifique a gestão das suas finanças. Registre receitas e
-              despesas, organize seus serviços e produtos, e mantenha todas as
-              suas operações financeiras em conformidade com rapidez e
-              eficiência.
-            </p>
-          </div>
+         
 
           <img
             src="https://i.imgur.com/RGAGwo2.png"
