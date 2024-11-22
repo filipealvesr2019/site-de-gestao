@@ -525,7 +525,7 @@ function ProductList() {
             <h3>Cadastrar Receita ou despesa</h3>
             <form onSubmit={handleSubmit}>
               <div>
-                <label>Nome:</label>
+                <label>Descrição:</label>
                 <input
                   type="text"
                   name="nome"
