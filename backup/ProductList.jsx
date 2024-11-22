@@ -123,7 +123,7 @@ function ProductList() {
       statusDePagamento: "pendente",
       tipo: "receita", // Resetar o campo tipo após o envio
     });
-    await fetchProducts();
+   await fetchProducts()
   };
 
   useEffect(() => {
@@ -150,11 +150,9 @@ function ProductList() {
   // Função para filtrar produtos com base na pesquisa
   const filterProducts = (term) => {
     const lowercasedTerm = term.toLowerCase().trim();
-    const filtered = products.filter(
-      (product) =>
-        product.nome.toLowerCase().trim().includes(lowercasedTerm) ||
-        (product.client &&
-          product.client.toLowerCase().trim().includes(lowercasedTerm))
+    const filtered = products.filter((product) =>
+      product.nome.toLowerCase().trim().includes(lowercasedTerm) ||
+      (product.client && product.client.toLowerCase().trim().includes(lowercasedTerm))
     );
     setFilteredProducts(filtered);
     setCurrentPage(1); // Resetar para a primeira página
@@ -178,13 +176,14 @@ function ProductList() {
   // Função chamada quando o valor de pesquisa muda
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
+   
   };
 
   // Função que é chamada ao pressionar Enter no input
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
       filterProducts(searchTerm); // Filtra os produtos quando Enter é pressionado
-      console.log(e.target.value);
+      console.log(e.target.value)
     }
   };
   const fetchRevenue = async () => {
@@ -250,6 +249,8 @@ function ProductList() {
     }
   };
   useEffect(() => {
+   
+
     fetchExpenses();
     fetchProducts();
     fetchRevenue();
@@ -361,17 +362,6 @@ function ProductList() {
       return;
     }
 
-    // Calcular total de receitas e despesas
-    const totalReceitas = selectedItems
-      .filter((item) => item.tipo === "receita")
-      .reduce((total, item) => total + item.preco, 0);
-
-    const totalDespesas = selectedItems
-      .filter((item) => item.tipo === "despesa")
-      .reduce((total, item) => total + item.preco, 0);
-
-    const diferenca = totalReceitas - totalDespesas;
-
     // Gerar a HTML da nota
     const invoiceContent = `
       <div style="font-family: Arial, sans-serif; padding: 20px;">
@@ -389,25 +379,24 @@ function ProductList() {
             ${selectedItems
               .map(
                 (item) => `
-                <tr>
-                    <td style="padding: 8px; border: 1px solid #ccc; ">${
-                      item.nome
-                    }</td>
-
-
-                  <td style="padding: 8px; border: 1px solid #ccc;">R$${
-                    item.tipo === "despesa" ? "-" : ""
-                  }${item.preco.toFixed(2)}</td>
-                  <td style="padding: 8px; border: 1px solid #ccc;">${formatDate(
-                    item.dataDeVencimento
-                  )}</td>
-                </tr>`
+              <tr>
+                <td style="padding: 8px; border: 1px solid #ccc;">${
+                  item.nome
+                }</td>
+                <td style="padding: 8px; border: 1px solid #ccc;">R$${item.preco.toFixed(
+                  2
+                )}</td>
+                <td style="padding: 8px; border: 1px solid #ccc;">${formatDate(
+                  item.dataDeVencimento
+                )}</td>
+              </tr>`
               )
               .join("")}
           </tbody>
         </table>
-      
-        <h3 style="margin-top: 20px;">Total: R$${diferenca.toFixed(2)}</h3>
+        <h3 style="margin-top: 20px;">Total: R$${selectedItems
+          .reduce((total, item) => total + item.preco, 0)
+          .toFixed(2)}</h3>
       </div>
     `;
 
@@ -419,6 +408,7 @@ function ProductList() {
     // Abrir a interface de impressão
     printWindow.print();
   };
+
   const handleDownloadInvoice = () => {
     const selectedItems = products.filter((product) =>
       selectedProducts.includes(product._id)
@@ -429,17 +419,6 @@ function ProductList() {
       return;
     }
 
-    // Calcular total de receitas e despesas
-    const totalReceitas = selectedItems
-      .filter((item) => item.tipo === "receita")
-      .reduce((total, item) => total + item.preco, 0);
-
-    const totalDespesas = selectedItems
-      .filter((item) => item.tipo === "despesa")
-      .reduce((total, item) => total + item.preco, 0);
-
-    const diferenca = totalReceitas - totalDespesas;
-
     const doc = new jsPDF();
     doc.setFont("helvetica", "normal");
     doc.text("Nota Fiscal", 20, 20);
@@ -449,16 +428,15 @@ function ProductList() {
       head: [["Produto", "Preço", "Data de Vencimento"]],
       body: selectedItems.map((item) => [
         item.nome,
-        `R$ ${item.tipo === "despesa" ? "-" : ""}${item.preco.toFixed(2)}`,
+        `R$${item.preco.toFixed(2)}`,
         formatDate(item.dataDeVencimento),
       ]),
     });
 
-    doc.text(
-      `Total: R$${diferenca.toFixed(2)}`,
-      20,
-      doc.lastAutoTable.finalY + 30
-    );
+    const total = selectedItems
+      .reduce((sum, item) => sum + item.preco, 0)
+      .toFixed(2);
+    doc.text(`Total: R$${total}`, 20, doc.lastAutoTable.finalY + 10);
 
     doc.save("nota_fiscal.pdf");
   };
@@ -488,7 +466,7 @@ function ProductList() {
 
       <div className={styles.buttonsContainerDesktop}>
         {/* Input de pesquisa */}
-
+        
         <input
           type="text"
           value={searchTerm}

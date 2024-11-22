@@ -1,3 +1,4 @@
+import { SignedOut, SignInButton } from "@clerk/nextjs";
 import styles from "./LandinPage.module.css";
 export default function LandinPage() {
   return (
@@ -56,6 +57,7 @@ export default function LandinPage() {
         </div>
 
         <div className={styles.containerD}>
+          <div className={styles.containerD__texts}>
           <h1 style={styles.heading}>
             E o melhor: tudo isso de forma totalmente gratuita!
           </h1>
@@ -63,7 +65,16 @@ export default function LandinPage() {
             Cadastre-se agora e aproveite todas as funcionalidades sem nenhum
             custo.
           </p>
-          <button className={styles.button}>Cadastre-se</button>
+
+          </div>
+<div className={styles.containerButton}>
+          <SignedOut>
+            <SignInButton>
+              <button className={styles.button}>Cadastre-se</button>
+            </SignInButton>
+          </SignedOut>
+
+</div>
         </div>
       </main>
     </>
