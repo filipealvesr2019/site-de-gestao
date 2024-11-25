@@ -34,7 +34,7 @@ function ProductList() {
   const handleFilterTypeChange = (e) => {
     setFilterType(e.target.value);
   };
-  
+
   const [action, setAction] = useState(""); // Novo estado para controlar a ação selecionada
   const handleStartDateChange = (e) => {
     setStartDate(e.target.value);
@@ -47,7 +47,13 @@ function ProductList() {
   const handleFilterProducts = async () => {
     // Aqui você pode fazer a chamada para a sua API passando as datas
     const response = await fetch(
-      `http://localhost:3000/api/filtrar?diaInicio=${new Date(startDate).getUTCDate()}&mesInicio=${new Date(startDate).getUTCMonth() + 1}&diaFim=${new Date(endDate).getUTCDate()}&mesFim=${new Date(endDate).getUTCMonth() + 1}&type=${filterType}`
+      `http://localhost:3000/api/filtrar?diaInicio=${new Date(
+        startDate
+      ).getUTCDate()}&mesInicio=${
+        new Date(startDate).getUTCMonth() + 1
+      }&diaFim=${new Date(endDate).getUTCDate()}&mesFim=${
+        new Date(endDate).getUTCMonth() + 1
+      }&type=${filterType}`
     );
 
     if (!response.ok) {
@@ -57,6 +63,7 @@ function ProductList() {
     const data = await response.json();
     setFilteredProducts(data); // Atualiza os produtos filtrados
     setShowDatePickers(false); // Fecha os date pickers após a filtragem
+    setOpenFilterModal(false);
   };
   // Função para verificar se há produtos selecionados
   const hasSelectedProducts = selectedProducts.length > 0;
@@ -94,7 +101,7 @@ function ProductList() {
 
   const handleClickOpenFilterModal = () => {
     setOpenFilterModal(true);
-    setShowDatePickers(true)
+    setShowDatePickers(true);
   };
 
   const handleClickCloseFilterModal = () => {
@@ -526,41 +533,47 @@ function ProductList() {
         </div>
       </div>
       <div className={styles.buttonsStyles}>
-       
         {openFilterModal && (
-        <div className={styles.modal}>
-          <div ref={modalRef} className={styles.modalContent}>
-            <span className={styles.cartClose} onClick={handleClickOpenFilterModal}>
-              X
-            </span>
-            {showDatePickers && (
-          <div>
-              <div>
-        <label>Filtrar por:</label>
-        <select value={filterType} onChange={handleFilterTypeChange}>
-          <option value="dataDeVencimento">Data de Vencimento</option>
-          <option value="dataCriacao">Data de Criação</option>
-        </select>
-      </div>
-            <input
-              type="date"
-              value={startDate}
-              onChange={handleStartDateChange}
-              required
-            />
-            <input
-              type="date"
-              value={endDate}
-              onChange={handleEndDateChange}
-              required
-            />
-            <button onClick={handleFilterProducts}>Filtrar</button>
+          <div className={styles.modal}>
+            <div ref={modalRef} className={styles.modalContent}>
+              <span
+                className={styles.cartClose}
+                onClick={handleClickCloseFilterModal}
+              >
+                X
+              </span>
+              {showDatePickers && (
+                <div>
+                  <div>
+                    <label>Filtrar por:</label>
+                    <select
+                      value={filterType}
+                      onChange={handleFilterTypeChange}
+                    >
+                      <option value="dataDeVencimento">
+                        Data de Vencimento
+                      </option>
+                      <option value="dataCriacao">Data de Criação</option>
+                    </select>
+                  </div>
+                  <input
+                    type="date"
+                    value={startDate}
+                    onChange={handleStartDateChange}
+                    required
+                  />
+                  <input
+                    type="date"
+                    value={endDate}
+                    onChange={handleEndDateChange}
+                    required
+                  />
+                  <button onClick={handleFilterProducts}>Filtrar</button>
+                </div>
+              )}
+            </div>
           </div>
         )}
-            </div>
-            </div>
-)}
-      
       </div>
       <div className={styles.buttonsContainerDesktop}>
         {/* Input de pesquisa */}
@@ -574,16 +587,15 @@ function ProductList() {
           className={styles.inputDesktop}
         />
         <div className={styles.buttonsStyles}>
-     
           <button onClick={handleClickOpenModal} className={styles.buttons}>
             Nova Movimentação
           </button>
           <button
-          onClick={handleClickOpenFilterModal}
-          className={styles.buttons}
-        >
-          Filtragem Personalizada
-        </button>
+            onClick={handleClickOpenFilterModal}
+            className={styles.buttons}
+          >
+            Filtragem Personalizada
+          </button>
           <button onClick={handlePrintInvoice} className={styles.buttons}>
             Imprimir Nota
           </button>
