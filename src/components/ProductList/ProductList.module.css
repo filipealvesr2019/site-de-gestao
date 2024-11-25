@@ -289,6 +289,6 @@ justify-content: space-evenly;
   .buttonsStyles{
     display: flex;
     justify-content: space-between;
-    width: 32%;
+    width: 45%;
   }
 }

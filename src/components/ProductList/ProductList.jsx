@@ -15,19 +15,49 @@ function ProductList() {
   const [totalDespesas, setTotalDespesas] = useState(0); // Novo estado para o total de receitas do mês
   const [diferenca, setTotalDiferenca] = useState(0); // Novo estado para o total de receitas do mês
   const [filteredProducts, setFilteredProducts] = useState([]); // Usar filteredProducts aqui
-
+  const [showDatePickers, setShowDatePickers] = useState(false);
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
   const modalRef = useRef(null);
 
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [openModal, setOpenModal] = useState(false);
+  const [openFilterModal, setOpenFilterModal] = useState(false);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const [openUpdateModal, setOpenUpdateModal] = useState(false); // Modal de atualização
   const [searchTerm, setSearchTerm] = useState(""); // Para armazenar o termo de pesquisa
+  const [filterType, setFilterType] = useState("dataDeVencimento"); // Default é filtrar por data de vencimento
 
+  // Função para lidar com a mudança do tipo de filtro
+  const handleFilterTypeChange = (e) => {
+    setFilterType(e.target.value);
+  };
+  
   const [action, setAction] = useState(""); // Novo estado para controlar a ação selecionada
+  const handleStartDateChange = (e) => {
+    setStartDate(e.target.value);
+  };
 
+  const handleEndDateChange = (e) => {
+    setEndDate(e.target.value);
+  };
+
+  const handleFilterProducts = async () => {
+    // Aqui você pode fazer a chamada para a sua API passando as datas
+    const response = await fetch(
+      `http://localhost:3000/api/filtrar?diaInicio=${new Date(startDate).getUTCDate()}&mesInicio=${new Date(startDate).getUTCMonth() + 1}&diaFim=${new Date(endDate).getUTCDate()}&mesFim=${new Date(endDate).getUTCMonth() + 1}&type=${filterType}`
+    );
+
+    if (!response.ok) {
+      throw new Error("Erro ao filtrar produtos");
+    }
+
+    const data = await response.json();
+    setFilteredProducts(data); // Atualiza os produtos filtrados
+    setShowDatePickers(false); // Fecha os date pickers após a filtragem
+  };
   // Função para verificar se há produtos selecionados
   const hasSelectedProducts = selectedProducts.length > 0;
 
@@ -60,6 +90,15 @@ function ProductList() {
 
   const handleClickCloseModal = () => {
     setOpenModal(false);
+  };
+
+  const handleClickOpenFilterModal = () => {
+    setOpenFilterModal(true);
+    setShowDatePickers(true)
+  };
+
+  const handleClickCloseFilterModal = () => {
+    setOpenFilterModal(false);
   };
 
   const handleClickOpenUpdateModal = (productId, currentStatus) => {
@@ -131,9 +170,10 @@ function ProductList() {
       if (
         modalRef.current &&
         !modalRef.current.contains(event.target) &&
-        (openModal || openDeleteModal || openUpdateModal)
+        (openModal || openDeleteModal || openUpdateModal || openFilterModal)
       ) {
         setOpenModal(false);
+        setOpenFilterModal(false);
         setOpenDeleteModal(false);
         setOpenUpdateModal(false);
       }
@@ -144,7 +184,7 @@ function ProductList() {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [openModal, openDeleteModal, openUpdateModal]);
+  }, [openModal, openDeleteModal, openUpdateModal, openFilterModal]);
 
   // Função para buscar produtos com base no nome
   // Função para filtrar produtos com base na pesquisa
@@ -485,7 +525,43 @@ function ProductList() {
           </h3>
         </div>
       </div>
-
+      <div className={styles.buttonsStyles}>
+       
+        {openFilterModal && (
+        <div className={styles.modal}>
+          <div ref={modalRef} className={styles.modalContent}>
+            <span className={styles.cartClose} onClick={handleClickOpenFilterModal}>
+              X
+            </span>
+            {showDatePickers && (
+          <div>
+              <div>
+        <label>Filtrar por:</label>
+        <select value={filterType} onChange={handleFilterTypeChange}>
+          <option value="dataDeVencimento">Data de Vencimento</option>
+          <option value="dataCriacao">Data de Criação</option>
+        </select>
+      </div>
+            <input
+              type="date"
+              value={startDate}
+              onChange={handleStartDateChange}
+              required
+            />
+            <input
+              type="date"
+              value={endDate}
+              onChange={handleEndDateChange}
+              required
+            />
+            <button onClick={handleFilterProducts}>Filtrar</button>
+          </div>
+        )}
+            </div>
+            </div>
+)}
+      
+      </div>
       <div className={styles.buttonsContainerDesktop}>
         {/* Input de pesquisa */}
 
@@ -498,9 +574,16 @@ function ProductList() {
           className={styles.inputDesktop}
         />
         <div className={styles.buttonsStyles}>
+     
           <button onClick={handleClickOpenModal} className={styles.buttons}>
             Nova Movimentação
           </button>
+          <button
+          onClick={handleClickOpenFilterModal}
+          className={styles.buttons}
+        >
+          Filtragem Personalizada
+        </button>
           <button onClick={handlePrintInvoice} className={styles.buttons}>
             Imprimir Nota
           </button>
