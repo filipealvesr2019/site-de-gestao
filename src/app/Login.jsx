@@ -4,8 +4,9 @@ import styles from './Login.module.css'
 export default function Login() {
   return (
     <>
+    
       <SignedOut>
-        <SignInButton>
+        <SignInButton >
           {/* Personalize o botão com classes ou estilos inline */}
           <button
            className={styles.button}

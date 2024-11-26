@@ -509,7 +509,9 @@ function ProductList() {
 
     doc.save("nota_fiscal.pdf");
   };
-
+  const handleFocus = (event) => {
+    event.target.showPicker(); // Abre o seletor de data
+  }
   return (
     <div className={styles.container}>
       <div className={styles.cardsContainer}>
@@ -560,12 +562,16 @@ function ProductList() {
                     type="date"
                     value={startDate}
                     onChange={handleStartDateChange}
+                    onFocus={handleFocus} // Abre o datepicker ao focar no input
+
                     required
                   />
                   <input
                     type="date"
                     value={endDate}
                     onChange={handleEndDateChange}
+                    onFocus={handleFocus} // Abre o datepicker ao focar no input
+
                     required
                   />
                   <button onClick={handleFilterProducts}>Filtrar</button>
@@ -680,6 +686,8 @@ function ProductList() {
                   name="dataDeVencimento"
                   value={formData.dataDeVencimento}
                   onChange={handleChange}
+                  onFocus={handleFocus} // Abre o datepicker ao focar no input
+
                   required
                 />
               </div>
