@@ -169,6 +169,10 @@ function ProductList() {
       statusDePagamento: "pendente",
       tipo: "receita", // Resetar o campo tipo após o envio
     });
+       // Chama as funções para buscar os dados atualizados
+    await fetchExpenses();
+    await fetchRevenue();
+    await fetchProfit();
     await fetchProducts();
   };
 
@@ -563,7 +567,7 @@ function ProductList() {
                     value={startDate}
                     onChange={handleStartDateChange}
                     onFocus={handleFocus} // Abre o datepicker ao focar no input
-
+                    style={{cursor:"pointer"}}
                     required
                   />
                   <input
@@ -571,7 +575,7 @@ function ProductList() {
                     value={endDate}
                     onChange={handleEndDateChange}
                     onFocus={handleFocus} // Abre o datepicker ao focar no input
-
+                    style={{cursor:"pointer"}}
                     required
                   />
                   <button onClick={handleFilterProducts}>Filtrar</button>
@@ -624,7 +628,12 @@ function ProductList() {
           <button onClick={handleClickOpenModal} className={styles.buttons}>
             Nova Movimentação
           </button>
-
+          <button
+            onClick={handleClickOpenFilterModal}
+            className={styles.buttons}
+          >
+            Filtragem Personalizada
+          </button>
           {/* Select para ações */}
           <select
             value={action}
@@ -687,7 +696,7 @@ function ProductList() {
                   value={formData.dataDeVencimento}
                   onChange={handleChange}
                   onFocus={handleFocus} // Abre o datepicker ao focar no input
-
+                  style={{cursor:"pointer"}}
                   required
                 />
               </div>

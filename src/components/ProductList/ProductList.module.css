@@ -291,4 +291,7 @@ justify-content: space-evenly;
     justify-content: space-between;
     width: 45%;
   }
+  .buttons{
+    cursor: pointer;
+  }
 }
