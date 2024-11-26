@@ -1,12 +1,12 @@
 
-import ProductList from "@/components/ProductList/ProductList";
+import styles from "./page.module.css";
 import Login from "./Login";
 import UserAuth from "@/components/UserAuth/UserAuth";
 
 export default function Home() {
   
   return (
-    <div >
+    <div className={styles.container} >
 
 <Login />
 <UserAuth />

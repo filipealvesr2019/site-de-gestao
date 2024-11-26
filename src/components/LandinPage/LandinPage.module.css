@@ -1,8 +1,18 @@
+
+.main{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4rem;
+}
 .containerA {
   display: flex;
-
-  justify-content: space-evenly;
+flex-direction: column;
+  justify-content: center;
   align-items: center;
+}
+.containerA__img{
+  width: 30vw;
 }
 .container__img {
   width: 15vw;
@@ -21,18 +31,22 @@
 
 .containerC {
   display: flex;
+  flex-direction: column;
+
   align-items: center;
   justify-content: space-around;
 }
 
 .containerC__texts {
-  width: 30vw;
+  width: 80vw;
 }
 
 .containerD {
   display: flex;
-  justify-content: space-evenly;
+  flex-direction: column;
+
   align-items: center;
+  
 }
 .button {
     background-color: #0074E8;
@@ -45,9 +59,39 @@
     width: 20vw;
     font-size: 1rem;
 }
-.containerD__texts{
-    width: 30vw;
+
+.button{
+  width: 80vw;
 }
-.containerButton{
+.containerA__texts{
+  display: flex;
+  flex-direction: column;
+}
+
+
+@media screen and (min-width: 700px) {
+  .containerA {
+    flex-direction: row-reverse;
+  }
+  .containerA__texts{
     width: 40vw;
+  }
+  .containerA__img{
+    width: 20vw;
+  }
+  .containerD {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+
+  }
+  
+.containerD__texts{
+  width: 45vw;
+}
+
+  .button{
+    width: 20vw;
+  }
 }

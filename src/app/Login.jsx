@@ -27,7 +27,6 @@ export default function Login() {
 
       {/* Exibe uma mensagem ou redireciona para login quando o usuário não estiver autenticado */}
       <SignedOut>
-        <p>Por favor, faça login para acessar o conteúdo.</p>
       </SignedOut>
     </>
   );
