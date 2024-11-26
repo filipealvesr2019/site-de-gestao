@@ -427,11 +427,11 @@ function ProductList() {
     const invoiceContent = `
       <div style="font-family: Arial, sans-serif; padding: 20px;">
         <h2>Nota Fiscal</h2>
-        <p><strong>Data:</strong> ${new Date().toLocaleDateString()}</p>
+        <p><strong>Data de Emissão:</strong> ${new Date().toLocaleDateString()}</p>
         <table style="width: 100%; border-collapse: collapse;">
           <thead>
             <tr>
-              <th style="text-align: left; padding: 8px; border: 1px solid #ccc;">Produto</th>
+              <th style="text-align: left; padding: 8px; border: 1px solid #ccc;">Descrição</th>
               <th style="text-align: left; padding: 8px; border: 1px solid #ccc;">Preço</th>
               <th style="text-align: left; padding: 8px; border: 1px solid #ccc;">Data de Vencimento</th>
             </tr>
@@ -448,7 +448,7 @@ function ProductList() {
 
                   <td style="padding: 8px; border: 1px solid #ccc;">R$${
                     item.tipo === "despesa" ? "-" : ""
-                  }${item.preco.toFixed(2)}</td>
+                  }${item.preco}</td>
                   <td style="padding: 8px; border: 1px solid #ccc;">${formatDate(
                     item.dataDeVencimento
                   )}</td>
@@ -494,19 +494,19 @@ function ProductList() {
     const doc = new jsPDF();
     doc.setFont("helvetica", "normal");
     doc.text("Nota Fiscal", 20, 20);
-    doc.text(`Data: ${new Date().toLocaleDateString()}`, 20, 30);
+    doc.text(`Data de Emissão: ${new Date().toLocaleDateString()}`, 20, 30);
     doc.autoTable({
       startY: 40,
-      head: [["Produto", "Preço", "Data de Vencimento"]],
+      head: [["Descrição", "Preço", "Data de Vencimento"]],
       body: selectedItems.map((item) => [
         item.nome,
-        `R$ ${item.tipo === "despesa" ? "-" : ""}${item.preco.toFixed(2)}`,
+        `R$ ${item.tipo === "despesa" ? "-" : ""}${item.preco}`,
         formatDate(item.dataDeVencimento),
       ]),
     });
 
     doc.text(
-      `Total: R$${diferenca.toFixed(2)}`,
+      `Total: R$${diferenca}`,
       20,
       doc.lastAutoTable.finalY + 30
     );
