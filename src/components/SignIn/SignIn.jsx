@@ -1,3 +1,4 @@
+
 import { SignedIn, SignedOut, SignIn, SignInButton, UserButton } from "@clerk/nextjs";
 
 export default function SignInComponente(){
