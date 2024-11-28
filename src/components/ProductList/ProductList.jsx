@@ -19,7 +19,7 @@ function ProductList() {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const modalRef = useRef(null);
-
+  const [toggleColors, setToggleColors] = useState(false);
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -169,7 +169,7 @@ function ProductList() {
       statusDePagamento: "pendente",
       tipo: "receita", // Resetar o campo tipo após o envio
     });
-       // Chama as funções para buscar os dados atualizados
+    // Chama as funções para buscar os dados atualizados
     await fetchExpenses();
     await fetchRevenue();
     await fetchProfit();
@@ -505,19 +505,21 @@ function ProductList() {
       ]),
     });
 
-    doc.text(
-      `Total: R$${diferenca}`,
-      20,
-      doc.lastAutoTable.finalY + 30
-    );
+    doc.text(`Total: R$${diferenca}`, 20, doc.lastAutoTable.finalY + 30);
 
     doc.save("nota_fiscal.pdf");
   };
   const handleFocus = (event) => {
     event.target.showPicker(); // Abre o seletor de data
-  }
+  };
+
   return (
-    <div className={styles.container}>
+    <div
+      className={styles.container}
+      style={{
+        backgroundColor: toggleColors ? "black" : "white",
+      }}
+    >
       <div className={styles.cardsContainer}>
         <div className={styles.stylesTotalReceitas}>
           <h3>
@@ -545,40 +547,47 @@ function ProductList() {
               <span
                 className={styles.cartClose}
                 onClick={handleClickCloseFilterModal}
-              >
-                X
+              > 
+                <img src="https://i.imgur.com/2csCumc.png" alt=""       className={styles.cartClose__img}/>
               </span>
               {showDatePickers && (
-                <div>
-                  <div>
+                <div className={styles.filterContainer}>
+             
                     <label>Filtrar por:</label>
                     <select
                       value={filterType}
                       onChange={handleFilterTypeChange}
+                      className={styles.dateFilterInput}
                     >
                       <option value="dataDeVencimento">
                         Data de Vencimento
                       </option>
                       <option value="dataCriacao">Data de Criação</option>
                     </select>
-                  </div>
+                    <label>Data Inicial:</label>
                   <input
                     type="date"
                     value={startDate}
                     onChange={handleStartDateChange}
                     onFocus={handleFocus} // Abre o datepicker ao focar no input
-                    style={{cursor:"pointer"}}
+                    style={{ cursor: "pointer" }}
                     required
+                    className={styles.shorterFilterInput}
+
                   />
+                  <label>Data Final:</label>
+
                   <input
                     type="date"
                     value={endDate}
                     onChange={handleEndDateChange}
                     onFocus={handleFocus} // Abre o datepicker ao focar no input
-                    style={{cursor:"pointer"}}
+                    style={{ cursor: "pointer" }}
                     required
+                    className={styles.shorterFilterInput}
+
                   />
-                  <button onClick={handleFilterProducts}>Filtrar</button>
+                  <button onClick={handleFilterProducts} className={styles.filterContainer__button}>Filtrar</button>
                 </div>
               )}
             </div>
@@ -628,35 +637,39 @@ function ProductList() {
           <button onClick={handleClickOpenModal} className={styles.buttons}>
             Nova Movimentação
           </button>
-          <button
-            onClick={handleClickOpenFilterModal}
-            className={styles.buttons}
-          >
-            Filtragem Personalizada
-          </button>
-          {/* Select para ações */}
-          <select
-            value={action}
-            onChange={handleActionChange}
-            className={styles.select}
-            disabled={!hasSelectedProducts}
-          >
-            <option value="">Selecionar Ação</option>
-            <option value="imprimir">Imprimir Nota</option>
-            <option value="baixar">Baixar Nota Fiscal</option>
-          </select>
+          <div className={styles.selectContainer}>
+            <button
+              onClick={handleClickOpenFilterModal}
+              className={styles.buttons}
+            >
+              Filtragem Personalizada
+            </button>
+            {/* Select para ações */}
+            <select
+              value={action}
+              onChange={handleActionChange}
+              className={styles.select}
+              disabled={!hasSelectedProducts}
+            >
+              <option value="">Selecionar Ação</option>
+              <option value="imprimir">Imprimir Nota</option>
+              <option value="baixar">Baixar Nota Fiscal</option>
+            </select>
+          </div>
         </div>
       </div>
       {openModal && (
         <div className={styles.modal}>
           <div ref={modalRef} className={styles.modalContent}>
             <span className={styles.cartClose} onClick={handleClickCloseModal}>
-              X
+            <img src="https://i.imgur.com/2csCumc.png" alt=""       className={styles.cartClose__img}/>
+
             </span>
 
-            <h3>Cadastrar Receita ou despesa</h3>
             <form onSubmit={handleSubmit}>
-              <div>
+              <div className={styles.openModalContainer}>
+              <h3>Cadastrar Receita ou Despesa</h3>
+
                 <label>Descrição:</label>
                 <input
                   type="text"
@@ -664,20 +677,24 @@ function ProductList() {
                   value={formData.nome}
                   onChange={handleChange}
                   required
+                  placeholder="e.x. 1kg de queijo"
+                  className={styles.biggerInput}
+
+
                 />
-              </div>
-              <div>
+
                 <label>Cliente(opcional):</label>
                 <input
                   type="text"
                   name="client"
                   value={formData.client}
                   onChange={handleChange}
-                />
-              </div>
+                  className={styles.biggerInput}
+                  placeholder="e.x. valdir gomes"
 
-              <div>
-                <label>Preço:</label>
+                />
+
+                <label>Preço(R$):</label>
                 <input
                   type="number"
                   name="preco"
@@ -686,9 +703,11 @@ function ProductList() {
                   required
                   min="0"
                   step="0.01"
+                  className={styles.biggerInput}
+                  placeholder="e.x. 50"
+
                 />
-              </div>
-              <div>
+
                 <label>Data de Vencimento:</label>
                 <input
                   type="date"
@@ -696,36 +715,41 @@ function ProductList() {
                   value={formData.dataDeVencimento}
                   onChange={handleChange}
                   onFocus={handleFocus} // Abre o datepicker ao focar no input
-                  style={{cursor:"pointer"}}
+                  style={{ cursor: "pointer" }}
+                  className={styles.dateInput}
+
                   required
                 />
-              </div>
-              <div>
+
                 <label>Status de Pagamento:</label>
                 <select
                   name="statusDePagamento"
                   value={formData.statusDePagamento}
                   onChange={handleChange}
+                  className={styles.shorterInput}
+
                 >
                   <option value="pendente">Pendente</option>
                   <option value="pago">Pago</option>
                   <option value="vencido">Vencido</option>
                 </select>
-              </div>
-              <div>
+
                 <label>Tipo:</label>
                 <select
                   name="tipo"
                   value={formData.tipo}
                   onChange={handleChange} // Certifique-se de que a função handleChange está sendo chamada corretamente
                   required
+                  className={styles.shorterInput}
+
                 >
                   <option value="receita">Receita</option>
                   <option value="despesa">Despesa</option>
                 </select>
+                <button type="submit" className={styles.openModalContainer__button}>Cadastrar</button>
+
               </div>
 
-              <button type="submit">Cadastrar</button>
             </form>
           </div>
         </div>

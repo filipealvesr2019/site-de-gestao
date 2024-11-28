@@ -1,12 +1,12 @@
 "use client";
-import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
+import { SignedIn, SignedOut, SignIn, SignInButton, UserButton } from "@clerk/nextjs";
 import styles from './Login.module.css'
 export default function Login() {
   return (
     <>
      <div  className={styles.login}>
 <p>LOGO</p>
-
+<SignIn/>
       <SignedOut>
         <SignInButton >
           {/* Personalize o botão com classes ou estilos inline */}
