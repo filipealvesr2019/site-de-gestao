@@ -4,7 +4,9 @@ import styles from './Login.module.css'
 export default function Login() {
   return (
     <>
-    
+     <div  className={styles.login}>
+<p>LOGO</p>
+
       <SignedOut>
         <SignInButton >
           {/* Personalize o botão com classes ou estilos inline */}
@@ -28,6 +30,7 @@ export default function Login() {
       {/* Exibe uma mensagem ou redireciona para login quando o usuário não estiver autenticado */}
       <SignedOut>
       </SignedOut>
+     </div>
     </>
   );
 }

@@ -45,7 +45,7 @@ export default function LandinPage() {
             </h1>
           </div>
           <img
-            src="https://i.imgur.com/jZANGz0.png"
+            src="https://i.imgur.com/bKJJOIv.png"
             alt=""
             className={styles.container__product__img}
           />
