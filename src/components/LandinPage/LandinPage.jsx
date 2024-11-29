@@ -1,5 +1,6 @@
 import { SignedOut, SignInButton } from "@clerk/nextjs";
 import styles from "./LandinPage.module.css";
+import Footer from "../Footer/Footer";
 export default function LandinPage() {
   return (
     <>
@@ -70,6 +71,7 @@ export default function LandinPage() {
           </div>
         </div>
       </main>
+      <Footer />
     </>
   );
 }
