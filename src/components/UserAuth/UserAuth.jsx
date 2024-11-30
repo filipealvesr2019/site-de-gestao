@@ -11,7 +11,7 @@ export default function UserAuth() {
 
   return (
     <div>
-      {isSignedIn ? <ProductList /> : <LandinPage />}
+      {isSignedIn ? <ClientOnlyComponent /> : <LandinPage />}
     </div>
   );
 }
