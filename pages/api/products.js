@@ -43,7 +43,7 @@ export default async function handler(req, res) {
       console.log('Parâmetros de busca recebidos:', { nome, client });
 
       // Cria o filtro com base no usuário logado
-      const query = { userId: req.userId }; // O userId deve vir do usuário logado, por exemplo, via JWT ou sessão
+      const query = { userId };
     
       // Adiciona os filtros para nome e client, se fornecidos
       if (nome) {
@@ -56,7 +56,7 @@ export default async function handler(req, res) {
       }
     
       // Consultar todos os produtos
-      const products = await Product.find({ userId }).sort({ dataCriacao: -1 });
+      const products = await Product.find(query).sort({ dataCriacao: -1 });
 
 
       // Retornar os produtos e o total de receitas pagas
