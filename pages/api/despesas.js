@@ -2,10 +2,19 @@ import Product from "../models/Product";
 import dbConnect from "../utils/dbConnect";
 import { getAuth } from '@clerk/nextjs/server'
 
+export async function getServerSideProps(context) {
+  const { userId } = getAuth(context.req); // Use getAuth to get userId from request
+  await dbConnect();
+  const products = await Product.find({ userId }).sort({ dataCriacao: -1 });
 
+  return {
+    props: {
+      products
+    }
+  };
+}
 export default async function handler(req, res) {
-  
-  const { userId } = getAuth(req)
+
 
   try {
     await dbConnect();
