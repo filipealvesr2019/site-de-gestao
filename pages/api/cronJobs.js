@@ -22,8 +22,15 @@ const checkAndUpdateProductsStatus = async () => {
   }
 };
 
+if (typeof window === "undefined") {
+  // Este código será executado apenas no lado do servidor
+
+  cron.schedule('0 0 * * *', checkAndUpdateProductsStatus);
+
+}
+
+
 // Agendar cron job para rodar todos os dias à meia-noite
-cron.schedule('0 0 * * *', checkAndUpdateProductsStatus);
 
 export default (req, res) => {
   res.status(200).json({ message: 'Cron Job executado!' });
