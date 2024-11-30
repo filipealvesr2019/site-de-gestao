@@ -1,6 +1,6 @@
 "use client";
 import { useAuth } from '@clerk/nextjs';
-// import ProductList from "../ProductList/ProductList";
+import ProductList from "../ProductList/ProductList";
 import LandinPage from "../LandinPage/LandinPage";
 
 export default function UserAuth() {
@@ -9,7 +9,7 @@ export default function UserAuth() {
 
   return (
     <div>
-      {isSignedIn ? <></> : <LandinPage />}
+      {isSignedIn ? <ProductList /> : <LandinPage />}
     </div>
   );
 }
