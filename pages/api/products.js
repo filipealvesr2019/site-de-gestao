@@ -1,114 +1,114 @@
-import Product from "../models/Product";
-import dbConnect from "../utils/dbConnect";
-import { getAuth } from '@clerk/nextjs/server'
+// import Product from "../models/Product";
+// import dbConnect from "../utils/dbConnect";
+// import { getAuth } from '@clerk/nextjs/server'
 
 
-// A função handler será responsável por lidar com a requisição
-export default async function handler(req, res) {
-  const { userId } = getAuth(req)
+// // A função handler será responsável por lidar com a requisição
+// export default async function handler(req, res) {
+//   const { userId } = getAuth(req)
 
-  try {
-    // Conectar ao banco de dados uma vez, antes de executar a lógica da requisição
-    await dbConnect();
+//   try {
+//     // Conectar ao banco de dados uma vez, antes de executar a lógica da requisição
+//     await dbConnect();
 
-    // Verificar o método da requisição
-    if (req.method === 'POST') {
+//     // Verificar o método da requisição
+//     if (req.method === 'POST') {
       
-      const { nome, client,  preco, dataDeVencimento, statusDePagamento, tipo } = req.body;
-      console.log("Dados recebidos:", req.body);
+//       const { nome, client,  preco, dataDeVencimento, statusDePagamento, tipo } = req.body;
+//       console.log("Dados recebidos:", req.body);
 
-      // Verificar se todos os campos necessários estão presentes
-      if (!nome || !preco || !dataDeVencimento || !tipo) {
-        return res.status(400).json({ error: 'Todos os campos são obrigatórios.' });
-      }
+//       // Verificar se todos os campos necessários estão presentes
+//       if (!nome || !preco || !dataDeVencimento || !tipo) {
+//         return res.status(400).json({ error: 'Todos os campos são obrigatórios.' });
+//       }
 
-      // Criar o novo produto
-      const newProduct = new Product({
-        client,
-        nome,
-        preco,
-        dataDeVencimento: dataDeVencimento, // Armazenar como string
-        statusDePagamento: statusDePagamento || 'pendente',
-        tipo, 
-        userId 
+//       // Criar o novo produto
+//       const newProduct = new Product({
+//         client,
+//         nome,
+//         preco,
+//         dataDeVencimento: dataDeVencimento, // Armazenar como string
+//         statusDePagamento: statusDePagamento || 'pendente',
+//         tipo, 
+//         userId 
         
-      });
+//       });
 
-      // Salvar o produto no banco de dados
-      await newProduct.save();
-      res.status(201).json({ message: 'Produto criado com sucesso!', product: newProduct });
-    } 
-    else if (req.method === 'GET') {
-      const { nome, client } = req.query;
-      console.log('Parâmetros de busca recebidos:', { nome, client });
+//       // Salvar o produto no banco de dados
+//       await newProduct.save();
+//       res.status(201).json({ message: 'Produto criado com sucesso!', product: newProduct });
+//     } 
+//     else if (req.method === 'GET') {
+//       const { nome, client } = req.query;
+//       console.log('Parâmetros de busca recebidos:', { nome, client });
 
-      // Cria o filtro com base no usuário logado
-      const query = { userId };
+//       // Cria o filtro com base no usuário logado
+//       const query = { userId: req.userId }; // O userId deve vir do usuário logado, por exemplo, via JWT ou sessão
     
-      // Adiciona os filtros para nome e client, se fornecidos
-      if (nome) {
-        query.nome = { $regex: nome, $options: 'i' }; // Pesquisa case-insensitive
-      }
-      if (client) {
-        query.client = { $regex: client, $options: 'i' }; // Pesquisa case-insensitiv
-        console.log('Filtro para cliente adicionado:', query.client);
+//       // Adiciona os filtros para nome e client, se fornecidos
+//       if (nome) {
+//         query.nome = { $regex: nome, $options: 'i' }; // Pesquisa case-insensitive
+//       }
+//       if (client) {
+//         query.client = { $regex: client, $options: 'i' }; // Pesquisa case-insensitiv
+//         console.log('Filtro para cliente adicionado:', query.client);
         
-      }
+//       }
     
-      // Consultar todos os produtos
-      const products = await Product.find(query).sort({ dataCriacao: -1 });
+//       // Consultar todos os produtos
+//       const products = await Product.find({ userId }).sort({ dataCriacao: -1 });
 
 
-      // Retornar os produtos e o total de receitas pagas
-      res.status(200).json({ products});
-    } 
-    else if (req.method === 'DELETE') {
-      // Lógica para excluir um produto
-      const { id } = req.query; // Obtemos o ID do produto a partir da query
-      if (!id) {
-        return res.status(400).json({ error: 'ID do produto é obrigatório.' });
-      }
+//       // Retornar os produtos e o total de receitas pagas
+//       res.status(200).json({ products});
+//     } 
+//     else if (req.method === 'DELETE') {
+//       // Lógica para excluir um produto
+//       const { id } = req.query; // Obtemos o ID do produto a partir da query
+//       if (!id) {
+//         return res.status(400).json({ error: 'ID do produto é obrigatório.' });
+//       }
 
-      const deletedProduct = await Product.findByIdAndDelete(id);
-      if (!deletedProduct) {
-        return res.status(404).json({ error: 'Produto não encontrado.' });
-      }
+//       const deletedProduct = await Product.findByIdAndDelete(id);
+//       if (!deletedProduct) {
+//         return res.status(404).json({ error: 'Produto não encontrado.' });
+//       }
 
-      res.status(200).json({ message: 'Produto excluído com sucesso!' });
-    } else if (req.method === 'PUT') {
-      const { id } = req.query; // Obter o ID do produto a partir da query
-      const { statusDePagamento } = req.body; // O novo statusDePagamento
+//       res.status(200).json({ message: 'Produto excluído com sucesso!' });
+//     } else if (req.method === 'PUT') {
+//       const { id } = req.query; // Obter o ID do produto a partir da query
+//       const { statusDePagamento } = req.body; // O novo statusDePagamento
 
-      // Verificar se o statusDePagamento é válido
-      if (!statusDePagamento || !['pendente', 'pago'].includes(statusDePagamento)) {
-        return res.status(400).json({ error: 'Status de pagamento inválido.' });
-      }
+//       // Verificar se o statusDePagamento é válido
+//       if (!statusDePagamento || !['pendente', 'pago'].includes(statusDePagamento)) {
+//         return res.status(400).json({ error: 'Status de pagamento inválido.' });
+//       }
 
-      // Verificar se o ID do produto foi fornecido
-      if (!id) {
-        return res.status(400).json({ error: 'ID do produto é obrigatório.' });
-      }
+//       // Verificar se o ID do produto foi fornecido
+//       if (!id) {
+//         return res.status(400).json({ error: 'ID do produto é obrigatório.' });
+//       }
 
-      // Atualizar o produto com o novo statusDePagamento
-      const updatedProduct = await Product.findByIdAndUpdate(
-        id, 
-        { statusDePagamento },
-        { new: true } // Retorna o produto atualizado
-      );
+//       // Atualizar o produto com o novo statusDePagamento
+//       const updatedProduct = await Product.findByIdAndUpdate(
+//         id, 
+//         { statusDePagamento },
+//         { new: true } // Retorna o produto atualizado
+//       );
 
-      if (!updatedProduct) {
-        return res.status(404).json({ error: 'Produto não encontrado.' });
-      }
+//       if (!updatedProduct) {
+//         return res.status(404).json({ error: 'Produto não encontrado.' });
+//       }
 
-      res.status(200).json({ message: 'Status de pagamento atualizado com sucesso!', product: updatedProduct });
-    }
-    else {
-      // Retornar erro caso o método não seja permitido
-      res.status(405).json({ error: 'Método não permitido.' });
-    }
-  } catch (error) {
-    // Tratar erros gerais
-    console.error(error);
-    res.status(500).json({ error: 'Erro interno no servidor.' });
-  }
-}
+//       res.status(200).json({ message: 'Status de pagamento atualizado com sucesso!', product: updatedProduct });
+//     }
+//     else {
+//       // Retornar erro caso o método não seja permitido
+//       res.status(405).json({ error: 'Método não permitido.' });
+//     }
+//   } catch (error) {
+//     // Tratar erros gerais
+//     console.error(error);
+//     res.status(500).json({ error: 'Erro interno no servidor.' });
+//   }
+// }
