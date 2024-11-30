@@ -1,9 +1,8 @@
 "use client";
 import { useAuth } from '@clerk/nextjs';
 import ProductList from "../ProductList/ProductList";
-
 import dynamic from 'next/dynamic';
-const ClientOnlyComponent = dynamic(() => import('../LandinPage/LandinPage'), { ssr: false });
+const ProductList = dynamic(() => import('../LandinPage/LandinPage'), { ssr: false });
 
 export default function UserAuth() {
     const { isSignedIn } = useAuth();
@@ -11,7 +10,7 @@ export default function UserAuth() {
 
   return (
     <div>
-      {isSignedIn ? <ClientOnlyComponent /> : <LandinPage />}
+      {isSignedIn ? <ProductList /> : <LandinPage />}
     </div>
   );
 }
