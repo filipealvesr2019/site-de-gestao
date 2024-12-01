@@ -1,6 +1,6 @@
 import styles from "./page.module.css";
-// import Login from "./Login";
-// import UserAuth from "@/components/UserAuth/UserAuth";
+import Login from "./Login";
+import UserAuth from "@/components/UserAuth/UserAuth";
 import Script from "next/script";
 export const metadata = {
   title: "nome da loja", // Define o título da página
@@ -43,8 +43,8 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      {/* <Login />
-      <UserAuth /> */}
+      <Login />
+      <UserAuth />
     </div>
   );
 }
