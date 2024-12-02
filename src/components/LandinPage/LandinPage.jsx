@@ -28,7 +28,7 @@ export default function LandinPage() {
         </div>
 
         <div className={styles.containerB}>
-          <h1 style={styles.heading}>
+          <h1 className={styles.heading}>
             Cadastre Serviços, Produtos e Controle Tudo o que Entra e Sai
           </h1>
 
@@ -54,10 +54,10 @@ export default function LandinPage() {
 
         <div className={styles.containerD}>
           <div  className={styles.containerD__texts}>
-            <h1 style={styles.heading}>
+            <h1 className={styles.heading}>
               E o melhor: tudo isso de forma totalmente gratuita!
             </h1>
-            <p style={styles.paragraph}>
+            <p className={styles.paragraph}>
               Cadastre-se agora e aproveite todas as funcionalidades sem nenhum
               custo.
             </p>
