@@ -21,7 +21,7 @@ export default async function handler(req, res) {
     }));
 
 
-    
+
   const { userId } = getAuth(req)
 
   try {
@@ -55,7 +55,7 @@ export default async function handler(req, res) {
       await newProduct.save();
       res.status(201).json({ message: 'Produto criado com sucesso!', product: newProduct });
     } 
-    else if (req.method === 'GET') {
+    else if (req.method === 'GET' && req.url === '/api/products') {
       try {
         const { nome, client } = req.query;
         console.log('Parâmetros de busca recebidos:', { nome, client });
