@@ -11,6 +11,7 @@
 flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 4rem;
 }
 .containerA__img{
   width: 30vw;
