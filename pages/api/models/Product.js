@@ -15,5 +15,4 @@ const ProductSchema = new mongoose.Schema({
   userId: { type: String, required: true }, // Relaciona o produto ao cliente
 });
 
-export default mongoose.models.Product ||
-  mongoose.model("Product", ProductSchema);
+export default mongoose.models.Product || mongoose.model("Product", ProductSchema);

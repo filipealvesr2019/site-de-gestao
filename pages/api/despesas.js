@@ -1,5 +1,6 @@
-import Product from "../models/Product";
-import dbConnect from "../utils/dbConnect";
+import dbConnect from "pages/api/utils/dbConnect";
+import Product from "./models/Product";
+
 import { getAuth } from '@clerk/nextjs/server'
 
 

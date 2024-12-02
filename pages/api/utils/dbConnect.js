@@ -10,6 +10,10 @@ if (!MONGODB_URI) {
 let cached = global.mongoose || { conn: null, promise: null };
 
 async function dbConnect() {
+  if (typeof window !== 'undefined') {
+    throw new Error('dbConnect foi chamado no lado do cliente!');
+  }
+
   if (cached.conn) {
     return cached.conn;
   }

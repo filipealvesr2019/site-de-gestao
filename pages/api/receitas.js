@@ -1,6 +1,6 @@
-import Product from "../models/Product";
-import dbConnect from "../utils/dbConnect";
+
 import { getAuth } from '@clerk/nextjs/server'
+import dbConnect from 'pages/api/utils/dbConnect';
 
 
 export default async function handler(req, res) {
