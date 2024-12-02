@@ -2,9 +2,26 @@
 import { getAuth } from '@clerk/nextjs/server'
 import dbConnect from './utils/dbConnect';
 import Product from './models/Product';
+const corsOptions = {
+  origin: 'https://www.gestaofinanceirapro.online', // Permitir o domínio do frontend
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+};
 
+// Middleware para CORS
+const runCors = cors(corsOptions)
 
 export default async function handler(req, res) {
+
+   // Chama o middleware CORS para permitir requisições
+   await new Promise((resolve, reject) => runCors(req, res, (result) => {
+    if (result instanceof Error) {
+      return reject(result);
+    }
+    resolve(result);
+  }));
+
+
   const { userId } = getAuth(req)
 
   try {

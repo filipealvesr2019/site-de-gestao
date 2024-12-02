@@ -19,6 +19,9 @@ export default async function handler(req, res) {
       }
       resolve(result);
     }));
+
+
+    
   const { userId } = getAuth(req)
 
   try {
@@ -53,28 +56,32 @@ export default async function handler(req, res) {
       res.status(201).json({ message: 'Produto criado com sucesso!', product: newProduct });
     } 
     else if (req.method === 'GET') {
-      const { nome, client } = req.query;
-      console.log('Parâmetros de busca recebidos:', { nome, client });
-
-      // Cria o filtro com base no usuário logado
-      const query = { userId: req.userId }; // O userId deve vir do usuário logado, por exemplo, via JWT ou sessão
+      try {
+        const { nome, client } = req.query;
+        console.log('Parâmetros de busca recebidos:', { nome, client });
     
-      // Adiciona os filtros para nome e client, se fornecidos
-      if (nome) {
-        query.nome = { $regex: nome, $options: 'i' }; // Pesquisa case-insensitive
-      }
-      if (client) {
-        query.client = { $regex: client, $options: 'i' }; // Pesquisa case-insensitiv
-        console.log('Filtro para cliente adicionado:', query.client);
-        
-      }
+        // Cria o filtro com base no usuário logado
+        const query = { userId: req.userId }; // O userId deve vir do usuário logado, por exemplo, via JWT ou sessão
     
-      // Consultar todos os produtos
-      const products = await Product.find({ userId }).sort({ dataCriacao: -1 });
-
-
-      // Retornar os produtos e o total de receitas pagas
-      res.status(200).json({ products});
+        // Adiciona os filtros para nome e client, se fornecidos
+        if (nome) {
+          query.nome = { $regex: nome, $options: 'i' }; // Pesquisa case-insensitive
+        }
+        if (client) {
+          query.client = { $regex: client, $options: 'i' }; // Pesquisa case-insensitiva
+          console.log('Filtro para cliente adicionado:', query.client);
+        }
+    
+        // Consultar todos os produtos
+        const products = await Product.find({ userId }).sort({ dataCriacao: -1 });
+    
+        // Retornar os produtos e o total de receitas pagas
+        res.status(200).json({ products });
+      } catch (error) {
+        // Tratar erro especificamente para a rota GET
+        console.error('Erro na rota GET:', error);
+        res.status(500).json({ error: 'Erro ao buscar produtos.', details: error.message });
+      }
     } 
     else if (req.method === 'DELETE') {
       // Lógica para excluir um produto
