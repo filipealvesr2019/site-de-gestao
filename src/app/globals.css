@@ -3,7 +3,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: #F8FDF9;
+    
   }
   
   html, body, #__next {
@@ -12,4 +12,6 @@
   
   body {
     margin: 0;
+    background-color: #F8FDF9;
+
   }
