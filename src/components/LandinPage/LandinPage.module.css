@@ -85,6 +85,8 @@ flex-direction: column;
 }
 @media screen and (min-width: 700px) {
   .containerA {
+    display: flex;
+    justify-content: space-around;
     flex-direction: row-reverse;
   }
   .containerA__texts{
