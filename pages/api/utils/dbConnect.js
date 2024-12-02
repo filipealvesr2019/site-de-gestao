@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import { setupCronJob } from '../cronJobs'; // Import the setupCronJob function
 
 const MONGODB_URI = process.env.MONGODB_URI;
 
@@ -25,10 +26,11 @@ async function dbConnect() {
   }
 
   cached.conn = await cached.promise;
-
-  setImmediate(() => setupCronJob());
-
-
+// Atrasar a chamada ao cron job para garantir que a conexão esteja pronta
+setImmediate(() => {
+  const { default: checkAndUpdateProductsStatus } = require('../cronJobs');
+  checkAndUpdateProductsStatus();
+  });
   return cached.conn;
 }
 

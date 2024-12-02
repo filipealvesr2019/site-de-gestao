@@ -1,6 +1,6 @@
-import dbConnect from "pages/api/utils/dbConnect";
-import Product from "./models/Product";
 import { getAuth } from '@clerk/nextjs/server'
+import dbConnect from "./utils/dbConnect";
+import Product from './models/Product';
 
 
 // A função handler será responsável por lidar com a requisição
