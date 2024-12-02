@@ -18,11 +18,10 @@ export default function LandinPage() {
             className={styles.containerA__img}
           />
           <div className={styles.containerA__texts}>
-            <h1>Gerencie Suas Finanças com Facilidade e Eficiência</h1>
+            <h1 className={styles.heading}>Gerencie Suas Finanças com Facilidade e Eficiência</h1>
 
-            <p>
-              Surgindo da necessidade de uma solução prática e eficiente para
-              gerenciar suas finanças com facilidade.
+            <p className={styles.p}>
+              Surgindo da necessidade de uma solução prática e eficiente paragerenciar suas finanças com facilidade.
             </p>
           </div>
         </div>
