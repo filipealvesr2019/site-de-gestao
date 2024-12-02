@@ -1,5 +1,4 @@
 import mongoose from 'mongoose';
-import { setupCronJob } from '../cronJobs'; // Import the setupCronJob function
 
 const MONGODB_URI = process.env.MONGODB_URI;
 
