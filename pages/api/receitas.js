@@ -2,6 +2,8 @@
 import { getAuth } from '@clerk/nextjs/server'
 import dbConnect from './utils/dbConnect';
 import Product from './models/Product';
+import cors from 'cors';
+
 const corsOptions = {
   origin: 'https://www.gestaofinanceirapro.online', // Permitir o domínio do frontend
   methods: ['GET', 'POST', 'PUT', 'DELETE'],

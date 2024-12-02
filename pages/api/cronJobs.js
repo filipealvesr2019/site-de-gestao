@@ -1,6 +1,6 @@
 import cron from 'node-cron';
 import Product from './models/Product';
-import dbConnect from 'pages/api/utils/dbConnect';
+import dbConnect from './utils/dbConnect';
 
 const checkAndUpdateProductsStatus = async () => {
   try {

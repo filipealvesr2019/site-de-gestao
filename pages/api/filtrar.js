@@ -1,6 +1,8 @@
 import dbConnect from "pages/api/utils/dbConnect";
 import Product from "./models/Product";
 import { getAuth } from '@clerk/nextjs/server';
+import cors from 'cors';
+
 const corsOptions = {
   origin: 'https://www.gestaofinanceirapro.online', // Permitir o domínio do frontend
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
@@ -18,7 +20,7 @@ export default async function handler(req, res) {
       resolve(result);
     }));
 
-    
+
   const { userId } = getAuth(req);
   await dbConnect(); // Conectar ao banco de dados
 
