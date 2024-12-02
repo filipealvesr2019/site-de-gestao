@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
+    "baseUrl": "/api",
     "paths": {
       "@/*": ["./src/*"],
       
