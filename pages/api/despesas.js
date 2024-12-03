@@ -1,8 +1,8 @@
-import dbConnect from "pages/api/utils/dbConnect";
 import Product from "./models/Product";
 
 import { getAuth } from '@clerk/nextjs/server'
 import cors from 'cors';
+import dbConnect from "./utils/dbConnect";
 
 const corsOptions = {
   origin: 'https://www.gestaofinanceirapro.online', // Permitir o domínio do frontend
