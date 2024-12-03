@@ -129,8 +129,10 @@ export default async function handler(req, res) {
       res.status(405).json({ error: 'Método não permitido.' });
     }
   } catch (error) {
-    // Tratar erros gerais
-    console.error(error);
-    res.status(500).json({ error: 'Erro interno no servidor.' });
+    console.error('Erro geral:', error);
+    res.status(500).json({
+        error: 'Erro interno no servidor.',
+        details: error.message || 'Erro desconhecido.',
+    });
   }
 }
