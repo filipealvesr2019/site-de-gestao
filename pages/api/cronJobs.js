@@ -34,5 +34,11 @@ if (typeof window === "undefined") {
 // Agendar cron job para rodar todos os dias à meia-noite
 
 export default (req, res) => {
+    // Verifique se res está definido
+    if (!res) {
+      console.error('Resposta não definida');
+      return;
+    }
+    
   res.status(200).json({ message: 'Cron Job executado!' });
 };
