@@ -13,7 +13,17 @@ const corsOptions = {
 const runCors = cors(corsOptions)
 // A função handler será responsável por lidar com a requisição
 export default async function handler(req, res) {
-
+  console.log("Executando CORS...");
+  // Execução do CORS
+  await new Promise((resolve, reject) => {
+    runCors(req, res, (error) => {
+      if (error) {
+        console.error("Erro no CORS:", error);
+        reject(error);
+      }
+      resolve();
+    });
+  });
 
 
     
