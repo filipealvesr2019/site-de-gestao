@@ -13,13 +13,15 @@ const corsOptions = {
 const runCors = cors(corsOptions)
 // A função handler será responsável por lidar com a requisição
 export default async function handler(req, res) {
-    // Chama o middleware CORS para permitir requisições
-    await new Promise((resolve, reject) => runCors(req, res, (result) => {
-      if (result instanceof Error) {
-        return reject(result);
-      }
-      resolve(result);
-    }));
+  console.log("Executando CORS...");
+  runCors(req, res, (result) => {
+    if (result instanceof Error) {
+      console.error("Erro no CORS:", result);
+      return reject(result);
+    }
+    resolve(result);
+  });
+
 
 
     
