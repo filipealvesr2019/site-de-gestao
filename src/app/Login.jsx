@@ -6,7 +6,7 @@ import Link from "next/link";
 import {
   SignedIn,
   SignedOut,
-  SignUp,
+  SignIn,
   SignInButton,
   UserButton,
   useUser,
@@ -20,7 +20,7 @@ export default function Login() {
     <>
       <div className={styles.login}>
         <p>LOGO</p>
-<SignUp />
+
         <SignedOut>
           <div>
             <Link href={"/login"}>
