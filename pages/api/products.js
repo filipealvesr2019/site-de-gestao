@@ -24,7 +24,7 @@ export default async function handler(req, res) {
 
     
   const { userId } = getAuth(req)
-
+  console.log("userId", userId)
   try {
     // Conectar ao banco de dados uma vez, antes de executar a lógica da requisição
     await dbConnect();
