@@ -1,7 +1,7 @@
+import { getAuth } from '@clerk/nextjs/server'
 import dbConnect from "./utils/dbConnect";
 import Product from './models/Product';
 import cors from 'cors';
-import { clerkClient, getAuth } from '@clerk/nextjs/server'
 
 const corsOptions = {
   origin: 'https://www.gestaofinanceirapro.online', // Permitir o domínio do frontend
@@ -13,13 +13,6 @@ const corsOptions = {
 const runCors = cors(corsOptions)
 // A função handler será responsável por lidar com a requisição
 export default async function handler(req, res) {
-  const { sessionId } = getAuth(req)
-  if (!sessionId) {
-    return res.status(401).json({ error: 'Unauthorized' })
-  }
-  const client = await clerkClient()
-  const token = await client.sessions.getToken(sessionId)
-
     // Chama o middleware CORS para permitir requisições
     await new Promise((resolve, reject) => runCors(req, res, (result) => {
       if (result instanceof Error) {
@@ -30,12 +23,9 @@ export default async function handler(req, res) {
 
 
     
-  const { userId, } = getAuth(req)
-
-  console.log("Token:", token); // Aqui está o token JWT
-  console.log('userId:', userId);
-
-    try {
+  const { userId } = getAuth(req)
+  console.log("userId", userId)
+  try {
     // Conectar ao banco de dados uma vez, antes de executar a lógica da requisição
     await dbConnect();
 

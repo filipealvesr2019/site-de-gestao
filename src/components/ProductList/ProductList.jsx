@@ -4,7 +4,6 @@ import { useState, useEffect, useRef } from "react";
 import styles from "./ProductList.module.css";
 import { jsPDF } from "jspdf"; // Importar a biblioteca jsPDF
 import "jspdf-autotable"; // Import the autoTable plugin
-import { useAuth } from "@clerk/clerk-react";
 
 function ProductList() {
   const [selectedProducts, setSelectedProducts] = useState([]); // Para armazenar os produtos selecionados
@@ -286,9 +285,7 @@ function ProductList() {
     }
   };
   const fetchProducts = async () => {
-    
     try {
-      
       const response = await fetch("https://www.gestaofinanceirapro.online/api/products");
       if (!response.ok) {
         throw new Error("Erro ao buscar produtos");
