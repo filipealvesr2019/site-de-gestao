@@ -63,19 +63,19 @@ export default async function handler(req, res) {
         const { nome, client } = req.query;
     
         // Cria o filtro com base no usuário logado
-        // const query = { userId: req.userId }; // O userId deve vir do usuário logado, por exemplo, via JWT ou sessão
+        const query = { userId: req.userId }; // O userId deve vir do usuário logado, por exemplo, via JWT ou sessão
     
         // Adiciona os filtros para nome e client, se fornecidos
         if (nome) {
           query.nome = { $regex: nome, $options: 'i' }; // Pesquisa case-insensitive
         }
-        // if (client) {
-        //   query.client = { $regex: client, $options: 'i' }; // Pesquisa case-insensitiva
-        //   console.log('Filtro para cliente adicionado:', query.client);
-        // }
+        if (client) {
+          query.client = { $regex: client, $options: 'i' }; // Pesquisa case-insensitiva
+          console.log('Filtro para cliente adicionado:', query.client);
+        }
     
         // Consultar todos os produtos
-        const products = await Product.find().sort({ dataCriacao: -1 });
+        const products = await Product.find({ userId }).sort({ dataCriacao: -1 });
         // Retornar os produtos e o total de receitas pagas
         res.status(200).json({ products });
       } catch (error) {
