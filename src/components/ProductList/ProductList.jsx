@@ -291,8 +291,8 @@ function ProductList() {
         throw new Error("Erro ao buscar produtos");
       }
       const data = await response.json();
-      setProducts(data.products);
-      setFilteredProducts(data.products); // Inicialmente, exibe todos os produtos
+      setProducts(data?.products);
+      setFilteredProducts(data?.products); // Inicialmente, exibe todos os produtos
 
       setLoading(false);
     } catch (error) {
