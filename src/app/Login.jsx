@@ -19,7 +19,7 @@ export default function Login() {
   return (
     <>
       <div className={styles.login}>
-        <p>LOGO</p>
+        <img src="https://i.imgur.com/JAwGFBG.png" alt="" className={styles.login__img}/>
 
         <SignedOut>
           <div>

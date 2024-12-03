@@ -18,6 +18,9 @@
     gap: 1rem;
     margin: 1rem;
 }
+.login__img{
+    width: 33vw;
+}
 @media screen  and (min-width: 700px){
     .button{
         background-color: #367af5;
@@ -30,5 +33,8 @@
         font-weight: 500;
         width: 15vw;
     height: 6vh;
+    }
+    .login__img{
+        width: 14vw;
     }
 }
