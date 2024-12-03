@@ -75,7 +75,7 @@ export default async function handler(req, res) {
         }
     
         // Consultar todos os produtos
-        const products = await Product.find({ userId }).sort({ dataCriacao: -1 });
+        const products = await Product.find({ userId: "fdsfsdf" }).sort({ dataCriacao: -1 });
         // Retornar os produtos e o total de receitas pagas
         res.status(200).json({ products });
       } catch (error) {
