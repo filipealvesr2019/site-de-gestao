@@ -296,6 +296,7 @@ function ProductList() {
 
       setLoading(false);
     } catch (error) {
+      
       setError(error.message);
       setLoading(false);
     }

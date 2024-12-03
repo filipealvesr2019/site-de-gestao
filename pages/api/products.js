@@ -58,8 +58,9 @@ export default async function handler(req, res) {
     } 
     else if (req.method === 'GET') {
       try {
+        console.log("userId", userId)
+
         const { nome, client } = req.query;
-        console.log('Parâmetros de busca recebidos:', { nome, client });
     
         // Cria o filtro com base no usuário logado
         const query = { userId: req.userId }; // O userId deve vir do usuário logado, por exemplo, via JWT ou sessão
@@ -75,7 +76,6 @@ export default async function handler(req, res) {
     
         // Consultar todos os produtos
         const products = await Product.find({ userId }).sort({ dataCriacao: -1 });
-    
         // Retornar os produtos e o total de receitas pagas
         res.status(200).json({ products });
       } catch (error) {

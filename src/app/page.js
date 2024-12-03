@@ -1,7 +1,7 @@
 import styles from "./page.module.css";
 import Login from "./Login";
-import UserAuth from "@/components/UserAuth/UserAuth";
 import Script from "next/script";
+import UserAuth from "../components/UserAuth/UserAuth";
 export const metadata = {
   title: "nome da loja", // Define o título da página
   description:
