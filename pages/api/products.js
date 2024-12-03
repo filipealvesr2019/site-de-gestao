@@ -15,16 +15,13 @@ const runCors = cors(corsOptions)
 export default async function handler(req, res) {
   console.log("Executando CORS...");
   // Execução do CORS
-  await new Promise((resolve, reject) => {
-    runCors(req, res, (error) => {
-      if (error) {
-        console.error("Erro no CORS:", error);
-        reject(error);
-      }
-      resolve();
-    });
-  });
-
+ // Simplesmente use:
+runCors(req, res, (error) => {
+  if (error) {
+    console.error("Erro no CORS:", error);
+    return res.status(500).json({ error: 'Erro no CORS' });
+  }
+});
 
     
   const { userId } = getAuth(req)
@@ -62,7 +59,7 @@ export default async function handler(req, res) {
     } 
     else if (req.method === 'GET') {
       try {
-        console.log("userId", userId)
+        console.log("userId rota get", userId)
 
         const { nome, client } = req.query;
     
@@ -133,10 +130,11 @@ export default async function handler(req, res) {
       res.status(405).json({ error: 'Método não permitido.' });
     }
   } catch (error) {
-    console.error('Erro geral:', error);
-    res.status(500).json({
-        error: 'Erro interno no servidor.',
-        details: error.message || 'Erro desconhecido.',
-    });
+    console.error("Erro geral:", error);
+  res.status(500).json({
+    error: 'Erro interno no servidor.',
+    details: error.message || 'Erro desconhecido.',
+    stack: error.stack // Isso pode ajudar a entender melhor o erro
+  });
   }
 }

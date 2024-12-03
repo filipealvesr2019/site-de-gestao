@@ -329,7 +329,7 @@ function ProductList() {
     }
   };
 
-  const handleUpdateStatus = async () => {
+  const handleUpdateStatusStatus = async () => {
     const product = products.find((p) => p._id === selectedProductId);
     const newStatus =
       product.statusDePagamento === "pendente" ? "pago" : "pendente";
