@@ -3,7 +3,7 @@ import Login from "./Login";
 import Script from "next/script";
 import UserAuth from "../components/UserAuth/UserAuth";
 export const metadata = {
-  title: "nome da loja", // Define o título da página
+  title: "Gestão Financeira Pro", // Define o título da página
   description:
     "Sistema online de controle financeiro simples e eficiente para gerenciar receitas e despesas. Ele permite que você controle tudo o que entra e sai do caixa, desde vendas e pagamentos até contas e dívidas.", // Descrição da página
   icons: {
@@ -15,13 +15,13 @@ export default function Home() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: "Nome do site",
-    url: "https://meusite.com.br/",
+    name: "Gestão Financeira Pro",
+    url: "https://www.gestaofinanceirapro.online/",
     description:
-      "Sistema online de controle financeiro simples e eficiente para gerenciar receitas e despesas. Ele permite que você controle tudo o que entra e sai do caixa, desde vendas e pagamentos até contas e dívidas.",
+      "Software de controle financeiro gratuito simples e eficiente para gerenciar receitas e despesas. Ele permite que você controle tudo o que entra e sai do caixa, desde vendas e pagamentos até contas e dívidas.",
     potentialAction: {
       "@type": "SearchAction",
-      target: "https://meusite.com.br/search?q={search_term_string}",
+      target: "https://www.gestaofinanceirapro.online/search?q={search_term_string}",
       "query-input": "required name=search_term_string",
     },
   };
