@@ -7,7 +7,7 @@ export const metadata = {
   description:
     "Sistema online de controle financeiro simples e eficiente para gerenciar receitas e despesas. Ele permite que você controle tudo o que entra e sai do caixa, desde vendas e pagamentos até contas e dívidas.", // Descrição da página
   icons: {
-    icon: "/favicon.svg", // Define o favicon
+    icon: "/favicon.png", // Define o favicon
   },
   keywords: ["nome da loja", "gestão financeira", "gestão pessoal"],
 };
