@@ -858,7 +858,7 @@ const [nome, setNome] = useState("");
                 <th>Excluir</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className={styles.tbody}>
               {displayedProducts.map((product) => (
                 <tr key={product._id}>
                   <td>
