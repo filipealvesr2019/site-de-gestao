@@ -348,6 +348,7 @@ justify-content: space-evenly;
 }
 .tableContainer{
   display: none;
+  background-color: #fff;
 }
 
 .filterContainer{
