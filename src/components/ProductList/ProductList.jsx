@@ -973,7 +973,7 @@ const [status, setStatus] = useState("");
               X
             </span>
             <div ref={modalRef} className={styles.UpdateModalContent}>
-              <p>Tem certeza que deseja mudar o status de pagamento de {status} para <b    className={handleStatusCss(status)}>{status === "pendente" || status === "vencido" ? "pago" : "pendente"}</b>?</p>
+              <p>Tem certeza que deseja mudar o status de pagamento de {status} para <b>{status === "pendente" || status === "vencido" ? "pago" : "pendente"}</b>?</p>
               <div className={styles.updateModalButtons}>
                 
               <button onClick={handleUpdateStatus} className={styles.buttonA}>Sim</button>{" "}
