@@ -946,7 +946,7 @@ const [nome, setNome] = useState("");
     
 
             <p>Tem certeza que quer excluir <b  className={
-                      product.tipo === "receita" ? styles.pago : styles.vencido
+                      tipo === "receita" ? styles.pago : styles.vencido
                     }>{tipo}</b> de {nome}?</p>
             <div className={styles.DeleteModalButtons}>
 
