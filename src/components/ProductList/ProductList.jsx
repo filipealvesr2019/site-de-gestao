@@ -939,11 +939,18 @@ function ProductList() {
               X
             </span>
             <div ref={modalRef} className={styles.DeleteModalContent}>
+    
+
               <p>Tem certeza que deseja excluir este produto?</p>
-              <button onClick={() => handleDelete(selectedProductId)}>
+              <div className={styles.DeleteModalButtons}>
+
+              <button onClick={() => handleDelete(selectedProductId)}  className={styles.buttonA}>
                 Sim
               </button>
-              <button onClick={handleClickCloseDeleteModal}>Não</button>
+              <button onClick={handleClickCloseDeleteModal} className={styles.buttonB}>Não</button>
+
+              </div>
+       
             </div>
           </div>
         </>
