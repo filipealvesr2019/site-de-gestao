@@ -385,6 +385,7 @@ justify-content: space-evenly;
 @media only screen and (min-width: 700px) {
   .productTable{
     visibility: visible;
+    background-color: #fff;
   }
   
   .cardsContainer {
