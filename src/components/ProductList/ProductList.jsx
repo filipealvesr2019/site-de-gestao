@@ -29,7 +29,9 @@ function ProductList() {
   const [openUpdateModal, setOpenUpdateModal] = useState(false); // Modal de atualização
   const [searchTerm, setSearchTerm] = useState(""); // Para armazenar o termo de pesquisa
   const [filterType, setFilterType] = useState("dataDeVencimento"); // Default é filtrar por data de vencimento
-
+// Adicione estados para armazenar tipo e nome
+const [tipo, setTipo] = useState("");
+const [nome, setNome] = useState("");
   // Função para lidar com a mudança do tipo de filtro
   const handleFilterTypeChange = (e) => {
     setFilterType(e.target.value);
@@ -117,8 +119,10 @@ function ProductList() {
     setOpenUpdateModal(false);
   };
 
-  const handleClickOpenDeleteModal = (productId) => {
+  const handleClickOpenDeleteModal = (productId, tipo,  nome) => {
     setSelectedProductId(productId);
+    setTipo(tipo); // Armazena o tipo
+    setNome(nome); // Armazena o nome
     setOpenDeleteModal(true);
   };
 
@@ -893,7 +897,7 @@ function ProductList() {
                   </td>
 
                   <td>{formatDate(product.dataCriacao)}</td>
-                  <td onClick={() => handleClickOpenDeleteModal(product._id)}>
+                  <td onClick={() => handleClickOpenDeleteModal(product._id, product.tipo, product.nome)}>
                     <img
                       src="https://i.imgur.com/flqGals.png"
                       alt=""
@@ -941,8 +945,8 @@ function ProductList() {
             <div ref={modalRef} className={styles.DeleteModalContent}>
     
 
-              <p>Tem certeza que deseja excluir este produto?</p>
-              <div className={styles.DeleteModalButtons}>
+            <p>Tem certeza que quer excluir {tipo} de {nome}?</p>
+            <div className={styles.DeleteModalButtons}>
 
               <button onClick={() => handleDelete(selectedProductId)}  className={styles.buttonA}>
                 Sim
