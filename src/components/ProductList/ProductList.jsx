@@ -947,7 +947,7 @@ const [nome, setNome] = useState("");
 
             <p>Tem certeza que quer excluir <b  className={
                       tipo === "receita" ? styles.pago : styles.vencido
-                    }>{tipo}</b> de {nome}?</p>
+                    }>{tipo}</b> de <b>{nome}</b>?</p>
             <div className={styles.DeleteModalButtons}>
 
               <button onClick={() => handleDelete(selectedProductId)}  className={styles.buttonA}>
