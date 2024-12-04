@@ -82,7 +82,7 @@ margin-top: 2rem;
   
  
 }
-.buttonA{
+.buttonB{
   background-color: #fff;
   color: white;
   border: 1px solid gray;
@@ -96,7 +96,7 @@ height: 5vh;
 
 }
 
-.buttonB{
+.buttonA{
   background-color: #367af5;
   color: white;
   border: none;
