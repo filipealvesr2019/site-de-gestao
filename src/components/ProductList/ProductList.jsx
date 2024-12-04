@@ -333,7 +333,7 @@ const [nome, setNome] = useState("");
     }
   };
 
-  const handleUpdateStatusStatus = async () => {
+  const handleUpdateStatus = async () => {
     const product = products.find((p) => p._id === selectedProductId);
     const newStatus =
       product.statusDePagamento === "pendente" ? "pago" : "pendente";
