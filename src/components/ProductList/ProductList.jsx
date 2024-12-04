@@ -945,7 +945,9 @@ const [nome, setNome] = useState("");
             <div ref={modalRef} className={styles.DeleteModalContent}>
     
 
-            <p>Tem certeza que quer excluir {tipo} de {nome}?</p>
+            <p>Tem certeza que quer excluir <b  className={
+                      product.tipo === "receita" ? styles.pago : styles.vencido
+                    }>{tipo}</b> de {nome}?</p>
             <div className={styles.DeleteModalButtons}>
 
               <button onClick={() => handleDelete(selectedProductId)}  className={styles.buttonA}>
