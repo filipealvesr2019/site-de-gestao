@@ -83,9 +83,9 @@ margin-top: 2rem;
  
 }
 .buttonA{
-  background-color: #367af5;
+  background-color: #fff;
   color: white;
-  border: none;
+  border: 1px solid gray;
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
