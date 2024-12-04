@@ -971,9 +971,12 @@ const [nome, setNome] = useState("");
             </span>
             <div ref={modalRef} className={styles.UpdateModalContent}>
               <p>Tem certeza que deseja mudar o status de pagamento?</p>
-              <button onClick={handleUpdateStatus}>Sim</button>{" "}
-              {/* Chama a função para atualizar o status */}
-              <button onClick={handleClickCloseUpdateModal}>Não</button>
+              <div className={styles.updateModalButtons}>
+                
+              <button onClick={handleUpdateStatus} className={styles.buttonA}>Sim</button>{" "}
+
+              <button onClick={handleClickCloseUpdateModal} className={styles.buttonB}>Não</button>
+              </div>
             </div>
           </div>
         </>
