@@ -521,9 +521,7 @@ const [nome, setNome] = useState("");
   return (
     <div
       className={styles.container}
-      style={{
-        backgroundColor: toggleColors ? "black" : "white",
-      }}
+    
     >
       <div className={styles.cardsContainer}>
         <div className={styles.stylesTotalReceitas}>
