@@ -13,7 +13,7 @@ export default function Footer() {
         </div>
         <section className={styles.section}>
           <h2>Sobre</h2>
-          <p>Sistema online de controle financeiro simples e eficiente para gerenciar receitas e despesas. Ele permite que você controle tudo o que entra e sai do caixa, desde vendas e pagamentos até contas e dívidas.
+          <p>Software de controle financeiro gratuito simples e eficiente para gerenciar receitas e despesas. Ele permite que você controle tudo o que entra e sai do caixa, desde vendas e pagamentos até contas e dívidas.
           </p>
         </section>
 
