@@ -32,6 +32,8 @@ function ProductList() {
 // Adicione estados para armazenar tipo e nome
 const [tipo, setTipo] = useState("");
 const [nome, setNome] = useState("");
+const [status, setStatus] = useState("");
+
   // Função para lidar com a mudança do tipo de filtro
   const handleFilterTypeChange = (e) => {
     setFilterType(e.target.value);
@@ -112,6 +114,7 @@ const [nome, setNome] = useState("");
 
   const handleClickOpenUpdateModal = (productId, currentStatus) => {
     setSelectedProductId(productId); // Armazena o id do produto
+    setStatus(currentStatus)
     setOpenUpdateModal(true);
   };
 
@@ -970,7 +973,7 @@ const [nome, setNome] = useState("");
               X
             </span>
             <div ref={modalRef} className={styles.UpdateModalContent}>
-              <p>Tem certeza que deseja mudar o status de pagamento?</p>
+              <p>Tem certeza que deseja mudar o status de pagamento de {status} para <b>{status === "pendente" ? "pago" : "pendente"}</b>?</p>
               <div className={styles.updateModalButtons}>
                 
               <button onClick={handleUpdateStatus} className={styles.buttonA}>Sim</button>{" "}
