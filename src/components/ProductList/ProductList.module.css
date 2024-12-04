@@ -279,6 +279,7 @@ justify-content: space-evenly;
 } */
 .tableWrapper {
   padding: 10px;
+  background-color: #fff;
 }
 
 .row {
