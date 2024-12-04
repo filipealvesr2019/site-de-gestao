@@ -1,6 +1,7 @@
 import { SignedOut, SignInButton } from "@clerk/nextjs";
 import styles from "./LandinPage.module.css";
 import Footer from "../Footer/Footer";
+import Link from "next/link";
 export default function LandinPage() {
   return (
     <>
@@ -61,13 +62,14 @@ export default function LandinPage() {
               custo.
             </p>
           </div>
+          <Link href={"/login"}>
           <div>
-            <SignedOut>
-              <SignInButton>
+        
                 <button className={styles.button}>Cadastre-se</button>
-              </SignInButton>
-            </SignedOut>
+          
           </div>
+
+          </Link>
         </div>
       </main>
       <Footer />
