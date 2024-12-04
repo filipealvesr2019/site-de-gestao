@@ -95,6 +95,9 @@ margin-top: 2rem;
 height: 5vh;
 
 }
+.buttonB:hover{
+background-color: gray;
+}
 
 .buttonA{
   background-color: #367af5;
