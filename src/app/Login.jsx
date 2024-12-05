@@ -8,6 +8,7 @@ import {
   SignedOut,
   SignIn,
   SignInButton,
+  SignUp,
   UserButton,
   useUser,
 } from "@clerk/nextjs";
@@ -20,7 +21,7 @@ export default function Login() {
     <>
       <div className={styles.login}>
         <img src="https://i.imgur.com/JAwGFBG.png" alt="" className={styles.login__img}/>
-
+        <SignUp />
         <SignedOut>
           <div>
             <Link href={"/login"}>
