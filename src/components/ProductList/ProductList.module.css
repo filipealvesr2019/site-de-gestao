@@ -555,10 +555,9 @@ justify-content: space-evenly;
   
 }
 @media (min-width: 820px) and (max-width: 1180px) {
-  .buttonsContainerDesktop {
-    visibility: hidden;
-  }
-  .buttonsContainerMobile {
-    visibility: block;
+  .buttonsStyles{
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
   }
 }
