@@ -801,6 +801,8 @@ const [status, setStatus] = useState("");
                   product.statusDePagamento
                 )}`}
               >
+                                <span>Preço</span>
+
                 R${product.preco.toFixed(2)}
               </div>
               <div className={styles.cell}>

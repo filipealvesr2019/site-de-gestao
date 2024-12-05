@@ -54,7 +54,7 @@ export default function LandinPage() {
 
         <div className={styles.containerD}>
           <div  className={styles.containerD__texts}>
-            <h1 className={styles.heading}>
+            <h1>
               E o melhor: tudo isso de forma totalmente gratuita!
             </h1>
             <p className={styles.paragraph}>
