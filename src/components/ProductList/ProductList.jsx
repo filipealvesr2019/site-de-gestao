@@ -531,19 +531,19 @@ const [status, setStatus] = useState("");
         <div className={styles.stylesTotalReceitas}>
           <h3>
             Total de Receitas do Mês: R$
-            {isNaN(totalReceitasPagas) ? "0.0" : totalReceitasPagas.toFixed(2)}
+            {isNaN(totalReceitasPagas) ? "0" : totalReceitasPagas}
           </h3>
         </div>
         <div className={styles.stylesTotalDespesas}>
           <h3>
             Total de despesas do Mês: R$
-            {isNaN(totalDespesas) ? "0.0" : totalDespesas.toFixed(2)}
+            {isNaN(totalDespesas) ? "0" : totalDespesas}
           </h3>
         </div>
         <div className={styles.stylesDiferenca}>
           <h3>
             Total de diferença do Mês: R$
-            {isNaN(diferenca) ? "0.0" : diferenca.toFixed(2)}
+            {isNaN(diferenca) ? "0" : diferenca}
           </h3>
         </div>
       </div>
