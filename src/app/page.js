@@ -9,7 +9,7 @@ export const metadata = {
   icons: {
     icon: "/favicon.ico", // Define o favicon
   },
-  keywords: ["nome da loja", "gestão financeira", "gestão pessoal"],
+  keywords: ["Gestão Financeira", "gestão financeira", "gestão pessoal", "Software de controle financeiro gratuito", "site gratuito de controle financeiro"],
 };
 export default function Home() {
   const jsonLd = {
