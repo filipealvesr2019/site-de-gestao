@@ -275,7 +275,7 @@ font-weight: 500;
   border-radius: 10px;
   text-align: center;
   padding: 1rem;
-  height: 15vw;
+  height: auto;
 }
 
 .stylesTotalDespesas {
@@ -283,7 +283,7 @@ font-weight: 500;
   border-radius: 10px;
   text-align: center;
   padding: 1rem;
-  height: 15vw;
+  height: auto;
 
 }
 
@@ -292,7 +292,7 @@ font-weight: 500;
   border-radius: 10px;
   text-align: center;
   padding: 1rem;
-  height: 15vw;
+  height: auto;
 
 }
 .cardsContainer {
