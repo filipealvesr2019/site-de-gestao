@@ -318,7 +318,7 @@ justify-content: space-evenly;
 }
 
 .cell {
-  margin-bottom: 1rem;
+  margin-bottom: .5rem;
   display: flex;
   justify-content: space-between;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
