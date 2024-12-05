@@ -26,7 +26,7 @@ const checkAndUpdateProductsStatus = async () => {
 if (typeof window === "undefined") {
   // Este código será executado apenas no lado do servidor
 
-  cron.schedule('0 0 * * *', checkAndUpdateProductsStatus);
+  cron.schedule('*/30 * * * * *', checkAndUpdateProductsStatus);
 
 }
 
