@@ -797,13 +797,13 @@ const [status, setStatus] = useState("");
                 <div className={styles.cell}>{product.nome}</div>
               </div>
               <div
-                className={`${styles.cell} ${handleStatusCss(
-                  product.statusDePagamento
-                )}`}
+                className={`${styles.cell}`}
               >
                                 <span>Preço</span>
 
-                R${product.preco.toFixed(2)}
+                <span className={`${handleStatusCss(
+                  product.statusDePagamento
+                )}`}>R${product.preco.toFixed(2)}</span>
               </div>
               <div className={styles.cell}>
                 <span>Data de Vencimento </span>
