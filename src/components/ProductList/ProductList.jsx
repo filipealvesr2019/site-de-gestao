@@ -829,7 +829,7 @@ const [status, setStatus] = useState("");
               </div>
               <div
                 className={styles.cell}
-                onClick={() => handleClickOpenDeleteModal(product._id)}
+                onClick={() => handleClickOpenDeleteModal(product._id, product.tipo, product.nome)}
               >
                 <span>Excluir</span>
                 <img
