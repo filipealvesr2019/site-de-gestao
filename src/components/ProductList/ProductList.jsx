@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import styles from "./ProductList.module.css";
 import { jsPDF } from "jspdf"; // Importar a biblioteca jsPDF
 import "jspdf-autotable"; // Import the autoTable plugin
+import Footer from "../Footer/Footer";
 
 function ProductList() {
   const [selectedProducts, setSelectedProducts] = useState([]); // Para armazenar os produtos selecionados
@@ -986,6 +987,7 @@ const [status, setStatus] = useState("");
           </div>
         </>
       )}
+      <Footer />
     </div>
   );
 }
