@@ -551,12 +551,9 @@ const [status, setStatus] = useState("");
         {openFilterModal && (
           <div className={styles.modal}>
             <div ref={modalRef} className={styles.modalContent}>
-              <span
-                className={styles.cartClose}
-                onClick={handleClickCloseFilterModal}
-              > 
-                <img src="https://i.imgur.com/zpy7fcj.png" alt=""       className={styles.cartClose__img}/>
-              </span>
+        
+                <img src="https://i.imgur.com/zpy7fcj.png" alt=""       className={styles.cartClose__img}  onClick={handleClickCloseFilterModal}/>
+     
               {showDatePickers && (
                 <div className={styles.filterContainer}>
              
