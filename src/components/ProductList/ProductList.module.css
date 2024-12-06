@@ -57,10 +57,12 @@
   height: 100%;
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
 }
 .UpdateModalContent{
   background-color: #fefefe;
-  margin: 15% auto;
+  margin: 50% auto;
   padding: 20px;
   border: 1px solid #888;
   width: 80vw;
@@ -86,6 +88,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  
   
 }
 
@@ -420,6 +423,13 @@ justify-content: space-evenly;
   width: 4vw;
   padding: 1rem;
 }
+
+.deleteClose{
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: 1.5vw;
+}
 @media only screen and (min-width: 700px) {
   .productTable{
     visibility: visible;
@@ -505,8 +515,14 @@ justify-content: space-evenly;
   .cartClose {
     cursor: pointer;
     float: right;
+
   }
-  
+  .deleteClose{
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 1.5vw;
+  }
   .dateInput{
     width: 10vw;
     border-radius: 5px;

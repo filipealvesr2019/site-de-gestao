@@ -2,6 +2,7 @@ import styles from "./page.module.css";
 import Login from "./Login";
 import Script from "next/script";
 import UserAuth from "../components/UserAuth/UserAuth";
+import Teste from "../components/teste/Teste";
 export const metadata = {
   title: "Gestão Financeira Pro", // Define o título da página
   description:
@@ -45,7 +46,7 @@ export default function Home() {
       />
       <Login />
       <UserAuth />
-      
+      <Teste />
 
        
     </div>

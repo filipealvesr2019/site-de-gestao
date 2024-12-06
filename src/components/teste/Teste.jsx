@@ -4,7 +4,7 @@ export default function Teste() {
     <>
       <>
         <div className={styles.DeleteModal}>
-          <span className={styles.cartClose}>X</span>
+          <img  src="https://i.imgur.com/zpy7fcj.png" className={styles.deleteClose} />
 
           <div className={styles.DeleteModalContent}>
               <p>Tem certeza que deseja excluir este produto?</p>
