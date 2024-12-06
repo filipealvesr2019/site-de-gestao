@@ -422,6 +422,7 @@ justify-content: space-evenly;
   margin-top: 2rem;
 }
 .cartClose__img{
+  position: absolute;
   width: 4vw;
   padding: 1rem;
 }
@@ -584,6 +585,7 @@ justify-content: space-evenly;
   .cartClose__img{
     width: 1vw;
     padding: .5rem;
+    position: absolute;
 
   }
   
