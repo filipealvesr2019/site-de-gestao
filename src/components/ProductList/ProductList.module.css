@@ -598,4 +598,11 @@ justify-content: space-evenly;
   .tableWrapper{
     display: flex;
   }
+  .tableContainer{
+    display: none;
+  }
+  .productTable{
+    display: none;
+
+  }
 }
