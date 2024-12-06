@@ -804,7 +804,7 @@ const [status, setStatus] = useState("");
 
                 <span className={`${handleStatusCss(
                   product.statusDePagamento
-                )}`}>R${product.preco.toFixed(2)}</span>
+                )}`}>R${product.preco}</span>
               </div>
               <div className={styles.cell}>
                 <span>Data de Vencimento </span>
@@ -885,7 +885,7 @@ const [status, setStatus] = useState("");
                   <td>{product.nome}</td>
                   <td>{product.client ? product.client : "nenhum"}</td>
                   <td className={handleStatusCss(product.statusDePagamento)}>
-                    R${product.preco.toFixed(2)}
+                    R${product.preco}
                   </td>
                   <td>{formatDate(product.dataDeVencimento)}</td>
                   <td
