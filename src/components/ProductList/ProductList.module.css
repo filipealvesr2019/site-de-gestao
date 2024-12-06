@@ -435,6 +435,7 @@ justify-content: space-evenly;
   cursor: pointer;
 }
 .closeUpdateModal{
+  position: absolute;
   top: 38%;
   right: 4rem;
   width: 4vw;
@@ -442,12 +443,7 @@ justify-content: space-evenly;
   cursor: pointer;
 }
 @media only screen and (min-width: 700px) {
-  .closeUpdateModal{
-    position: absolute;
-    top: 38%;
-    right: 37%;
-    width: 1.5vw;
-  }
+  
   .productTable{
     visibility: visible;
     background-color: #D7E9FF;
@@ -535,6 +531,12 @@ justify-content: space-evenly;
 
   }
   .deleteClose{
+    position: absolute;
+    top: 38%;
+    right: 37%;
+    width: 1.5vw;
+  }
+  .closeUpdateModal{
     position: absolute;
     top: 38%;
     right: 37%;
