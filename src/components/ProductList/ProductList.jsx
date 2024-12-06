@@ -940,7 +940,7 @@ const [status, setStatus] = useState("");
       {openDeleteModal && (
         <>
           <div className={styles.DeleteModal}>
-      
+       
             <img  src="https://i.imgur.com/zpy7fcj.png" className={styles.deleteClose}               onClick={handleClickCloseDeleteModal}
             />
 
@@ -967,12 +967,10 @@ const [status, setStatus] = useState("");
       {openUpdateModal && (
         <>
           <div className={styles.UpdateModal}>
-            <span
-              className={styles.closeUpdateModal}
-              onClick={handleClickCloseUpdateModal}
-            >
-              X
-            </span>
+         
+            
+            <img  src="https://i.imgur.com/zpy7fcj.png"  className={styles.closeUpdateModal}                onClick={handleClickCloseUpdateModal}
+            />
             <div ref={modalRef} className={styles.UpdateModalContent}>
               <p>Tem certeza que deseja mudar o status de pagamento de {status} para <b>{status === "pendente" || status === "vencido" ? "pago" : "pendente"}</b>?</p>
               <div className={styles.updateModalButtons}>
