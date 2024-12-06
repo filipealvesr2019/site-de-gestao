@@ -595,4 +595,7 @@ justify-content: space-evenly;
     justify-content: space-between;
     width: 60%;
   }
+  .tableWrapper{
+    display: flex;
+  }
 }
