@@ -940,12 +940,10 @@ const [status, setStatus] = useState("");
       {openDeleteModal && (
         <>
           <div className={styles.DeleteModal}>
-            <span
-              className={styles.cartClose}
-              onClick={handleClickCloseDeleteModal}
-            >
-              X
-            </span>
+      
+            <img  src="https://i.imgur.com/zpy7fcj.png" className={styles.deleteClose}               onClick={handleClickCloseDeleteModal}
+            />
+
             <div ref={modalRef} className={styles.DeleteModalContent}>
     
 

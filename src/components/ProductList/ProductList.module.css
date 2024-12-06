@@ -426,11 +426,21 @@ justify-content: space-evenly;
 
 .deleteClose{
   position: absolute;
-  top: 50%;
-  right: 0;
-  width: 1.5vw;
+  top: 38%;
+  right: 4rem;
+  width: 4vw;
+  z-index: 1;
+  cursor: pointer;
 }
 @media only screen and (min-width: 700px) {
+  .deleteClose{
+    position: absolute;
+    top: 38%;
+    right: 4rem;
+    width: 4vw;
+    z-index: 1;
+    cursor: pointer;
+  }
   .productTable{
     visibility: visible;
     background-color: #D7E9FF;
