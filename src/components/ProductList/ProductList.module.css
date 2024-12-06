@@ -195,7 +195,7 @@ height: 5vh;
   background-color: #367AF5;
   border: 0;
   color: white;
-  width: 70vw;
+  width: 80vw;
   border-radius: 5px;
   padding: .5rem;
   margin: 2rem;
@@ -525,7 +525,7 @@ justify-content: space-evenly;
   .openModalContainer__button{
     margin: 0 auto;
 
-    width: 28vw;
+    width: 25vw;
     margin-top: 1rem;
 
   }
