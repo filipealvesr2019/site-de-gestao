@@ -443,8 +443,13 @@ justify-content: space-evenly;
   z-index: 1;
   cursor: pointer;
 }
+.createClose__img{
+  width: 5vw;
+}
 @media only screen and (min-width: 700px) {
-  
+  .createClose__img{
+    width: 3vw;
+  }
   .productTable{
     visibility: visible;
     background-color: #D7E9FF;
@@ -584,7 +589,7 @@ justify-content: space-evenly;
     padding: .4rem;
   }
   .cartClose__img{
-    width: 3vw;
+    width: 2.5vw;
     padding: .5rem;
 
   }

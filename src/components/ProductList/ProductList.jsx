@@ -555,7 +555,7 @@ const [status, setStatus] = useState("");
                 className={styles.cartClose}
                
               > 
-                <img src="https://i.imgur.com/zpy7fcj.png" alt=""       className={styles.cartClose__img}  onClick={handleClickCloseFilterModal}/>
+                <img src="https://i.imgur.com/zpy7fcj.png" alt=""       className={styles.cartClose__img} />
               </span>
               {showDatePickers && (
                 <div className={styles.filterContainer}>
@@ -669,7 +669,7 @@ const [status, setStatus] = useState("");
         <div className={styles.modal}>
           <div ref={modalRef} className={styles.modalContent}>
             <span className={styles.cartClose} onClick={handleClickCloseModal}>
-            <img src="https://i.imgur.com/zpy7fcj.png" alt=""       className={styles.cartClose__img}/>
+            <img src="https://i.imgur.com/zpy7fcj.png" alt=""       className={styles.createClose__img}/>
 
             </span>
 
