@@ -448,7 +448,7 @@ justify-content: space-evenly;
 }
 @media only screen and (min-width: 700px) {
   .createClose__img{
-    width: 3vw;
+    width: 2.5vw;
   }
   .productTable{
     visibility: visible;
