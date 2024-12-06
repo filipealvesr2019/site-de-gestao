@@ -449,11 +449,11 @@ justify-content: space-evenly;
 }
 @media only screen and (min-width: 700px) {
   .filterClose__img{
-    width: 2.5vw;
+    width: 2vw;
     
   }
   .createClose__img{
-    width: 2.5vw;
+    width: 2vw;
   }
   .productTable{
     visibility: visible;
