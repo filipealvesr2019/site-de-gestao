@@ -16,12 +16,12 @@ export default function Home() {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "Gestão Financeira Pro",
-    url: "https://www.gestaofinanceirapro.online/",
+    url: "https://www.gestaofinanceirapro.com.br",
     description:
       "Software de controle financeiro gratuito simples e eficiente para gerenciar receitas e despesas. Ele permite que você controle tudo o que entra e sai do caixa, desde vendas e pagamentos até contas e dívidas.",
     potentialAction: {
       "@type": "SearchAction",
-      target: "https://www.gestaofinanceirapro.online/search?q={search_term_string}",
+      target: "https://www.gestaofinanceirapro.com.br/search?q={search_term_string}",
       "query-input": "required name=search_term_string",
     },
   };
