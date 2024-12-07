@@ -31,13 +31,13 @@ export default function Home() {
       <Script
         id="google-analytics"
         strategy="afterInteractive"
-        src={`https://www.googletagmanager.com/gtag/js?idG-sdsdsdsd`} // Substitua pelo seu Measurement ID
+        src={`https://www.googletagmanager.com/gtag/js?idG-1F3VKC0M2V`} // Substitua pelo seu Measurement ID
       />
       <Script id="google-analytics-init" strategy="afterInteractive">
         {`window.dataLayer = window.dataLayer || []; 
           function gtag(){dataLayer.push(arguments);} 
           gtag('js', new Date()); 
-          gtag('config', 'G-dsdsdsds', { page_path: window.location.pathname });`}
+          gtag('config', 'G-1F3VKC0M2V', { page_path: window.location.pathname });`}
       </Script>
       <script
         type="application/ld+json"
