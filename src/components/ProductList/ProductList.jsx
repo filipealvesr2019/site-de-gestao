@@ -52,7 +52,7 @@ const [status, setStatus] = useState("");
   const handleFilterProducts = async () => {
     // Aqui você pode fazer a chamada para a sua API passando as datas
     const response = await fetch(
-      `https://www.gestaofinanceirapro.online/api/filtrar?diaInicio=${new Date(
+      `https://www.gestaofinanceirapro.com.br/api/filtrar?diaInicio=${new Date(
         startDate
       ).getUTCDate()}&mesInicio=${
         new Date(startDate).getUTCMonth() + 1
@@ -151,7 +151,7 @@ const [status, setStatus] = useState("");
       return;
     }
 
-    const response = await fetch("https://www.gestaofinanceirapro.online/api/products", {
+    const response = await fetch("https://www.gestaofinanceirapro.com.br/api/products", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -248,7 +248,7 @@ const [status, setStatus] = useState("");
   };
   const fetchRevenue = async () => {
     try {
-      const response = await fetch("https://www.gestaofinanceirapro.online/api/receitas");
+      const response = await fetch("https://www.gestaofinanceirapro.com.br/api/receitas");
       if (!response.ok) {
         throw new Error("Erro ao buscar receitas");
       }
@@ -263,7 +263,7 @@ const [status, setStatus] = useState("");
 
   const fetchExpenses = async () => {
     try {
-      const response = await fetch("https://www.gestaofinanceirapro.online/api/despesas");
+      const response = await fetch("https://www.gestaofinanceirapro.com.br/api/despesas");
       if (!response.ok) {
         throw new Error("Erro ao buscar receitas");
       }
@@ -279,7 +279,7 @@ const [status, setStatus] = useState("");
 
   const fetchProfit = async () => {
     try {
-      const response = await fetch("https://www.gestaofinanceirapro.online/api/diferenca");
+      const response = await fetch("https://www.gestaofinanceirapro.com.br/api/diferenca");
       if (!response.ok) {
         throw new Error("Erro ao buscar receitas");
       }
@@ -294,7 +294,7 @@ const [status, setStatus] = useState("");
   };
   const fetchProducts = async () => {
     try {
-      const response = await fetch("https://www.gestaofinanceirapro.online/api/products");
+      const response = await fetch("https://www.gestaofinanceirapro.com.br/api/products");
       if (!response.ok) {
         throw new Error("Erro ao buscar produtos");
       }
@@ -318,7 +318,7 @@ const [status, setStatus] = useState("");
 
   const handleDelete = async (productId) => {
     const response = await fetch(
-      `https://www.gestaofinanceirapro.online/api/products?id=${productId}`,
+      `https://www.gestaofinanceirapro.com.br/api/products?id=${productId}`,
       {
         method: "DELETE",
       }
