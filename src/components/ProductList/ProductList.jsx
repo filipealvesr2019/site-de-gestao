@@ -467,7 +467,7 @@ const [status, setStatus] = useState("");
           </tbody>
         </table>
       
-        <h3 style="margin-top: 20px;">Total: R$${diferenca.toFixed(2)}</h3>
+        <h3 style="margin-top: 20px;">Total: R$${diferenca}</h3>
       </div>
     `;
 
