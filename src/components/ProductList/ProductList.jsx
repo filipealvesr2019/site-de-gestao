@@ -70,6 +70,7 @@ const [status, setStatus] = useState("");
     setShowDatePickers(false); // Fecha os date pickers após a filtragem
     setOpenFilterModal(false);
   };
+  console.log("FilteredProducts", data)
   // Função para verificar se há produtos selecionados
   const hasSelectedProducts = selectedProducts.length > 0;
 
