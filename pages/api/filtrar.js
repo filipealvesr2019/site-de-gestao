@@ -1,35 +1,38 @@
 import Product from "./models/Product";
-import { getAuth } from '@clerk/nextjs/server';
-import cors from 'cors';
+import { getAuth } from "@clerk/nextjs/server";
+import cors from "cors";
 import dbConnect from "./utils/dbConnect";
 
 const corsOptions = {
-  origin: 'https://www.gestaofinanceirapro.com.br', // Permitir o domínio do frontend
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
+  origin: "https://www.gestaofinanceirapro.com.br", // Permitir o domínio do frontend
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"],
 };
 
 // Middleware para CORS
-const runCors = cors(corsOptions)
+const runCors = cors(corsOptions);
 export default async function handler(req, res) {
-     // Chama o middleware CORS para permitir requisições
-     await new Promise((resolve, reject) => runCors(req, res, (result) => {
+  // Chama o middleware CORS para permitir requisições
+  await new Promise((resolve, reject) =>
+    runCors(req, res, (result) => {
       if (result instanceof Error) {
         return reject(result);
       }
       resolve(result);
-    }));
-
+    })
+  );
 
   const { userId } = getAuth(req);
   await dbConnect(); // Conectar ao banco de dados
 
-  if (req.method === 'GET') {
+  if (req.method === "GET") {
     const { diaInicio, mesInicio, diaFim, mesFim, type } = req.query;
 
     // Verifica se os parâmetros foram fornecidos
     if (!diaInicio || !mesInicio || !diaFim || !mesFim || !type) {
-      return res.status(400).json({ error: 'Todos os parâmetros de data são necessários.' });
+      return res
+        .status(400)
+        .json({ error: "Todos os parâmetros de data são necessários." });
     }
 
     try {
@@ -47,38 +50,44 @@ export default async function handler(req, res) {
       const query = {
         userId,
         [type]: {
-          $gte: dataInicio,  // Maior ou igual a data de início
-          $lte: dataFim,     // Menor ou igual a data de fim
+          $gte: dataInicio, // Maior ou igual a data de início
+          $lte: dataFim, // Menor ou igual a data de fim
         },
       };
 
-      const produtosFiltrados = await Product.find(query);
+      const produtosFiltrados = await Product.find(query).lean(); ;
 
       if (produtosFiltrados.length === 0) {
-        return res.status(404).json({ error: 'Nenhum produto encontrado para o filtro fornecido.' });
+        return res
+          .status(404)
+          .json({
+            error: "Nenhum produto encontrado para o filtro fornecido.",
+          });
       }
 
-    // Calcula total de receitas, despesas e diferença
-    const totalReceitas = produtosFiltrados
-    .filter((produto) => produto.type === "receita")
-    .reduce((acc, produto) => acc + produto.value, 0);
+      // Calcula total de receitas, despesas e diferença
+      const totalReceitas = produtosFiltrados
+        .filter((produto) => produto.type === "receita")
+        .reduce((acc, produto) => acc + produto.value, 0);
 
-  const totalDespesas = produtosFiltrados
-    .filter((produto) => produto.type === "despesa")
-    .reduce((acc, produto) => acc + produto.value, 0);
+      const totalDespesas = produtosFiltrados
+        .filter((produto) => produto.type === "despesa")
+        .reduce((acc, produto) => acc + produto.value, 0);
 
-  const totalDiferenca = totalReceitas - totalDespesas;
+      const totalDiferenca = totalReceitas - totalDespesas;
 
-
-      res.status(200).json(produtosFiltrados,  totalReceitas,
-        totalDespesas,
-        totalDiferenca,);
+      res.status(200).json({
+        produtos: produtosFiltrados,
+        totalReceitas: totalReceitas,
+        totalDespesas: totalDespesas,
+        totalDiferenca: totalDiferenca,
+      });
     } catch (error) {
       console.error(error); // Log de erro para depuração
-      res.status(500).json({ error: 'Erro ao buscar produtos.' });
+      res.status(500).json({ error: "Erro ao buscar produtos." });
     }
   } else {
-    res.setHeader('Allow', ['GET']);
+    res.setHeader("Allow", ["GET"]);
     res.status(405).end(`Método ${req.method} não permitido`);
   }
 }
