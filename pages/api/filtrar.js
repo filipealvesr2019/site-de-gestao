@@ -55,7 +55,7 @@ export default async function handler(req, res) {
         },
       };
 
-      const produtosFiltrados = await Product.find(query).lean(); ;
+      const produtosFiltrados = await Product.find(query);
 
       if (produtosFiltrados.length === 0) {
         return res
@@ -75,13 +75,12 @@ export default async function handler(req, res) {
         .reduce((acc, produto) => acc + produto.value, 0);
 
       const totalDiferenca = totalReceitas - totalDespesas;
-
-      res.status(200).json({
-        produtos: produtosFiltrados,
-        totalReceitas: totalReceitas,
-        totalDespesas: totalDespesas,
-        totalDiferenca: totalDiferenca,
-      });
+     const products = [
+      produtosFiltrados, totalReceitas, totalDespesas, totalDiferenca
+     ]
+      res
+        .status(200)
+        .json(products);
     } catch (error) {
       console.error(error); // Log de erro para depuração
       res.status(500).json({ error: "Erro ao buscar produtos." });
