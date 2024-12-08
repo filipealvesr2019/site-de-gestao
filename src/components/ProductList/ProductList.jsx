@@ -769,7 +769,9 @@ const [status, setStatus] = useState("");
           </div>
         </div>
       )}
-
+<div>
+  {receitasPagas}
+</div>
       <div>
         <div className={styles.tableWrapper}>
           {displayedProducts.map((product) => (
@@ -854,9 +856,7 @@ const [status, setStatus] = useState("");
             </div>
           ))}
         </div>
-<div>
-  {receitasPagas}
-</div>
+
         <div className={styles.tableContainer}>
           <table className={styles.productTable}>
             <thead>
