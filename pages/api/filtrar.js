@@ -70,9 +70,9 @@ export default async function handler(req, res) {
   const totalDiferenca = totalReceitas - totalDespesas;
 
 
-      res.status(200).json({produtosFiltrados,  totalReceitas,
+      res.status(200).json(produtosFiltrados,  totalReceitas,
         totalDespesas,
-        totalDiferenca,});
+        totalDiferenca,);
     } catch (error) {
       console.error(error); // Log de erro para depuração
       res.status(500).json({ error: 'Erro ao buscar produtos.' });
