@@ -72,7 +72,6 @@ const [status, setStatus] = useState("");
     setFilteredProducts(data); // Atualiza os produtos filtrados
     setShowDatePickers(false); // Fecha os date pickers após a filtragem
     setOpenFilterModal(false);
-    console.log("FilteredProducts", response.data)
     setReceitasPagas(data.totalReceitas)
   };
   // Função para verificar se há produtos selecionados
