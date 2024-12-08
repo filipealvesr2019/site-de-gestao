@@ -69,7 +69,6 @@ const [status, setStatus] = useState("");
     setFilteredProducts(data); // Atualiza os produtos filtrados
     setShowDatePickers(false); // Fecha os date pickers após a filtragem
     setOpenFilterModal(false);
-    console.log("setFilteredProducts", data)
   };
   // Função para verificar se há produtos selecionados
   const hasSelectedProducts = selectedProducts.length > 0;
@@ -367,10 +366,10 @@ const [status, setStatus] = useState("");
             : product
         )
       );
-      // // Chama as funções para buscar os dados atualizados
-      // await fetchExpenses();
-      // await fetchRevenue();
-      // await fetchProfit();
+      // Chama as funções para buscar os dados atualizados
+      await fetchExpenses();
+      await fetchRevenue();
+      await fetchProfit();
 
       setOpenUpdateModal(false); // Fechar o modal após a atualização
     } else {
