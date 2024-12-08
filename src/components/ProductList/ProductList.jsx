@@ -368,9 +368,9 @@ const [status, setStatus] = useState("");
         )
       );
       // Chama as funções para buscar os dados atualizados
-      await fetchExpenses();
-      await fetchRevenue();
-      await fetchProfit();
+      // await fetchExpenses();
+      // await fetchRevenue();
+      // await fetchProfit();
 
       setOpenUpdateModal(false); // Fechar o modal após a atualização
     } else {
