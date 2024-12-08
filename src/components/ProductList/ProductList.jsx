@@ -455,9 +455,9 @@ const [status, setStatus] = useState("");
                     }</td>
 
 
-                  <td style="padding: 8px; border: 1px solid #ccc;">R$${
+                  <td style="padding: 8px; border: 1px solid #ccc;">R$ ${
                     item.tipo === "despesa" ? "-" : ""
-                  } ${item.preco}</td>
+                  }${item.preco}</td>
                   <td style="padding: 8px; border: 1px solid #ccc;">${formatDate(
                     item.dataDeVencimento
                   )}</td>
