@@ -70,7 +70,7 @@ const [status, setStatus] = useState("");
     setShowDatePickers(false); // Fecha os date pickers após a filtragem
     setOpenFilterModal(false);
     console.log("FilteredProducts", response.data)
-
+    setTotalReceitasPagas(data.totalReceitas)
   };
   // Função para verificar se há produtos selecionados
   const hasSelectedProducts = selectedProducts.length > 0;
@@ -549,6 +549,9 @@ const [status, setStatus] = useState("");
           </h3>
         </div>
       </div>
+
+
+
       <div className={styles.buttonsStyles}>
         {openFilterModal && (
           <div className={styles.modal}>
