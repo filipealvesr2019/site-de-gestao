@@ -58,7 +58,21 @@ export default async function handler(req, res) {
         return res.status(404).json({ error: 'Nenhum produto encontrado para o filtro fornecido.' });
       }
 
-      res.status(200).json(produtosFiltrados);
+    // Calcula total de receitas, despesas e diferença
+    const totalReceitas = produtosFiltrados
+    .filter((produto) => produto.type === "receita")
+    .reduce((acc, produto) => acc + produto.value, 0);
+
+  const totalDespesas = produtosFiltrados
+    .filter((produto) => produto.type === "despesa")
+    .reduce((acc, produto) => acc + produto.value, 0);
+
+  const totalDiferenca = totalReceitas - totalDespesas;
+
+
+      res.status(200).json(produtosFiltrados,  totalReceitas,
+        totalDespesas,
+        totalDiferenca,);
     } catch (error) {
       console.error(error); // Log de erro para depuração
       res.status(500).json({ error: 'Erro ao buscar produtos.' });
