@@ -15,9 +15,6 @@ function ProductList() {
   const [totalReceitasPagas, setTotalReceitasPagas] = useState(0); // Novo estado para o total de receitas do mês
   const [totalDespesas, setTotalDespesas] = useState(0); // Novo estado para o total de receitas do mês
   const [diferenca, setTotalDiferenca] = useState(0); // Novo estado para o total de receitas do mês
-  
-  const [receitasPagas, setReceitasPagas] = useState(0); // Novo estado para o total de receitas do mês
-
   const [filteredProducts, setFilteredProducts] = useState([]); // Usar filteredProducts aqui
   const [showDatePickers, setShowDatePickers] = useState(false);
   const [startDate, setStartDate] = useState("");
@@ -72,7 +69,6 @@ const [status, setStatus] = useState("");
     setFilteredProducts(data); // Atualiza os produtos filtrados
     setShowDatePickers(false); // Fecha os date pickers após a filtragem
     setOpenFilterModal(false);
-    console.log("data", data)
   };
   // Função para verificar se há produtos selecionados
   const hasSelectedProducts = selectedProducts.length > 0;
@@ -551,9 +547,6 @@ const [status, setStatus] = useState("");
           </h3>
         </div>
       </div>
-
-
-
       <div className={styles.buttonsStyles}>
         {openFilterModal && (
           <div className={styles.modal}>
@@ -768,9 +761,7 @@ const [status, setStatus] = useState("");
           </div>
         </div>
       )}
-<div>
-  {receitasPagas}
-</div>
+
       <div>
         <div className={styles.tableWrapper}>
           {displayedProducts.map((product) => (
