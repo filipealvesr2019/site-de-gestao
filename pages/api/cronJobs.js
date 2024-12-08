@@ -28,7 +28,7 @@ if (typeof window === "undefined") {
 
   // cron.schedule('*/30 * * * * *', checkAndUpdateProductsStatus);
   
-  cron.schedule('0 * * * *', checkAndUpdateProductsStatus);
+  cron.schedule("*/30 * * * * *", checkAndUpdateProductsStatus);
 
 }
 
