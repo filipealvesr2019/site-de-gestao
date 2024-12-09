@@ -68,9 +68,11 @@ function ProductList() {
     );
 
     if (!response.ok) {
-      throw new Error("Erro ao filtrar produtos");
+      setFailureAlertMessage("Erro ao filtrar produtos");
+      setShowFailureAlert(true);
+      return; // Retorna para evitar continuar o processamento
     }
-
+  
     const data = await response.json();
     setFilteredProducts(data); // Atualiza os produtos filtrados
     setShowDatePickers(false); // Fecha os date pickers após a filtragem
