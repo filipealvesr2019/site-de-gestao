@@ -24,6 +24,9 @@ export default function Home() {
       target: "https://www.gestaofinanceirapro.com.br/search?q={search_term_string}",
       "query-input": "required name=search_term_string",
     },
+  alternates: {
+    canonical: "https://www.gestaofinanceirapro.com.br", // Página canônica
+  },
   };
 
   return (
