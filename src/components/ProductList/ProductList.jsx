@@ -550,6 +550,8 @@ const [alertMessage, setAlertMessage] = useState("");
     >
                   {showAlert && <SuccessAlert message={alertMessage} onClose={closeAlert} />}
 
+
+
       <div className={styles.cardsContainer}>
         <div className={styles.stylesTotalReceitas}>
           <h3>
