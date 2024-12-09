@@ -1,9 +1,0 @@
-{
-    "crons": [
-      {
-        "path": "/api/cronJobs",
-        "schedule": "*/30 * * * * *"
-      }
-    ]
-  }
-  
