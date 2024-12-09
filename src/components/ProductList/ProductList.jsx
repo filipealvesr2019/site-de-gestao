@@ -7,6 +7,7 @@ import "jspdf-autotable"; // Import the autoTable plugin
 import Footer from "../Footer/Footer";
 import SuccessAlert from "../Alert/SuccessAlert";
 import Loading from "../Loading/Loading";
+import FailureAlert from "../Alert/FailureAlert";
 
 function ProductList() {
   const [selectedProducts, setSelectedProducts] = useState([]); // Para armazenar os produtos selecionados
