@@ -76,12 +76,7 @@ function ProductList() {
     setShowDatePickers(false); // Fecha os date pickers após a filtragem
     setOpenFilterModal(false);
 
-  // Verifique se data está vazio
-  if (!data) {
-    setFailureAlertMessage("Data filtrada não encontrada!");
-    setShowFailureAlert(true);
-    return; // Retorna para evitar continuar o processamento
-  }
+
   };
 
   const closeFailureAlert = () => {
