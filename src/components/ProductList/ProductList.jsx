@@ -79,7 +79,7 @@ function ProductList() {
     setOpenFilterModal(false);
 
   // Verifique se data está vazio
-  if (response.status === 404) {
+  if (response.data === 404) {
     setFailureAlertMessage("Data filtrada não encontrada!");
     setShowFailureAlert(true);
     return; // Retorna para evitar continuar o processamento
