@@ -76,10 +76,12 @@ function ProductList() {
     setShowDatePickers(false); // Fecha os date pickers após a filtragem
     setOpenFilterModal(false);
 
-    if (!response.data) {
-      setFailureAlertMessage("Data filtrada não encontrada!");
-      setShowFailureAlert(true);
-    }
+  // Verifique se data está vazio
+  if (!data || data.length === 0) {
+    setFailureAlertMessage("Data filtrada não encontrada!");
+    setShowFailureAlert(true);
+    return; // Retorna para evitar continuar o processamento
+  }
   };
 
   const closeFailureAlert = () => {
@@ -87,16 +89,17 @@ function ProductList() {
     setFailureAlertMessage("");
   };
   // useEffect para fechar o alerta de falha automaticamente
-  useEffect(() => {
-    if (showFailureAlert) {
-      const timer = setTimeout(() => {
-        setShowFailureAlert(false);
-        setFailureAlertMessage(""); // Limpa a mensagem
-      }, 5000); // Fecha após 5 segundos
+// useEffect para fechar o alerta de falha automaticamente
+useEffect(() => {
+  if (showFailureAlert) {
+    const timer = setTimeout(() => {
+      setShowFailureAlert(false);
+      setFailureAlertMessage(""); // Limpa a mensagem
+    }, 5000); // Fecha após 5 segundos
 
-      return () => clearTimeout(timer); // Limpa o timer ao desmontar
-    }
-  }, [showFailureAlert]);
+    return () => clearTimeout(timer); // Limpa o timer ao desmontar
+  }
+}, [showFailureAlert]);
   // Função para verificar se há produtos selecionados
   const hasSelectedProducts = selectedProducts.length > 0;
 
