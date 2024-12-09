@@ -68,18 +68,16 @@ function ProductList() {
     );
 
     if (!response.ok) {
-      setFailureAlertMessage("Erro ao filtrar produtos");
-      setShowFailureAlert(true);
-      return; // Retorna para evitar continuar o processamento
+      throw new Error("Erro ao filtrar produtos");
     }
-  
+
     const data = await response.json();
     setFilteredProducts(data); // Atualiza os produtos filtrados
     setShowDatePickers(false); // Fecha os date pickers após a filtragem
     setOpenFilterModal(false);
 
   // Verifique se data está vazio
-  if (response.data === 404) {
+  if (!response.data) {
     setFailureAlertMessage("Data filtrada não encontrada!");
     setShowFailureAlert(true);
     return; // Retorna para evitar continuar o processamento
@@ -91,6 +89,7 @@ function ProductList() {
     setFailureAlertMessage("");
   };
   // useEffect para fechar o alerta de falha automaticamente
+
 // useEffect para fechar o alerta de falha automaticamente
 useEffect(() => {
   if (showFailureAlert) {
@@ -102,6 +101,7 @@ useEffect(() => {
     return () => clearTimeout(timer); // Limpa o timer ao desmontar
   }
 }, [showFailureAlert]);
+
   // Função para verificar se há produtos selecionados
   const hasSelectedProducts = selectedProducts.length > 0;
 
