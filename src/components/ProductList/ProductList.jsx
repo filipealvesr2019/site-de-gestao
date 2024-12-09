@@ -6,6 +6,7 @@ import { jsPDF } from "jspdf"; // Importar a biblioteca jsPDF
 import "jspdf-autotable"; // Import the autoTable plugin
 import Footer from "../Footer/Footer";
 import SuccessAlert from "../Alert/SuccessAlert";
+import Loading from "../Loading/Loading";
 
 function ProductList() {
   const [selectedProducts, setSelectedProducts] = useState([]); // Para armazenar os produtos selecionados
@@ -37,6 +38,7 @@ const [nome, setNome] = useState("");
 const [status, setStatus] = useState("");
 const [showAlert, setShowAlert] = useState(false);
 const [alertMessage, setAlertMessage] = useState("");
+
   // Função para lidar com a mudança do tipo de filtro
   const handleFilterTypeChange = (e) => {
     setFilterType(e.target.value);
@@ -407,7 +409,7 @@ const [alertMessage, setAlertMessage] = useState("");
     return `${day}/${month}/${year}`; // Retorna a data no formato dd/mm/yyyy
   };
 
-  if (loading) return <p>Carregando produtos...</p>;
+  if (loading) return <Loading />;
   if (error) return <p>{error}</p>;
   const handleStatusCss = (status) => {
     switch (status) {
