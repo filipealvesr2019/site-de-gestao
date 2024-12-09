@@ -52,7 +52,8 @@ const [alertMessage, setAlertMessage] = useState("");
   const handleEndDateChange = (e) => {
     setEndDate(e.target.value);
   };
-
+  const [showFailureAlert, setShowFailureAlert] = useState(false);
+  const [failureAlertMessage, setFailureAlertMessage] = useState("");
   const handleFilterProducts = async () => {
     // Aqui você pode fazer a chamada para a sua API passando as datas
     const response = await fetch(
@@ -73,7 +74,27 @@ const [alertMessage, setAlertMessage] = useState("");
     setFilteredProducts(data); // Atualiza os produtos filtrados
     setShowDatePickers(false); // Fecha os date pickers após a filtragem
     setOpenFilterModal(false);
+    
+    if (!response.data) {
+      setFailureAlertMessage("Data filtrada não encontrada!");
+      setShowFailureAlert(true);    }
   };
+
+  const closeFailureAlert = () => {
+    setShowFailureAlert(false);
+    setFailureAlertMessage("");
+  };
+// useEffect para fechar o alerta de falha automaticamente
+useEffect(() => {
+  if (showFailureAlert) {
+    const timer = setTimeout(() => {
+      setShowFailureAlert(false);
+      setFailureAlertMessage(""); // Limpa a mensagem
+    }, 5000); // Fecha após 5 segundos
+
+    return () => clearTimeout(timer); // Limpa o timer ao desmontar
+  }
+}, [showFailureAlert]);
   // Função para verificar se há produtos selecionados
   const hasSelectedProducts = selectedProducts.length > 0;
 
@@ -550,7 +571,9 @@ const [alertMessage, setAlertMessage] = useState("");
       className={styles.container}
     
     >
+      
                   {showAlert && <SuccessAlert message={alertMessage} onClose={closeAlert} />}
+                  {showFailureAlert && <FailureAlert message={failureAlertMessage} onClose={closeFailureAlert} />}
 
 
 
