@@ -33,12 +33,12 @@ function ProductList() {
   const [openUpdateModal, setOpenUpdateModal] = useState(false); // Modal de atualização
   const [searchTerm, setSearchTerm] = useState(""); // Para armazenar o termo de pesquisa
   const [filterType, setFilterType] = useState("dataDeVencimento"); // Default é filtrar por data de vencimento
-// Adicione estados para armazenar tipo e nome
-const [tipo, setTipo] = useState("");
-const [nome, setNome] = useState("");
-const [status, setStatus] = useState("");
-const [showAlert, setShowAlert] = useState(false);
-const [alertMessage, setAlertMessage] = useState("");
+  // Adicione estados para armazenar tipo e nome
+  const [tipo, setTipo] = useState("");
+  const [nome, setNome] = useState("");
+  const [status, setStatus] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
 
   // Função para lidar com a mudança do tipo de filtro
   const handleFilterTypeChange = (e) => {
@@ -75,27 +75,28 @@ const [alertMessage, setAlertMessage] = useState("");
     setFilteredProducts(data); // Atualiza os produtos filtrados
     setShowDatePickers(false); // Fecha os date pickers após a filtragem
     setOpenFilterModal(false);
-    
+
     if (!response.data) {
       setFailureAlertMessage("Data filtrada não encontrada!");
-      setShowFailureAlert(true);    }
+      setShowFailureAlert(true);
+    }
   };
 
   const closeFailureAlert = () => {
     setShowFailureAlert(false);
     setFailureAlertMessage("");
   };
-// useEffect para fechar o alerta de falha automaticamente
-useEffect(() => {
-  if (showFailureAlert) {
-    const timer = setTimeout(() => {
-      setShowFailureAlert(false);
-      setFailureAlertMessage(""); // Limpa a mensagem
-    }, 5000); // Fecha após 5 segundos
+  // useEffect para fechar o alerta de falha automaticamente
+  useEffect(() => {
+    if (showFailureAlert) {
+      const timer = setTimeout(() => {
+        setShowFailureAlert(false);
+        setFailureAlertMessage(""); // Limpa a mensagem
+      }, 5000); // Fecha após 5 segundos
 
-    return () => clearTimeout(timer); // Limpa o timer ao desmontar
-  }
-}, [showFailureAlert]);
+      return () => clearTimeout(timer); // Limpa o timer ao desmontar
+    }
+  }, [showFailureAlert]);
   // Função para verificar se há produtos selecionados
   const hasSelectedProducts = selectedProducts.length > 0;
 
@@ -141,7 +142,7 @@ useEffect(() => {
 
   const handleClickOpenUpdateModal = (productId, currentStatus) => {
     setSelectedProductId(productId); // Armazena o id do produto
-    setStatus(currentStatus)
+    setStatus(currentStatus);
     setOpenUpdateModal(true);
   };
 
@@ -149,7 +150,7 @@ useEffect(() => {
     setOpenUpdateModal(false);
   };
 
-  const handleClickOpenDeleteModal = (productId, tipo,  nome) => {
+  const handleClickOpenDeleteModal = (productId, tipo, nome) => {
     setSelectedProductId(productId);
     setTipo(tipo); // Armazena o tipo
     setNome(nome); // Armazena o nome
@@ -177,16 +178,19 @@ useEffect(() => {
       return;
     }
 
-    const response = await fetch("https://www.gestaofinanceirapro.com.br/api/products", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        ...formData,
-        dataDeVencimento: formattedDataDeVencimento,
-      }),
-    });
+    const response = await fetch(
+      "https://www.gestaofinanceirapro.com.br/api/products",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...formData,
+          dataDeVencimento: formattedDataDeVencimento,
+        }),
+      }
+    );
 
     if (!response.ok) {
       throw new Error("Erro ao criar o produto");
@@ -208,7 +212,7 @@ useEffect(() => {
     await fetchRevenue();
     await fetchProfit();
     await fetchProducts();
-    
+
     if (response.ok) {
       setAlertMessage(`${formData.tipo} criada com sucesso!`);
       setShowAlert(true);
@@ -223,7 +227,7 @@ useEffect(() => {
       return () => clearTimeout(timer); // Limpa o timer ao desmontar
     }
   }, [showAlert]);
-  
+
   const closeAlert = () => {
     setShowAlert(false);
     setAlertMessage("");
@@ -293,7 +297,9 @@ useEffect(() => {
   };
   const fetchRevenue = async () => {
     try {
-      const response = await fetch("https://www.gestaofinanceirapro.com.br/api/receitas");
+      const response = await fetch(
+        "https://www.gestaofinanceirapro.com.br/api/receitas"
+      );
       if (!response.ok) {
         throw new Error("Erro ao buscar receitas");
       }
@@ -308,7 +314,9 @@ useEffect(() => {
 
   const fetchExpenses = async () => {
     try {
-      const response = await fetch("https://www.gestaofinanceirapro.com.br/api/despesas");
+      const response = await fetch(
+        "https://www.gestaofinanceirapro.com.br/api/despesas"
+      );
       if (!response.ok) {
         throw new Error("Erro ao buscar receitas");
       }
@@ -324,7 +332,9 @@ useEffect(() => {
 
   const fetchProfit = async () => {
     try {
-      const response = await fetch("https://www.gestaofinanceirapro.com.br/api/diferenca");
+      const response = await fetch(
+        "https://www.gestaofinanceirapro.com.br/api/diferenca"
+      );
       if (!response.ok) {
         throw new Error("Erro ao buscar receitas");
       }
@@ -339,7 +349,9 @@ useEffect(() => {
   };
   const fetchProducts = async () => {
     try {
-      const response = await fetch("https://www.gestaofinanceirapro.com.br/api/products");
+      const response = await fetch(
+        "https://www.gestaofinanceirapro.com.br/api/products"
+      );
       if (!response.ok) {
         throw new Error("Erro ao buscar produtos");
       }
@@ -349,7 +361,6 @@ useEffect(() => {
 
       setLoading(false);
     } catch (error) {
-      
       setError(error.message);
       setLoading(false);
     }
@@ -568,15 +579,16 @@ useEffect(() => {
   };
 
   return (
-    <div
-      className={styles.container}
-    
-    >
-      
-                  {showAlert && <SuccessAlert message={alertMessage} onClose={closeAlert} />}
-                  {showFailureAlert && <FailureAlert message={failureAlertMessage} onClose={closeFailureAlert} />}
-
-
+    <div className={styles.container}>
+      {showAlert && (
+        <SuccessAlert message={alertMessage} onClose={closeAlert} />
+      )}
+      {showFailureAlert && (
+        <FailureAlert
+          message={failureAlertMessage}
+          onClose={closeFailureAlert}
+        />
+      )}
 
       <div className={styles.cardsContainer}>
         <div className={styles.stylesTotalReceitas}>
@@ -602,27 +614,26 @@ useEffect(() => {
         {openFilterModal && (
           <div className={styles.modal}>
             <div ref={modalRef} className={styles.modalContent}>
-              <span
-                className={styles.cartClose}
-               
-              > 
-                <img src="https://i.imgur.com/zpy7fcj.png" alt=""       className={styles.filterClose__img} onClick={handleClickCloseFilterModal} />
+              <span className={styles.cartClose}>
+                <img
+                  src="https://i.imgur.com/zpy7fcj.png"
+                  alt=""
+                  className={styles.filterClose__img}
+                  onClick={handleClickCloseFilterModal}
+                />
               </span>
               {showDatePickers && (
                 <div className={styles.filterContainer}>
-             
-                    <label>Filtrar por:</label>
-                    <select
-                      value={filterType}
-                      onChange={handleFilterTypeChange}
-                      className={styles.dateFilterInput}
-                    >
-                      <option value="dataDeVencimento">
-                        Data de Vencimento
-                      </option>
-                      <option value="dataCriacao">Data de Criação</option>
-                    </select>
-                    <label>Data Inicial:</label>
+                  <label>Filtrar por:</label>
+                  <select
+                    value={filterType}
+                    onChange={handleFilterTypeChange}
+                    className={styles.dateFilterInput}
+                  >
+                    <option value="dataDeVencimento">Data de Vencimento</option>
+                    <option value="dataCriacao">Data de Criação</option>
+                  </select>
+                  <label>Data Inicial:</label>
                   <input
                     type="date"
                     value={startDate}
@@ -631,7 +642,6 @@ useEffect(() => {
                     style={{ cursor: "pointer" }}
                     required
                     className={styles.shorterFilterInput}
-
                   />
                   <label>Data Final:</label>
 
@@ -643,9 +653,13 @@ useEffect(() => {
                     style={{ cursor: "pointer" }}
                     required
                     className={styles.shorterFilterInput}
-
                   />
-                  <button onClick={handleFilterProducts} className={styles.filterContainer__button}>Filtrar</button>
+                  <button
+                    onClick={handleFilterProducts}
+                    className={styles.filterContainer__button}
+                  >
+                    Filtrar
+                  </button>
                 </div>
               )}
             </div>
@@ -720,13 +734,16 @@ useEffect(() => {
         <div className={styles.modal}>
           <div ref={modalRef} className={styles.modalContent}>
             <span className={styles.cartClose} onClick={handleClickCloseModal}>
-            <img src="https://i.imgur.com/zpy7fcj.png" alt=""       className={styles.createClose__img}/>
-
+              <img
+                src="https://i.imgur.com/zpy7fcj.png"
+                alt=""
+                className={styles.createClose__img}
+              />
             </span>
 
             <form onSubmit={handleSubmit}>
               <div className={styles.openModalContainer}>
-              <h3>Cadastrar Receita ou Despesa</h3>
+                <h3>Cadastrar Receita ou Despesa</h3>
 
                 <label>Descrição:</label>
                 <input
@@ -737,8 +754,6 @@ useEffect(() => {
                   required
                   placeholder="e.x. 1kg de queijo"
                   className={styles.biggerInput}
-
-
                 />
 
                 <label>Cliente(opcional):</label>
@@ -749,7 +764,6 @@ useEffect(() => {
                   onChange={handleChange}
                   className={styles.biggerInput}
                   placeholder="e.x. valdir gomes"
-
                 />
 
                 <label>Preço(R$):</label>
@@ -763,7 +777,6 @@ useEffect(() => {
                   step="0.01"
                   className={styles.biggerInput}
                   placeholder="e.x. 50"
-
                 />
 
                 <label>Data de Vencimento:</label>
@@ -775,7 +788,6 @@ useEffect(() => {
                   onFocus={handleFocus} // Abre o datepicker ao focar no input
                   style={{ cursor: "pointer" }}
                   className={styles.dateInput}
-
                   required
                 />
 
@@ -785,7 +797,6 @@ useEffect(() => {
                   value={formData.statusDePagamento}
                   onChange={handleChange}
                   className={styles.shorterInput}
-
                 >
                   <option value="pendente">Pendente</option>
                   <option value="pago">Pago</option>
@@ -799,15 +810,17 @@ useEffect(() => {
                   onChange={handleChange} // Certifique-se de que a função handleChange está sendo chamada corretamente
                   required
                   className={styles.shorterInput}
-
                 >
                   <option value="receita">Receita</option>
                   <option value="despesa">Despesa</option>
                 </select>
-                <button type="submit" className={styles.openModalContainer__button}>Cadastrar</button>
-
+                <button
+                  type="submit"
+                  className={styles.openModalContainer__button}
+                >
+                  Cadastrar
+                </button>
               </div>
-
             </form>
           </div>
         </div>
@@ -848,14 +861,14 @@ useEffect(() => {
 
                 <div className={styles.cell}>{product.nome}</div>
               </div>
-              <div
-                className={`${styles.cell}`}
-              >
-                                <span>Preço</span>
+              <div className={`${styles.cell}`}>
+                <span>Preço</span>
 
-                <span className={`${handleStatusCss(
-                  product.statusDePagamento
-                )}`}>R${product.preco}</span>
+                <span
+                  className={`${handleStatusCss(product.statusDePagamento)}`}
+                >
+                  R${product.preco}
+                </span>
               </div>
               <div className={styles.cell}>
                 <span>Data de Vencimento </span>
@@ -883,7 +896,13 @@ useEffect(() => {
               </div>
               <div
                 className={styles.cell}
-                onClick={() => handleClickOpenDeleteModal(product._id, product.tipo, product.nome)}
+                onClick={() =>
+                  handleClickOpenDeleteModal(
+                    product._id,
+                    product.tipo,
+                    product.nome
+                  )
+                }
               >
                 <span>Excluir</span>
                 <img
@@ -952,7 +971,15 @@ useEffect(() => {
                   </td>
 
                   <td>{formatDate(product.dataCriacao)}</td>
-                  <td onClick={() => handleClickOpenDeleteModal(product._id, product.tipo, product.nome)}>
+                  <td
+                    onClick={() =>
+                      handleClickOpenDeleteModal(
+                        product._id,
+                        product.tipo,
+                        product.nome
+                      )
+                    }
+                  >
                     <img
                       src="https://i.imgur.com/flqGals.png"
                       alt=""
@@ -991,25 +1018,36 @@ useEffect(() => {
       {openDeleteModal && (
         <>
           <div className={styles.DeleteModal}>
-       
-            <img  src="https://i.imgur.com/zpy7fcj.png" className={styles.deleteClose}               onClick={handleClickCloseDeleteModal}
+            <img
+              src="https://i.imgur.com/zpy7fcj.png"
+              className={styles.deleteClose}
+              onClick={handleClickCloseDeleteModal}
             />
 
             <div ref={modalRef} className={styles.DeleteModalContent}>
-    
-
-            <p>Tem certeza que quer excluir <b  className={
-                      tipo === "receita" ? styles.pago : styles.vencido
-                    }>{tipo}</b> de <b>{nome}</b>?</p>
-            <div className={styles.DeleteModalButtons}>
-
-              <button onClick={() => handleDelete(selectedProductId)}  className={styles.buttonA}>
-                Sim
-              </button>
-              <button onClick={handleClickCloseDeleteModal} className={styles.buttonB}>Não</button>
-
+              <p>
+                Tem certeza que quer excluir{" "}
+                <b
+                  className={tipo === "receita" ? styles.pago : styles.vencido}
+                >
+                  {tipo}
+                </b>{" "}
+                de <b>{nome}</b>?
+              </p>
+              <div className={styles.DeleteModalButtons}>
+                <button
+                  onClick={() => handleDelete(selectedProductId)}
+                  className={styles.buttonA}
+                >
+                  Sim
+                </button>
+                <button
+                  onClick={handleClickCloseDeleteModal}
+                  className={styles.buttonB}
+                >
+                  Não
+                </button>
               </div>
-       
             </div>
           </div>
         </>
@@ -1018,17 +1056,32 @@ useEffect(() => {
       {openUpdateModal && (
         <>
           <div className={styles.UpdateModal}>
-         
-            
-            <img  src="https://i.imgur.com/zpy7fcj.png"  className={styles.closeUpdateModal}                onClick={handleClickCloseUpdateModal}
+            <img
+              src="https://i.imgur.com/zpy7fcj.png"
+              className={styles.closeUpdateModal}
+              onClick={handleClickCloseUpdateModal}
             />
             <div ref={modalRef} className={styles.UpdateModalContent}>
-              <p>Tem certeza que deseja mudar o status de pagamento de {status} para <b>{status === "pendente" || status === "vencido" ? "pago" : "pendente"}</b>?</p>
+              <p>
+                Tem certeza que deseja mudar o status de pagamento de {status}{" "}
+                para{" "}
+                <b>
+                  {status === "pendente" || status === "vencido"
+                    ? "pago"
+                    : "pendente"}
+                </b>
+                ?
+              </p>
               <div className={styles.updateModalButtons}>
-                
-              <button onClick={handleUpdateStatus} className={styles.buttonA}>Sim</button>{" "}
-
-              <button onClick={handleClickCloseUpdateModal} className={styles.buttonB}>Não</button>
+                <button onClick={handleUpdateStatus} className={styles.buttonA}>
+                  Sim
+                </button>{" "}
+                <button
+                  onClick={handleClickCloseUpdateModal}
+                  className={styles.buttonB}
+                >
+                  Não
+                </button>
               </div>
             </div>
           </div>
