@@ -5,6 +5,7 @@ import styles from "./ProductList.module.css";
 import { jsPDF } from "jspdf"; // Importar a biblioteca jsPDF
 import "jspdf-autotable"; // Import the autoTable plugin
 import Footer from "../Footer/Footer";
+import SuccessAlert from "../Alert/SuccessAlert";
 
 function ProductList() {
   const [selectedProducts, setSelectedProducts] = useState([]); // Para armazenar os produtos selecionados
@@ -34,7 +35,8 @@ function ProductList() {
 const [tipo, setTipo] = useState("");
 const [nome, setNome] = useState("");
 const [status, setStatus] = useState("");
-
+const [showAlert, setShowAlert] = useState(false);
+const [alertMessage, setAlertMessage] = useState("");
   // Função para lidar com a mudança do tipo de filtro
   const handleFilterTypeChange = (e) => {
     setFilterType(e.target.value);
@@ -182,6 +184,25 @@ const [status, setStatus] = useState("");
     await fetchRevenue();
     await fetchProfit();
     await fetchProducts();
+    
+    if (response.ok) {
+      setAlertMessage(`${formData.tipo} criada com sucesso!`);
+      setShowAlert(true);
+    }
+  };
+  useEffect(() => {
+    if (showAlert) {
+      const timer = setTimeout(() => {
+        setShowAlert(false);
+      }, 5000); // Fecha após 5 segundos
+
+      return () => clearTimeout(timer); // Limpa o timer ao desmontar
+    }
+  }, [showAlert]);
+  
+  const closeAlert = () => {
+    setShowAlert(false);
+    setAlertMessage("");
   };
 
   useEffect(() => {
@@ -527,6 +548,8 @@ const [status, setStatus] = useState("");
       className={styles.container}
     
     >
+                  {showAlert && <SuccessAlert message={alertMessage} onClose={closeAlert} />}
+
       <div className={styles.cardsContainer}>
         <div className={styles.stylesTotalReceitas}>
           <h3>

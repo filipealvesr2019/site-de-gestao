@@ -1,0 +1,38 @@
+.alert {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    padding: 15px 20px;
+    background-color: #F6FBFE;
+    color: black;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.3s ease-out;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .closeButton {
+    background: none;
+    border: none;
+    color: black;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 10px;
+    position: absolute;
+    top: .1rem;
+    right: .5rem;
+  }
+  
