@@ -54,7 +54,6 @@ function ProductList() {
     setShowNameInput(selectedValue === "relatorioPesornalizado");
   };
 
-  
   const handleFilterProductsByReports = async () => {
     // Aqui você pode fazer a chamada para a sua API passando as datas
     const response = await fetch(
@@ -109,8 +108,6 @@ function ProductList() {
     setFilteredProducts(data); // Atualiza os produtos filtrados
     setShowDatePickers(false); // Fecha os date pickers após a filtragem
     setOpenFilterModal(false);
-
-
   };
 
   const closeFailureAlert = () => {
@@ -119,17 +116,17 @@ function ProductList() {
   };
   // useEffect para fechar o alerta de falha automaticamente
 
-// useEffect para fechar o alerta de falha automaticamente
-useEffect(() => {
-  if (showFailureAlert) {
-    const timer = setTimeout(() => {
-      setShowFailureAlert(false);
-      setFailureAlertMessage(""); // Limpa a mensagem
-    }, 5000); // Fecha após 5 segundos
+  // useEffect para fechar o alerta de falha automaticamente
+  useEffect(() => {
+    if (showFailureAlert) {
+      const timer = setTimeout(() => {
+        setShowFailureAlert(false);
+        setFailureAlertMessage(""); // Limpa a mensagem
+      }, 5000); // Fecha após 5 segundos
 
-    return () => clearTimeout(timer); // Limpa o timer ao desmontar
-  }
-}, [showFailureAlert]);
+      return () => clearTimeout(timer); // Limpa o timer ao desmontar
+    }
+  }, [showFailureAlert]);
 
   // Função para verificar se há produtos selecionados
   const hasSelectedProducts = selectedProducts.length > 0;
@@ -624,26 +621,31 @@ useEffect(() => {
         />
       )}
 
-<div className={styles.cardsContainer}>
+      <div className={styles.cardsContainer}>
         <div className={styles.stylesTotalReceitas}>
           <h3>
-           {filterType === "relatorioPesornalizado" ? "Total de Receitas:": " Total de Receitas do Mês:" } R$
+            {filterType === "relatorioPesornalizado"
+              ? "Total de Receitas:"
+              : " Total de Receitas do Mês:"}{" "}
+            R$
             {isNaN(totalReceitasPagas) ? "0" : totalReceitasPagas}
           </h3>
         </div>
         <div className={styles.stylesTotalDespesas}>
           <h3>
-          {filterType === "relatorioPesornalizado" ? "Total de Despesas:": " Total de despesas do Mês: " } R$
-
-            
+            {filterType === "relatorioPesornalizado"
+              ? "Total de Despesas:"
+              : " Total de despesas do Mês: "}{" "}
+            R$
             {isNaN(totalDespesas) ? "0" : totalDespesas}
           </h3>
         </div>
         <div className={styles.stylesDiferenca}>
           <h3>
-          {filterType === "relatorioPesornalizado" ? "Total de Diferença:": " Total de Diferença do Mês: R$" } R$
-
-
+            {filterType === "relatorioPesornalizado"
+              ? "Total de Diferença:"
+              : " Total de Diferença do Mês: R$"}{" "}
+            R$
             {isNaN(diferenca) ? "0" : diferenca}
           </h3>
         </div>
@@ -671,7 +673,7 @@ useEffect(() => {
                     <option value="dataDeVencimento">Data de Vencimento</option>
                     <option value="dataCriacao">Data de Criação</option>
                     <option value="relatorioPesornalizado">
-                    Relatório de Gastos Personalizado
+                      Relatório de Gastos Personalizado
                     </option>
                   </select>
                   <label>Data Inicial:</label>
@@ -695,7 +697,7 @@ useEffect(() => {
                     required
                     className={styles.shorterFilterInput}
                   />
-               {filterType === "relatorioPesornalizado" ? (
+                  {filterType === "relatorioPesornalizado" ? (
                     <button
                       onClick={handleFilterProductsByReports}
                       className={styles.filterContainer__button}
