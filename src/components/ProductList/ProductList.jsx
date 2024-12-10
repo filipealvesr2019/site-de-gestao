@@ -634,7 +634,7 @@ function ProductList() {
         <div className={styles.stylesTotalDespesas}>
           <h3>
             {filterType === "relatorioPesornalizado"
-              ? "Total de Despesas:"
+              ? "Total de Despesas: "
               : " Total de despesas do Mês: "}{" "}
             R$
             {isNaN(totalDespesas) ? "0" : totalDespesas}
@@ -643,7 +643,7 @@ function ProductList() {
         <div className={styles.stylesDiferenca}>
           <h3>
             {filterType === "relatorioPesornalizado"
-              ? "Total de Diferença:"
+              ? "Total de Diferença: "
               : " Total de Diferença do Mês: "}{" "}
             R$
             {isNaN(diferenca) ? "0" : diferenca}
