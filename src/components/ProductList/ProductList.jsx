@@ -624,22 +624,26 @@ useEffect(() => {
         />
       )}
 
-      <div className={styles.cardsContainer}>
+<div className={styles.cardsContainer}>
         <div className={styles.stylesTotalReceitas}>
           <h3>
-            Total de Receitas do Mês: R$
+           {filterType === "relatorioPesornalizado" ? "Total de Receitas:": " Total de Receitas do Mês:" } R$
             {isNaN(totalReceitasPagas) ? "0" : totalReceitasPagas}
           </h3>
         </div>
         <div className={styles.stylesTotalDespesas}>
           <h3>
-            Total de despesas do Mês: R$
+          {filterType === "relatorioPesornalizado" ? "Total de Despesas:": " Total de despesas do Mês: " } R$
+
+            
             {isNaN(totalDespesas) ? "0" : totalDespesas}
           </h3>
         </div>
         <div className={styles.stylesDiferenca}>
           <h3>
-            Total de diferença do Mês: R$
+          {filterType === "relatorioPesornalizado" ? "Total de Diferença:": " Total de Diferença do Mês: R$" } R$
+
+
             {isNaN(diferenca) ? "0" : diferenca}
           </h3>
         </div>
