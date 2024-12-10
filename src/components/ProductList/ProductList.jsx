@@ -42,9 +42,43 @@ function ProductList() {
 
   // Função para lidar com a mudança do tipo de filtro
   const handleFilterTypeChange = (e) => {
-    setFilterType(e.target.value);
+    const selectedValue = e.target.value;
+    setFilterType(selectedValue);
+    // Verifica se a opção selecionada é "relatorioPesornalizado"
+    // Verifica se a opção selecionada é "relatorioPesornalizado"
+    if (selectedValue === "relatorioPesornalizado") {
+      // Chama a função para filtrar produtos por relatórios
+      handleFilterProductsByReports();
+    }
+    // Controla a exibição do campo de nome
+    setShowNameInput(selectedValue === "relatorioPesornalizado");
   };
 
+  
+  const handleFilterProductsByReports = async () => {
+    // Aqui você pode fazer a chamada para a sua API passando as datas
+    const response = await fetch(
+      `https://www.gestaofinanceirapro.com.br/api/reports?diaInicio=${new Date(
+        startDate
+      ).getUTCDate()}&mesInicio=${
+        new Date(startDate).getUTCMonth() + 1
+      }&diaFim=${new Date(endDate).getUTCDate()}&mesFim=${
+        new Date(endDate).getUTCMonth() + 1
+      }`
+    );
+
+    if (!response.ok) {
+      throw new Error("Erro ao filtrar produtos");
+    }
+
+    const data = await response.json();
+    setFilteredProducts(data.produtos); // Atualiza os produtos filtrados
+    setShowDatePickers(false); // Fecha os date pickers após a filtragem
+    setOpenFilterModal(false);
+    setTotalReceitasPagas(data.receita);
+    setTotalDespesas(data.despesa);
+    setTotalDiferenca(data.diferenca);
+  };
   const [action, setAction] = useState(""); // Novo estado para controlar a ação selecionada
   const handleStartDateChange = (e) => {
     setStartDate(e.target.value);
@@ -632,6 +666,9 @@ useEffect(() => {
                   >
                     <option value="dataDeVencimento">Data de Vencimento</option>
                     <option value="dataCriacao">Data de Criação</option>
+                    <option value="relatorioPesornalizado">
+                    Relatório de Gastos Personalizado
+                    </option>
                   </select>
                   <label>Data Inicial:</label>
                   <input
@@ -654,12 +691,21 @@ useEffect(() => {
                     required
                     className={styles.shorterFilterInput}
                   />
-                  <button
-                    onClick={handleFilterProducts}
-                    className={styles.filterContainer__button}
-                  >
-                    Filtrar
-                  </button>
+               {filterType === "relatorioPesornalizado" ? (
+                    <button
+                      onClick={handleFilterProductsByReports}
+                      className={styles.filterContainer__button}
+                    >
+                      Gerar Relatório
+                    </button>
+                  ) : (
+                    <button
+                      onClick={handleFilterProducts}
+                      className={styles.filterContainer__button}
+                    >
+                      Filtrar
+                    </button>
+                  )}
                 </div>
               )}
             </div>
