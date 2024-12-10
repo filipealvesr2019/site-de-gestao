@@ -644,7 +644,7 @@ function ProductList() {
           <h3>
             {filterType === "relatorioPesornalizado"
               ? "Total de Diferença:"
-              : " Total de Diferença do Mês: R$"}{" "}
+              : " Total de Diferença do Mês: "}{" "}
             R$
             {isNaN(diferenca) ? "0" : diferenca}
           </h3>
