@@ -198,6 +198,8 @@ function ProductList() {
   };
 
   const handleSubmit = async (e) => {
+    setLoading(true); // Inicia o loading
+
     e.preventDefault();
     const formattedDataDeVencimento = formData.dataDeVencimento; // A data já está no formato correto
     console.log("Dados enviados:", formData); // Verifique se o tipo está presente aqui
