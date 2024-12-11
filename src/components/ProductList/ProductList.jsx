@@ -627,7 +627,7 @@ function ProductList() {
     </>
   ) : (
     <>
-      Relatório do (<span className={styles.date}>Mês Atual</span>) 
+      Relatório do <span className={styles.date}>Mês Atual</span>
     </>
  
   )}
