@@ -2,7 +2,7 @@ name: Call Next.js API Cronjob
 
 on:
   schedule:
-    - cron: "0 3 * * *" 
+    - cron: "0 3 * * *" # Executa a cada dia às 3h UTC, que é meia-noite em Brasília (UTC-3)
   workflow_dispatch: # Permite disparar manualmente
 
 jobs:
