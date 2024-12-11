@@ -1,0 +1,15 @@
+name: Call Next.js API Cronjob
+
+on:
+  schedule:
+    - cron: "*/1 * * * *" # Executa a cada 1 minuto
+  workflow_dispatch: # Permite disparar manualmente
+
+jobs:
+  call-cronjob:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Call Next.js API route
+        run: |
+          curl -X GET https://www.gestaofinanceirapro.com.br/api/cronJobs
