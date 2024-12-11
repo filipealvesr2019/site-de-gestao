@@ -978,7 +978,10 @@ function ProductList() {
                   alt=""
                   style={{
                     width: "1rem",
+                    cursor: "pointer"
+
                   }}
+                  
                 />
               </div>
             </div>
@@ -1050,6 +1053,9 @@ function ProductList() {
                         product.nome
                       )
                     }
+                    style={{
+                      cursor: "pointer"
+                    }}
                   >
                     <img
                       src="https://i.imgur.com/flqGals.png"
