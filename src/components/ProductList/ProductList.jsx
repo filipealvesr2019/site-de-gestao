@@ -625,7 +625,7 @@ function ProductList() {
    <span className={styles.span}>
   {startDate && endDate ? (
     <>
-       Relatório de Gestão de (<span className={styles.date}>{formatDate(startDate)}</span>) até (<span className={styles.date}>{formatDate(endDate)}</span>)
+       Relatório de (<span className={styles.date}>{formatDate(startDate)}</span>) até (<span className={styles.date}>{formatDate(endDate)}</span>)
     </>
   ) : (
     <>
