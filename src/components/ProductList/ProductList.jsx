@@ -950,6 +950,9 @@ function ProductList() {
                       product.statusDePagamento
                     )
                   }
+                  style={{
+                    cursor: "pointer"
+                  }}
                 >
                   {product.statusDePagamento}
                 </div>
@@ -1031,6 +1034,9 @@ function ProductList() {
                         product.statusDePagamento
                       )
                     }
+                    style={{
+                      cursor: "pointer"
+                    }}
                   >
                     {product.statusDePagamento}
                   </td>
