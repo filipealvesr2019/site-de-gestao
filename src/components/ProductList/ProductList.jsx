@@ -626,7 +626,10 @@ function ProductList() {
       Relatório de (<span className={styles.date}>{formatDate(startDate)}</span>) até (<span className={styles.date}>{formatDate(endDate)}</span>)
     </>
   ) : (
-    "Relatório do Mês Atual"
+    <>
+      Relatório do (<span className={styles.date}>Mês Atual</span>) 
+    </>
+ 
   )}
 </span>
       <div className={styles.cardsContainer}>
