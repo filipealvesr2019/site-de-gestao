@@ -620,18 +620,19 @@ function ProductList() {
           onClose={closeFailureAlert}
         />
       )}
-   <span className={styles.span}>
-  {startDate && endDate ? (
-    <>
-      Relatório de (<span className={styles.date}>{formatDate(startDate)}</span>) até (<span className={styles.date}>{formatDate(endDate)}</span>)
-    </>
-  ) : (
-    <>
-      Relatório do <span className={styles.date}>Mês Atual</span>
-    </>
- 
-  )}
-</span>
+      <span className={styles.span}>
+        {startDate && endDate ? (
+          <>
+            Relatório de (
+            <span className={styles.date}>{formatDate(startDate)}</span>) até (
+            <span className={styles.date}>{formatDate(endDate)}</span>)
+          </>
+        ) : (
+          <>
+            Relatório do <span className={styles.date}>Mês Atual</span>
+          </>
+        )}
+      </span>
       <div className={styles.cardsContainer}>
         <div className={styles.stylesTotalReceitas}>
           <h3>
