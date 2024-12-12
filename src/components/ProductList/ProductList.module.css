@@ -624,20 +624,69 @@ justify-content: space-evenly;
 
   }
 }
+
+
+
+
 @media (min-width: 820px) and (max-width: 1180px) {
-  .buttonsStyles{
+  .buttonsStyles {
     display: flex;
     justify-content: space-between;
     width: 60%;
   }
-  .tableWrapper{
+  .tableWrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+  .tableContainer {
+    display: none;
+  }
+  .productTable {
+    display: none;
+  }
+  .buttonsContainerDesktop {
+    display: none;
+  }
+  .buttonsContainerMobile {
+    display: block;
+  }
+  .inputMobile{
+    display: block;
+  }
+  .cardsContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .stylesTotalReceitas{
+    width: 90vw;
+  }
+  .stylesTotalDespesas{
+    width: 90vw;
+
+  }
+  .stylesDiferenca{
+    width: 90vw;
+
+  }
+}
+
+@media only screen and (min-width: 630px) and (max-width: 1120px) and (orientation: landscape) {
+  .cardsContainer{
+    display: flex;
+    flex-direction: row;
+  }
+  .buttonsContainerMobile {
+    display: none;
+  }
+  .buttonsContainerDesktop {
     display: flex;
   }
-  .tableContainer{
-    display: none;
-  }
-  .productTable{
-    display: none;
-
+  .tableWrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
   }
 }
