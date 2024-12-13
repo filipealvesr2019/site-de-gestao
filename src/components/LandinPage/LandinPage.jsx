@@ -19,10 +19,10 @@ export default function LandinPage() {
             className={styles.containerA__img}
           />
           <div className={styles.containerA__texts}>
-            <h1 >Controle Financeiro Online, Simples e 100% Gratuito</h1>
+            <h1 >Pare de Perder o Controle das Suas Finanças</h1>
 
             <p className={styles.p}>
-            Gerencie suas receitas, despesas e fluxo de caixa de forma fácil e eficiente. Sem complicação, sem custos – direto do seu navegador.            </p>
+            Sabemos como é difícil organizar todas as vendas, pagamentos e contas do dia a dia. Por isso, criamos uma ferramenta de controle financeiro simples e gratuita para que você acompanhe tudo o que entra e sai do seu caixa, de forma organizada e sem esforço.       </p>
           </div>
         </div>
 
