@@ -18,12 +18,10 @@ export default function LandinPage() {
             className={styles.containerA__img}
           />
           <div className={styles.containerA__texts}>
-            <h1>Gerencie Suas Finanças com Facilidade e Eficiência</h1>
+            <h1>Controle Financeiro Online, Simples e 100% Gratuito</h1>
 
             <p className={styles.p}>
-              Surgindo da necessidade de uma solução prática e eficiente
-              paragerenciar suas finanças com facilidade.
-            </p>
+            Gerencie suas receitas, despesas e fluxo de caixa de forma fácil e eficiente. Sem complicação, sem custos – direto do seu navegador.            </p>
           </div>
         </div>
         <div className={styles.containerF}>
@@ -43,6 +41,21 @@ export default function LandinPage() {
             </p>
           </div>
         </div>
+        <div className={styles.containerG}>
+          <img
+            src="https://i.imgur.com/7285Mjf.png"
+            alt=""
+            className={styles.containerG__img}
+          />
+          <div className={styles.containerA__texts}>
+            <h1>Pare de Perder o Controle das Suas Finanças</h1>
+
+            <p className={styles.p}>
+            Sabemos como é difícil organizar todas as vendas, pagamentos e contas do dia a dia. Por isso, criamos uma ferramenta de controle financeiro simples e gratuita para que você acompanhe tudo o que entra e sai do seu caixa, de forma organizada e sem esforço.
+            </p>
+          </div>
+        </div>
+        
 
         <div className={styles.containerE}>
           <div className={styles.pointsContainer}>
@@ -123,15 +136,14 @@ export default function LandinPage() {
 
         <div className={styles.containerD}>
           <div className={styles.containerD__texts}>
-            <h1>E o melhor: tudo isso de forma totalmente gratuita!</h1>
+            <h1>Gerencie Suas Finanças Gratuitamente</h1>
             <p className={styles.paragraph}>
-              Cadastre-se agora e aproveite todas as funcionalidades sem nenhum
-              custo.
+            Controle suas finanças, organize seu fluxo de caixa e tenha mais tempo para focar no que realmente importa.
             </p>
           </div>
           <Link href={"/login"}>
             <div>
-              <button className={styles.button}>Cadastre-se</button>
+              <button className={styles.button}>Acessar  Agora</button>
             </div>
           </Link>
         </div>

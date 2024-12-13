@@ -14,13 +14,23 @@
 .containerA__img {
   width: 30vw;
 }
-
+.containerG__img {
+  width: 20vw;
+}
 .containerF {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
+.containerG {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
 .containerF__img {
   width: 30vw;
 }
@@ -136,6 +146,9 @@
   .containerA__img {
     width: 20vw;
   }
+  .containerG__img {
+    width: 20vw;
+  }
 
   .containerD {
     display: flex;
@@ -161,6 +174,12 @@
   .containerF {
     display: flex;
     flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .containerG{
+    display: flex;
+    flex-direction: row-reverse;
     justify-content: space-around;
   }
   .containerE__texts {
@@ -205,6 +224,10 @@
     font-size: 1.5rem;
   }
   .containerF{
+    display: flex;
+    flex-direction: column;
+  }
+  .containerG{
     display: flex;
     flex-direction: column;
   }
