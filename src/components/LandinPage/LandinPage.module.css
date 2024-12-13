@@ -129,8 +129,15 @@
   font-weight: 600;
   font-size: 1.5rem;
 }
-
+.questionlabel{
+  margin-bottom: -12rem;
+  padding: 1rem;
+}
 @media screen and (min-width: 700px) {
+  .questionlabel{
+
+    padding: 3rem;
+  }
   .heading {
     text-align: center;
     margin-bottom: 0.2rem;

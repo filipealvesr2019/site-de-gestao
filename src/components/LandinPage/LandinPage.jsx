@@ -56,6 +56,7 @@ export default function LandinPage() {
           </div>
         </div>
         
+        <h1 className={styles.questionlabel}>Por Que Usar Nosso Sistema Gratuito?</h1>
 
         <div className={styles.containerE}>
           <div className={styles.pointsContainer}>
