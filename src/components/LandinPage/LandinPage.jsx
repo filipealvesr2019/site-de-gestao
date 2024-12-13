@@ -54,11 +54,10 @@ export default function LandinPage() {
         <div className={styles.containerD}>
           <div  className={styles.containerD__texts}>
             <h1>
-              E o melhor: tudo isso de forma totalmente gratuita!
+            Pare de Perder o Controle das Suas Finanças
             </h1>
             <p className={styles.paragraph}>
-              Cadastre-se agora e aproveite todas as funcionalidades sem nenhum
-              custo.
+            Sabemos como é difícil organizar todas as vendas, pagamentos e contas do dia a dia. Por isso, criamos uma ferramenta de controle financeiro simples e gratuita para que você acompanhe tudo o que entra e sai do seu caixa, de forma organizada e sem esforço.
             </p>
           </div>
           <Link href={"/login"}>
