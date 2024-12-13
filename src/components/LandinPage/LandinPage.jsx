@@ -19,11 +19,10 @@ export default function LandinPage() {
             className={styles.containerA__img}
           />
           <div className={styles.containerA__texts}>
-            <h1 >Gerencie Suas Finanças com Facilidade e Eficiência</h1>
+            <h1 >Controle Financeiro Online, Simples e 100% Gratuito</h1>
 
             <p className={styles.p}>
-              Surgindo da necessidade de uma solução prática e eficiente paragerenciar suas finanças com facilidade.
-            </p>
+            Gerencie suas receitas, despesas e fluxo de caixa de forma fácil e eficiente. Sem complicação, sem custos – direto do seu navegador.            </p>
           </div>
         </div>
 
