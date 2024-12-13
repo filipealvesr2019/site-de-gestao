@@ -38,6 +38,7 @@ export default function LandinPage() {
           />
         </div>
 
+
         <div className={styles.containerC}>
           <div className={styles.containerC__texts}>
             <h1 className={styles.heading}>
@@ -54,11 +55,10 @@ export default function LandinPage() {
         <div className={styles.containerD}>
           <div  className={styles.containerD__texts}>
             <h1>
-            Pare de Perder o Controle das Suas Finanças
+            Gerencie Suas Finanças Gratuitamente
             </h1>
             <p className={styles.paragraph}>
-            Sabemos como é difícil organizar todas as vendas, pagamentos e contas do dia a dia. Por isso, criamos uma ferramenta de controle financeiro simples e gratuita para que você acompanhe tudo o que entra e sai do seu caixa, de forma organizada e sem esforço.
-            </p>
+            Controle suas finanças, organize seu fluxo de caixa e tenha mais tempo para focar no que realmente importa. Simples, online e 100% gratuito.            </p>
           </div>
           <Link href={"/login"}>
           <div>
