@@ -18,7 +18,7 @@ export default function Home() {
     name: "Gestão Financeira Pro",
     url: "https://www.gestaofinanceirapro.com.br",
     description:
-      "Software de controle financeiro gratuito simples e eficiente para gerenciar receitas e despesas. Ele permite que você controle tudo o que entra e sai do caixa, desde vendas e pagamentos até contas e dívidas.",
+      "Sabemos como é difícil organizar todas as vendas, pagamentos e contas do dia a dia. Por isso, criamos uma ferramenta de controle financeiro simples e gratuita para que você acompanhe tudo o que entra e sai do seu caixa, de forma organizada e sem esforço.",
     potentialAction: {
       "@type": "SearchAction",
       target: "https://www.gestaofinanceirapro.com.br/search?q={search_term_string}",
