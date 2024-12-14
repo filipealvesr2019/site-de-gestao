@@ -4,7 +4,13 @@ const nextConfig = {
         return [
           {
             source: '/:path*', // Caminho relativo, capturando todas as rotas
-            destination: 'https://www.gestaofinanceirapro.com.br/:path*', // URL de destino com domínio completo
+            destination: (req) => {
+              // Verifique se o domínio não é o de destino
+              if (req.headers.host === 'www.gestaofinanceirapro.online') {
+                return 'https://www.gestaofinanceirapro.com.br/:path*';
+              }
+              return req.url; // Se já estiver no destino, não faz o redirecionamento
+            },
             permanent: true, // Redirecionamento permanente (status 301)
           },
         ]
