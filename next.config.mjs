@@ -1,8 +1,4 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-    middleware: [
-        './redirect.js', // Caminho relativo para o arquivo de middleware
-      ],
-};
+const nextConfig = {};
 
 export default nextConfig;
