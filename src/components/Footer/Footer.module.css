@@ -21,6 +21,11 @@
     width: 80vw;
     
 }
+.Privacidade{
+    display: flex;
+    padding: 2rem;
+    margin-top: -30%;
+}
 @media screen and (min-width: 700px ){
     .footer{
         flex-direction: row;
@@ -35,5 +40,8 @@
     .div{
         margin-bottom: 4rem;
     }
-    
+    .Privacidade{
+   padding: 1rem;
+        margin-top: -10%;
+    }
 }
