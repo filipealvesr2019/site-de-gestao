@@ -14,7 +14,7 @@ export default function LandinPage() {
         <div className={styles.containerA}>
           <img
             src="https://i.imgur.com/VNPEJWh.png"
-            alt=""
+            alt="icone de sifrão de dinheiro"
             className={styles.containerA__img}
           />
           <div className={styles.containerA__texts}>
@@ -27,7 +27,7 @@ export default function LandinPage() {
         <div className={styles.containerF}>
           <img
             src="https://i.imgur.com/4dTM0Kj.png"
-            alt=""
+            alt="icone de interrogação"
             className={styles.containerA__img}
           />
           <div className={styles.containerA__texts}>
@@ -44,7 +44,7 @@ export default function LandinPage() {
         <div className={styles.containerG}>
           <img
             src="https://i.imgur.com/7285Mjf.png"
-            alt=""
+            alt="icone de pare"
             className={styles.containerG__img}
           />
           <div className={styles.containerA__texts}>
@@ -117,7 +117,7 @@ export default function LandinPage() {
 
           <img
             src="https://i.imgur.com/RGAGwo2.png"
-            alt=""
+            alt="foto do sistema de receitas e despesas"
             className={styles.container__product__img}
           />
         </div>
@@ -130,7 +130,7 @@ export default function LandinPage() {
           </div>
           <img
             src="https://i.imgur.com/bKJJOIv.png"
-            alt=""
+            alt="foto de nota fiscal de referencia"
             className={styles.container__product__img}
           />
         </div>

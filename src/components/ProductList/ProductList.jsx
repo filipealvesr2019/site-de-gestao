@@ -670,7 +670,7 @@ function ProductList() {
               <span className={styles.cartClose}>
                 <img
                   src="https://i.imgur.com/zpy7fcj.png"
-                  alt=""
+                  alt="icone de fechar aba"
                   className={styles.filterClose__img}
                   onClick={handleClickCloseFilterModal}
                 />
@@ -801,7 +801,7 @@ function ProductList() {
             <span className={styles.cartClose} onClick={handleClickCloseModal}>
               <img
                 src="https://i.imgur.com/zpy7fcj.png"
-                alt=""
+                alt="icone de fechar aba"
                 className={styles.createClose__img}
               />
             </span>
@@ -975,7 +975,7 @@ function ProductList() {
                 <span>Excluir</span>
                 <img
                   src="https://i.imgur.com/flqGals.png"
-                  alt=""
+                  alt="icone de excluir"
                   style={{
                     width: "1rem",
                     cursor: "pointer"
@@ -1059,7 +1059,7 @@ function ProductList() {
                   >
                     <img
                       src="https://i.imgur.com/flqGals.png"
-                      alt=""
+                      alt="icone de excluir"
                       style={{
                         width: "1rem",
                       }}

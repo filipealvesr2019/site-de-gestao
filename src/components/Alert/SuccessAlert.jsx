@@ -4,7 +4,7 @@ import styles from "./SuccessAlert.module.css";
 const SuccessAlert = ({ message, onClose }) => {
   return (
     <div className={styles.alert}>
-      <img src="https://i.imgur.com/T4vWc4o.png" alt="" />
+      <img src="https://i.imgur.com/T4vWc4o.png" alt="icone de sucesso" />
       <p>{message}</p>
       <button onClick={onClose} className={styles.closeButton}>
         ✖
