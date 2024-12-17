@@ -8,6 +8,7 @@ import Footer from "../Footer/Footer";
 import SuccessAlert from "../Alert/SuccessAlert";
 import Loading from "../Loading/Loading";
 import FailureAlert from "../Alert/FailureAlert";
+import Script from "next/script";
 
 function ProductList() {
   const [selectedProducts, setSelectedProducts] = useState([]); // Para armazenar os produtos selecionados
@@ -1165,6 +1166,9 @@ function ProductList() {
         </>
       )}
       <Footer />
+      <Script
+      id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="abdf27a8-c0f2-4d99-8b92-e156e4821038" data-blockingmode="auto" type="text/javascript"
+      />  
     </div>
   );
 }
