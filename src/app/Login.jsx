@@ -23,7 +23,7 @@ export default function Login() {
 
         <SignedOut>
           <div>
-            <Link href={"/login"}>
+            <Link href={"/login/free"}>
               <button className={styles.button}>Entrar</button>
             </Link>
           </div>

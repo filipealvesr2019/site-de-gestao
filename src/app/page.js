@@ -2,6 +2,7 @@ import styles from "./page.module.css";
 import Login from "./Login";
 import Script from "next/script";
 import UserAuth from "../components/UserAuth/UserAuth";
+import LandinPage from "../components/LandinPage/LandinPage";
 export const metadata = {
   title: "Gestão Financeira Pro", // Define o título da página
   description:
@@ -49,7 +50,7 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <Login />
-      <UserAuth />
+      <LandinPage />
 
       <Script
       id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="abdf27a8-c0f2-4d99-8b92-e156e4821038" data-blockingmode="auto" type="text/javascript"
