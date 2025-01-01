@@ -19,7 +19,7 @@ export default function Login() {
   return (
     <>
       <div className={styles.login}>
-        <img src="https://i.imgur.com/JAwGFBG.png" alt="icone do gestão financeira pro" className={styles.login__img}/>
+        <img src="https://i.imgur.com/33Qljej.png" alt="icone do gestão financeira pro" className={styles.login__img}/>
 
         <SignedOut>
           <div>
