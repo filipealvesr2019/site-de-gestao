@@ -33,9 +33,10 @@ export default async function handler(req, res) {
 
     try {
       // Ajustando para as datas corretas
-      const dataInicio = new Date(anoInicial, mesInicio - 1, diaInicio);
-      const dataFim = new Date(anoFinal, mesFim - 1, diaFim, 23, 59, 59, 999);
-      
+ // Ajustando para as datas corretas
+ const dataInicio = new Date(Date.UTC(anoInicial, mesInicio - 1, diaInicio)); 
+ const dataFim = new Date(Date.UTC(anoFinal, mesFim - 1, diaFim, 23, 59, 59, 999));
+ 
       console.log("Data Início:", dataInicio);
       console.log("Data Fim:", dataFim);
 
