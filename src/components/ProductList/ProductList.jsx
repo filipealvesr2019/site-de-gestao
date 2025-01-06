@@ -685,7 +685,7 @@ function ProductList() {
                     <option value="dataDeVencimento">Data de Vencimento</option>
                     <option value="dataCriacao">Data de Criação</option>
                     <option value="relatorioPesornalizado">
-                      Relatório de Gastos Personalizado
+                      Relatório do Fluxo de Caixa
                     </option>
                   </select>
                   <label>Data Inicial:</label>
