@@ -40,7 +40,7 @@ export default async function handler(req, res) {
           $match: {
             userId: userId, // Filtra pelo userId
             statusDePagamento: 'pago',
-            dataDeVencimento: { $gte: startOfMonth, $lte: endOfMonth },
+            dataCriacao: { $gte: startOfMonth, $lte: endOfMonth },
             tipo: 'receita', // Filtra para receitas
           },
         },
