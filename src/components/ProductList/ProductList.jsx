@@ -87,17 +87,19 @@ function ProductList() {
   };
   const [showFailureAlert, setShowFailureAlert] = useState(false);
   const [failureAlertMessage, setFailureAlertMessage] = useState("");
+
+
+
   const handleFilterProducts = async () => {
     // Aqui você pode fazer a chamada para a sua API passando as datas
-    const response = await fetch(
-      `https://www.gestaofinanceirapro.com.br/api/filtrar?diaInicio=${new Date(
-        startDate
-      ).getUTCDate()}&mesInicio=${
+  const response = await fetch(
+      `https://www.gestaofinanceirapro.com.br/api/filtrar?diaInicio=${new Date(startDate).getUTCDate()}&mesInicio=${
         new Date(startDate).getUTCMonth() + 1
-      }&diaFim=${new Date(endDate).getUTCDate()}&mesFim=${
+      }&anoInicial=${new Date(startDate).getUTCFullYear()}&diaFim=${new Date(endDate).getUTCDate()}&mesFim=${
         new Date(endDate).getUTCMonth() + 1
-      }&type=${filterType}`
+      }&anoFinal=${new Date(endDate).getUTCFullYear()}&type=${filterType}`
     );
+
 
     if (!response.ok) {
       throw new Error("Erro ao filtrar produtos");

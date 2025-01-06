@@ -23,42 +23,39 @@ export default async function handler(req, res) {
 
   const { userId } = getAuth(req);
   await dbConnect(); // Conectar ao banco de dados
-
   if (req.method === 'GET') {
-    const { diaInicio, mesInicio, diaFim, mesFim, type } = req.query;
+    const { diaInicio, mesInicio, anoInicial, diaFim, mesFim, anoFinal, type } = req.query;
+    console.log("filter", diaInicio, mesInicio, anoInicial, diaFim, mesFim, anoFinal, type);
 
-    // Verifica se os parâmetros foram fornecidos
-    if (!diaInicio || !mesInicio || !diaFim || !mesFim || !type) {
+    if (!diaInicio || !mesInicio || !anoInicial || !diaFim || !mesFim || !anoFinal || !type) {
       return res.status(400).json({ error: 'Todos os parâmetros de data são necessários.' });
     }
 
     try {
-      // Cria as datas de início e fim com base nos parâmetros fornecidos
-      const anoAtual = new Date().getFullYear();
-      const dataInicio = new Date(Date.UTC(anoAtual, mesInicio - 1, diaInicio)); // Data de início em UTC
-      let dataFim = new Date(Date.UTC(anoAtual, mesFim, 0)); // Último dia do mês 'mesFim' (0 no mês seguinte é o último dia do mês atual)
+      // Ajustando para as datas corretas
+      const dataInicio = new Date(anoInicial, mesInicio - 1, diaInicio);
+      const dataFim = new Date(anoFinal, mesFim - 1, diaFim, 23, 59, 59, 999);
+      
+      console.log("Data Início:", dataInicio);
+      console.log("Data Fim:", dataFim);
 
-      // Se mesInicio e mesFim forem iguais, ajusta dataFim para o final do mês
-      if (mesInicio === mesFim) {
-        dataFim.setUTCHours(23, 59, 59, 999); // Ajusta para o último momento do dia em UTC
-      }
-
-      // Filtra os produtos com base na data de vencimento
+      // A consulta do MongoDB usando o parâmetro `type` dinamicamente
       const query = {
         userId,
         [type]: {
-          $gte: dataInicio,  // Maior ou igual a data de início
-          $lte: dataFim,     // Menor ou igual a data de fim
+          $gte: dataInicio,
+          $lte: dataFim,
         },
       };
 
       const produtosFiltrados = await Product.find(query);
+      console.log("produtosFiltrados", produtosFiltrados);
 
       if (produtosFiltrados.length === 0) {
         return res.status(404).json({ error: 'Nenhum produto encontrado para o filtro fornecido.' });
       }
 
-      res.status(200).json(produtosFiltrados);
+      res.status(200).json(produtosFiltrados); 
     } catch (error) {
       console.error(error); // Log de erro para depuração
       res.status(500).json({ error: 'Erro ao buscar produtos.' });
