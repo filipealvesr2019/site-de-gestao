@@ -25,27 +25,36 @@ export default async function handler(req, res) {
   const { userId } = getAuth(req);
   await dbConnect();
 
+  
   if (req.method === 'GET') {
-    const { diaInicio, mesInicio, diaFim, mesFim } = req.query;
-
-    if (!diaInicio || !mesInicio || !diaFim || !mesFim) {
+    const { diaInicio, mesInicio, anoInicial, diaFim, mesFim, anoFinal } = req.query;
+    // console.log('req.query', diaInicio, mesInicio, diaFim, mesFim)
+    if (!diaInicio || !mesInicio || !anoInicial || !diaFim || !mesFim || !anoFinal) {
       return res.status(400).json({ error: 'Todos os parâmetros de data são necessários.' });
     }
 
     try {
-      const anoAtual = new Date().getFullYear();
-      const dataInicio = new Date(Date.UTC(anoAtual, mesInicio - 1, diaInicio));
-      const dataFim = new Date(Date.UTC(anoAtual, mesFim - 1, diaFim, 23, 59, 59, 999));
 
+      // Ajustando mesInicio e mesFim para considerar o mês correto (mesInicio é 1 para janeiro)
+      const dataInicio = new Date(anoInicial, mesInicio - 1, diaInicio); // mesInicio - 1 para ajustar o mês
+      const dataFim = new Date(anoFinal, mesFim - 1, diaFim, 23, 59, 59, 999); // mesFim - 1 para ajustar o mês
+      
+    
+
+      // Montando a consulta MongoDB
       const query = {
         userId,
         dataCriacao: {
-          $gte: dataInicio,
-          $lte: dataFim,
+          $gte: dataInicio, // Maior ou igual a dataInicio
+          $lte: dataFim,    // Menor ou igual a dataFim
         },
       };
 
+      // Verificando a consulta gerada
+      // console.log("Consulta MongoDB:", JSON.stringify(query, null, 2));
+
       const produtosFiltrados = await Product.find(query);
+      console.log("Produtos encontrados:", produtosFiltrados);
 
       if (produtosFiltrados.length === 0) {
         return res.status(404).json({ error: 'Nenhum produto encontrado para o filtro fornecido.' });
@@ -53,8 +62,8 @@ export default async function handler(req, res) {
 
       // Calcular receita e despesa
       const receita = produtosFiltrados
-      .filter(produto => produto.tipo === 'receita' && produto.statusDePagamento === 'pago')
-      .reduce((total, produto) => total + produto.preco, 0);
+        .filter(produto => produto.tipo === 'receita' && produto.statusDePagamento === 'pago')
+        .reduce((total, produto) => total + produto.preco, 0);
 
       const despesa = produtosFiltrados
         .filter(produto => produto.tipo === 'despesa')
