@@ -19,7 +19,7 @@ export default function Login() {
   return (
     <>
       <div className={styles.login}>
-        <Link href={"https://www.gestaofinanceirapro.com.br/dashboard/free"}>
+        <Link href={"https://www.gestaofinanceirapro.com.br/dashboard"}>
         
         <img src="https://i.imgur.com/33Qljej.png" alt="icone do gestão financeira pro" className={styles.login__img}/>
         </Link>
