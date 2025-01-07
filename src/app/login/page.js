@@ -10,6 +10,7 @@ export default function login(){
             alignItems:"center"
         }}>
         <SignIn 
+                     fallbackRedirectUrl={`/dashboard`}
 />
         </div>
     )
