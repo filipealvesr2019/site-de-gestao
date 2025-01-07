@@ -1,7 +1,7 @@
 import { SignIn } from "@clerk/nextjs";
 
-export default function login({params}){
-    const {plan} = params
+export default function login(){
+
     return (
         <div style={{
             display:"flex",
@@ -10,7 +10,6 @@ export default function login({params}){
             alignItems:"center"
         }}>
         <SignIn 
-                     fallbackRedirectUrl={`/dashboard/${plan}`}
 />
         </div>
     )
