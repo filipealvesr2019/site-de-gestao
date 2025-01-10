@@ -1076,7 +1076,7 @@ function ProductList() {
             src="https://i.imgur.com/yYJQoeE.png"
             onClick={handlePrevPage}
             disabled={currentPage === 1}
-            style={{ width: "1.5rem" }}
+            style={{ width: "1.5rem", cursor:"pointer" }}
           />
           <span>
             Página {currentPage} de{" "}
@@ -1088,7 +1088,7 @@ function ProductList() {
             disabled={
               currentPage === Math.ceil(filteredProducts.length / itemsPerPage)
             }
-            style={{ width: "1.5rem" }}
+            style={{ width: "1.5rem" , cursor:"pointer" }}
           />
         </div>
       </div>
