@@ -142,7 +142,7 @@ export default function LandinPage() {
             Controle suas finanças, organize seu fluxo de caixa e tenha mais tempo para focar no que realmente importa.
             </p>
           </div>
-          <Link  href={"/login/free"}>
+          <Link  href={"/login"}>
             <div>
               <button className={styles.button}>Acessar  Agora</button>
             </div>
