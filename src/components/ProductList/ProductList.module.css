@@ -458,6 +458,7 @@ justify-content: space-evenly;
 .TopBannerMobile{
   display: flex;
   justify-content: center;
+  margin-bottom: 2rem;
 }
 .TopBannerDesktop{
   display: none;
@@ -469,6 +470,7 @@ justify-content: space-evenly;
   .TopBannerDesktop{
     display: flex;
     justify-content: center;
+    margin-bottom: 2rem;
   }
   .filterClose__img{
     width: 1.5vw;
