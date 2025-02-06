@@ -11,6 +11,27 @@ import FailureAlert from "../Alert/FailureAlert";
 import Script from "next/script";
 
 function ProductList() {
+  const [screenSize, setScreenSize] = useState("mobile");
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setScreenSize("mobile");
+      } else if (window.innerWidth < 1024) {
+        setScreenSize("tablet");
+      } else {
+        setScreenSize("desktop");
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    handleResize(); // Chama a função uma vez para definir o tamanho inicial
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   const [selectedProducts, setSelectedProducts] = useState([]); // Para armazenar os produtos selecionados
   // Estados para paginação
   const [currentPage, setCurrentPage] = useState(1);
@@ -57,11 +78,15 @@ function ProductList() {
 
   const handleFilterProductsByReports = async () => {
     // Aqui você pode fazer a chamada para a sua API passando as datas
- 
-     const response = await fetch(
-      `https://www.gestaofinanceirapro.com.br/api/reports?diaInicio=${new Date(startDate).getUTCDate()}&mesInicio=${
+
+    const response = await fetch(
+      `https://www.gestaofinanceirapro.com.br/api/reports?diaInicio=${new Date(
+        startDate
+      ).getUTCDate()}&mesInicio=${
         new Date(startDate).getUTCMonth() + 1
-      }&anoInicial=${new Date(startDate).getUTCFullYear()}&diaFim=${new Date(endDate).getUTCDate()}&mesFim=${
+      }&anoInicial=${new Date(startDate).getUTCFullYear()}&diaFim=${new Date(
+        endDate
+      ).getUTCDate()}&mesFim=${
         new Date(endDate).getUTCMonth() + 1
       }&anoFinal=${new Date(endDate).getUTCFullYear()}`
     );
@@ -88,18 +113,19 @@ function ProductList() {
   const [showFailureAlert, setShowFailureAlert] = useState(false);
   const [failureAlertMessage, setFailureAlertMessage] = useState("");
 
-
-
   const handleFilterProducts = async () => {
     // Aqui você pode fazer a chamada para a sua API passando as datas
-  const response = await fetch(
-      `https://www.gestaofinanceirapro.com.br/api/filtrar?diaInicio=${new Date(startDate).getUTCDate()}&mesInicio=${
+    const response = await fetch(
+      `https://www.gestaofinanceirapro.com.br/api/filtrar?diaInicio=${new Date(
+        startDate
+      ).getUTCDate()}&mesInicio=${
         new Date(startDate).getUTCMonth() + 1
-      }&anoInicial=${new Date(startDate).getUTCFullYear()}&diaFim=${new Date(endDate).getUTCDate()}&mesFim=${
+      }&anoInicial=${new Date(startDate).getUTCFullYear()}&diaFim=${new Date(
+        endDate
+      ).getUTCDate()}&mesFim=${
         new Date(endDate).getUTCMonth() + 1
       }&anoFinal=${new Date(endDate).getUTCFullYear()}&type=${filterType}`
     );
-
 
     if (!response.ok) {
       throw new Error("Erro ao filtrar produtos");
@@ -623,18 +649,20 @@ function ProductList() {
           onClose={closeFailureAlert}
         />
       )}
-   <span className={styles.span}>
-  {startDate && endDate ? (
-    <>
-       Relatório de (<span className={styles.date}>{formatDate(startDate)}</span>) até (<span className={styles.date}>{formatDate(endDate)}</span>)
-    </>
-  ) : (
-    <>
-      Relatório de Gestão do <span className={styles.date}>Mês Atual</span>
-    </>
- 
-  )}
-</span>
+      <span className={styles.span}>
+        {startDate && endDate ? (
+          <>
+            Relatório de (
+            <span className={styles.date}>{formatDate(startDate)}</span>) até (
+            <span className={styles.date}>{formatDate(endDate)}</span>)
+          </>
+        ) : (
+          <>
+            Relatório de Gestão do{" "}
+            <span className={styles.date}>Mês Atual</span>
+          </>
+        )}
+      </span>
       <div className={styles.cardsContainer}>
         <div className={styles.stylesTotalReceitas}>
           <h3>
@@ -952,7 +980,7 @@ function ProductList() {
                     )
                   }
                   style={{
-                    cursor: "pointer"
+                    cursor: "pointer",
                   }}
                 >
                   {product.statusDePagamento}
@@ -979,10 +1007,8 @@ function ProductList() {
                   alt="icone de excluir"
                   style={{
                     width: "1rem",
-                    cursor: "pointer"
-
+                    cursor: "pointer",
                   }}
-                  
                 />
               </div>
             </div>
@@ -1039,7 +1065,7 @@ function ProductList() {
                       )
                     }
                     style={{
-                      cursor: "pointer"
+                      cursor: "pointer",
                     }}
                   >
                     {product.statusDePagamento}
@@ -1055,7 +1081,7 @@ function ProductList() {
                       )
                     }
                     style={{
-                      cursor: "pointer"
+                      cursor: "pointer",
                     }}
                   >
                     <img
@@ -1076,7 +1102,7 @@ function ProductList() {
             src="https://i.imgur.com/yYJQoeE.png"
             onClick={handlePrevPage}
             disabled={currentPage === 1}
-            style={{ width: "1.5rem", cursor:"pointer" }}
+            style={{ width: "1.5rem", cursor: "pointer" }}
           />
           <span>
             Página {currentPage} de{" "}
@@ -1088,7 +1114,7 @@ function ProductList() {
             disabled={
               currentPage === Math.ceil(filteredProducts.length / itemsPerPage)
             }
-            style={{ width: "1.5rem" , cursor:"pointer" }}
+            style={{ width: "1.5rem", cursor: "pointer" }}
           />
         </div>
       </div>
@@ -1166,7 +1192,80 @@ function ProductList() {
         </>
       )}
       <Footer />
-     
+
+      {screenSize === "mobile" && (
+        <div>
+          <Script
+            id="ad-script"
+            strategy="afterInteractive"
+            dangerouslySetInnerHTML={{
+              __html: `
+      atOptions = {
+    'key' : 'c2856abc2d227e69e7d1a294f07c8929',
+'format' : 'iframe',
+'height' : 250,
+'width' : 300,
+'params' : {}
+      };
+    `,
+            }}
+          />
+          <Script
+            id="ad-script-src"
+            strategy="afterInteractive"
+            src="//www.highperformanceformat.com/c2856abc2d227e69e7d1a294f07c8929/invoke.js"
+          />
+        </div>
+      )}
+
+      {screenSize === "tablet" && (
+        <div className="bannerTablet">
+          <Script
+            id="ad-script"
+            strategy="afterInteractive"
+            dangerouslySetInnerHTML={{
+              __html: `
+            atOptions = {
+              'key' : '907d41120299420316b11047cb581dca',
+              'format' : 'iframe',
+              'height' : 60,
+              'width' : 468,
+              'params' : {}
+            };
+          `,
+            }}
+          />
+          <Script
+            id="ad-script-src"
+            strategy="afterInteractive"
+            src="//www.highperformanceformat.com/907d41120299420316b11047cb581dca/invoke.js"
+          />
+        </div>
+      )}
+      {screenSize === "desktop" && (
+        <div className="bannerDesktop">
+          <Script
+            id="ad-script-2"
+            strategy="afterInteractive"
+            dangerouslySetInnerHTML={{
+              __html: `
+            atOptions = {
+              'key' : '85027a243d64d77972fc586d07bbf8da',
+              'format' : 'iframe',
+              'height' : 90,
+              'width' : 728,
+              'params' : {}
+            };
+          `,
+            }}
+          />
+          <Script
+            id="ad-script-src-2"
+            strategy="afterInteractive"
+            src="//www.highperformanceformat.com/85027a243d64d77972fc586d07bbf8da/invoke.js"
+          />
+        </div>
+      )}
     </div>
   );
 }
