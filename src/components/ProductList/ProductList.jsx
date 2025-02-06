@@ -9,6 +9,7 @@ import SuccessAlert from "../Alert/SuccessAlert";
 import Loading from "../Loading/Loading";
 import FailureAlert from "../Alert/FailureAlert";
 import Script from "next/script";
+import Link from "next/link";
 
 function ProductList() {
   const [screenSize, setScreenSize] = useState("mobile");
