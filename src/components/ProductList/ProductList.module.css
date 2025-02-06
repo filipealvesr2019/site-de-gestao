@@ -455,8 +455,21 @@ justify-content: space-evenly;
   font-weight: bold; /* Negrito */
   color: black; /* Cor azul */
 }
-
+.TopBannerMobile{
+  display: flex;
+  justify-content: center;
+}
+.TopBannerDesktop{
+  display: none;
+}
 @media only screen and (min-width: 700px) {
+  .TopBannerMobile{
+    display: none;
+  }
+  .TopBannerDesktop{
+    display: flex;
+    justify-content: center;
+  }
   .filterClose__img{
     width: 1.5vw;
     
@@ -629,6 +642,8 @@ justify-content: space-evenly;
 
 
 @media (min-width: 820px) and (max-width: 1180px) {
+
+
   .buttonsStyles {
     display: flex;
     justify-content: space-between;
