@@ -1209,6 +1209,31 @@ function ProductList() {
         </>
       )}
       <Footer />
+
+      {screenSize === "mobile" && (
+        <div>
+          <Script
+            id="ad-script"
+            strategy="afterInteractive"
+            dangerouslySetInnerHTML={{
+              __html: `
+      atOptions = {
+    'key' : 'c2856abc2d227e69e7d1a294f07c8929',
+'format' : 'iframe',
+'height' : 250,
+'width' : 300,
+'params' : {}
+      };
+    `,
+            }}
+          />
+          <Script
+            id="ad-script-src"
+            strategy="afterInteractive"
+            src="//www.highperformanceformat.com/c2856abc2d227e69e7d1a294f07c8929/invoke.js"
+          />
+        </div>
+      )}
 {/* 
       {screenSize === "mobile" && (
         <div>
