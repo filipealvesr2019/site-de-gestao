@@ -32,7 +32,7 @@
 .BottomBannerMobile{
     display: flex;
     justify-content: center;
-    margin-bottom: 2rem;
+    margin-top: 2rem;
   }
   
 @media screen and (min-width: 700px ){
