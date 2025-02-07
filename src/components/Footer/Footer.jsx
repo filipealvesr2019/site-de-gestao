@@ -16,9 +16,9 @@ export default function Footer() {
       </div>
 
    
-        <div className={styles.BottomBannerDesktop}>
+        {/* <div className={styles.BottomBannerDesktop}>
           <img src="https://i.imgur.com/PXtJII6.png" alt="" />
-        </div>
+        </div> */}
 
       <footer className={styles.footer}>
         <div className={styles.div}>
