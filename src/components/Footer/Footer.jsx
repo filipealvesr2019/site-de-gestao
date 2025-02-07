@@ -1,7 +1,29 @@
+import Link from "next/link";
 import styles from "./Footer.module.css";
 export default function Footer() {
   return (
     <>
+      <div className={styles.BottomBannerMobile} >
+        <iframe
+          src="//a.magsrv.com/iframe.php?idzone=5534646&size=300x250"
+          width="300"
+          height="250"
+          scrolling="no"
+          marginwidth="0"
+          marginheight="0"
+          frameborder="0"
+        ></iframe>
+      </div>
+
+      <Link
+        href={
+          "https://www.profitablecpmrate.com/xtg3ptzy?key=83e76d4b462360a364a7b6b7708d01e4"
+        }
+      >
+        <div className={styles.BottomBannerDesktop}>
+          <img src="https://i.imgur.com/PXtJII6.png" alt="" />
+        </div>
+      </Link>
       <footer className={styles.footer}>
         <div className={styles.div}>
         <p>pra ajudar o projeto:</p>

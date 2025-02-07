@@ -656,7 +656,6 @@ function ProductList() {
 
      </div>
 
-
       {showAlert && (
         <SuccessAlert message={alertMessage} onClose={closeAlert} />
       )}
@@ -1210,104 +1209,6 @@ function ProductList() {
       )}
       <Footer />
 
-      {screenSize === "mobile" && (
-        <div>
-          <Script
-            id="ad-script"
-            strategy="afterInteractive"
-            dangerouslySetInnerHTML={{
-              __html: `
-      atOptions = {
-    'key' : 'c2856abc2d227e69e7d1a294f07c8929',
-'format' : 'iframe',
-'height' : 250,
-'width' : 300,
-'params' : {}
-      };
-    `,
-            }}
-          />
-          <Script
-            id="ad-script-src"
-            strategy="afterInteractive"
-            src="//www.highperformanceformat.com/c2856abc2d227e69e7d1a294f07c8929/invoke.js"
-          />
-        </div>
-      )}
-{/* 
-      {screenSize === "mobile" && (
-        <div>
-          <Script
-            id="ad-script"
-            strategy="afterInteractive"
-            dangerouslySetInnerHTML={{
-              __html: `
-      atOptions = {
-    'key' : 'c2856abc2d227e69e7d1a294f07c8929',
-'format' : 'iframe',
-'height' : 250,
-'width' : 300,
-'params' : {}
-      };
-    `,
-            }}
-          />
-          <Script
-            id="ad-script-src"
-            strategy="afterInteractive"
-            src="//www.highperformanceformat.com/c2856abc2d227e69e7d1a294f07c8929/invoke.js"
-          />
-        </div>
-      )}
-
-      {screenSize === "tablet" && (
-        <div className="bannerTablet">
-          <Script
-            id="ad-script"
-            strategy="afterInteractive"
-            dangerouslySetInnerHTML={{
-              __html: `
-            atOptions = {
-              'key' : '907d41120299420316b11047cb581dca',
-              'format' : 'iframe',
-              'height' : 60,
-              'width' : 468,
-              'params' : {}
-            };
-          `,
-            }}
-          />
-          <Script
-            id="ad-script-src"
-            strategy="afterInteractive"
-            src="//www.highperformanceformat.com/907d41120299420316b11047cb581dca/invoke.js"
-          />
-        </div>
-      )}
-      {screenSize === "desktop" && (
-        <div className="bannerDesktop">
-          <Script
-            id="ad-script-2"
-            strategy="afterInteractive"
-            dangerouslySetInnerHTML={{
-              __html: `
-            atOptions = {
-              'key' : '85027a243d64d77972fc586d07bbf8da',
-              'format' : 'iframe',
-              'height' : 90,
-              'width' : 728,
-              'params' : {}
-            };
-          `,
-            }}
-          />
-          <Script
-            id="ad-script-src-2"
-            strategy="afterInteractive"
-            src="//www.highperformanceformat.com/85027a243d64d77972fc586d07bbf8da/invoke.js"
-          />
-        </div>
-      )} */}
     </div>
   );
 }
