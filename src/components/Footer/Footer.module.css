@@ -21,7 +21,7 @@
     width: 80vw;
     
 }
-.Privacidade{
+.linksUteis{
     display: flex;
     padding: 2rem;
     margin-top: -30%;
@@ -57,7 +57,7 @@
     .div{
         margin-bottom: 4rem;
     }
-    .Privacidade{
+    .linksUteis{
    padding: 1rem;
         margin-top: -10%;
     }

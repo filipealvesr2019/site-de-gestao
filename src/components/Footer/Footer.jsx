@@ -36,13 +36,44 @@ export default function Footer() {
         </section>
      
       </footer>
-      <section className={styles.Privacidade}>
+      <section className={styles.linksUteis}>
 
 <p>
 © 2024 Gestão Financeira Pro. Todos os direitos reservados. 
 <a href="/politica-de-privacidade" style={{ marginLeft: '10px', color: '#0070f3', textDecoration: 'none' }}>
 Política de Privacidade
 </a>
+<a
+            href="/termos-de-uso"
+            style={{
+              marginLeft: "10px",
+              color: "#0070f3",
+              textDecoration: "none",
+            }}
+          >
+            Termos de Uso -
+          </a>
+          <a
+            href="/sobre"
+            style={{
+              marginLeft: "10px",
+              color: "#0070f3",
+              textDecoration: "none",
+            }}
+          >
+            Sobre Nos -
+          </a>
+          
+          <a
+            href="/contato"
+            style={{
+              marginLeft: "10px",
+              color: "#0070f3",
+              textDecoration: "none",
+            }}
+          >
+          Contato
+          </a>
 </p>
 </section>
     </>
