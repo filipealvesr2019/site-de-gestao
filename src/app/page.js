@@ -3,6 +3,7 @@ import Login from "./Login";
 import Script from "next/script";
 import UserAuth from "../components/UserAuth/UserAuth";
 import LandinPage from "../components/LandinPage/LandinPage";
+import { useEffect } from "react";
 export const metadata = {
   title: "Gestão Financeira Pro", // Define o título da página
   description:
