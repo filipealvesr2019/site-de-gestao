@@ -3,6 +3,7 @@ import Login from "./Login";
 import Script from "next/script";
 import UserAuth from "../components/UserAuth/UserAuth";
 import LandinPage from "../components/LandinPage/LandinPage";
+import Head from "next/head";
 export const metadata = {
   title: "Gestão Financeira Pro", // Define o título da página
   description:
