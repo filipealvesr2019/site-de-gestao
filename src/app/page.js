@@ -3,7 +3,6 @@ import Login from "./Login";
 import Script from "next/script";
 import UserAuth from "../components/UserAuth/UserAuth";
 import LandinPage from "../components/LandinPage/LandinPage";
-import Head from "next/head";
 export const metadata = {
   title: "Gestão Financeira Pro", // Define o título da página
   description:
@@ -33,11 +32,9 @@ export default function Home() {
 
   return (
     <div className={styles.container}>
-       <Head>
-       
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4020379299787957"
-     crossorigin="anonymous"></script>
-      </Head>
+      
+      <Script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4020379299787957"
+     crossorigin="anonymous"></Script>
    
       <Script
         id="google-analytics"
