@@ -41,7 +41,7 @@ export default function Footer() {
 <p>
 © 2024 Gestão Financeira Pro. Todos os direitos reservados. 
 <a href="/politica-de-privacidade" style={{ marginLeft: '10px', color: '#0070f3', textDecoration: 'none' }}>
-Política de Privacidade
+Política de Privacidade -
 </a>
 <a
             href="/termos-de-uso"
