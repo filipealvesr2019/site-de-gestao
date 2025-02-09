@@ -4,7 +4,7 @@ import dbConnect from "./utils/dbConnect";
 import cors from 'cors';
 
 const corsOptions = {
-  origin: 'https://www.gestaofinanceirapro.com.br', // Permitir o domínio do frontend
+  origin: ['https://www.gestaofinanceirapro.com.br', 'https://gestaofinanceirapro.com.br'], // Permitir o domínio do frontend
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 };
