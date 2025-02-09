@@ -44,7 +44,10 @@
     
   }
   
-
+  .Link{
+    display: flex;
+    padding: 1rem;
+  }
   .img{
     width: 33vw;
 }
