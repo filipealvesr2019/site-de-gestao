@@ -6,16 +6,29 @@
   <url>
     <loc>https://www.gestaofinanceirapro.com.br/politica-de-privacidade</loc>
   </url>
- <url>
-    <loc>https://www.gestaofinanceirapro.com.br/dashboard</loc>
+     <url>
+    <loc>https://www.gestaofinanceirapro.com.br/termos-de-uso</loc>
   </url>
+     <url>
+    <loc>https://www.gestaofinanceirapro.com.br/sobre</loc>
+  </url>
+   <url>
+    <loc>  https://www.gestaofinanceirapro.com.br/contato</loc>
+  </url>
+
    <url>
     <loc>https://gestaofinanceirapro.com.br</loc>
   </url>
    <url>
-    <loc>https://gestaofinanceirapro.com.br/dashboard</loc>
+    <loc>https://gestaofinanceirapro.com.br/politica-de-privacidade</loc>
+  </url>
+     <url>
+    <loc>https://gestaofinanceirapro.com.br/termos-de-uso</loc>
+  </url>
+     <url>
+    <loc>https://gestaofinanceirapro.com.br/sobre</loc>
   </url>
    <url>
-    <loc>https://gestaofinanceirapro.com.br/politica-de-privacidade</loc>
+    <loc>  https://gestaofinanceirapro.com.br/contato</loc>
   </url>
 </urlset>
