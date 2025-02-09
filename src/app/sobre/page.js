@@ -1,10 +1,17 @@
+import Link from "next/link";
 import Login from "../Login";
 import styles from "./Sobre.module.css";
 
 export default function Sobre() {
   return (
     <>
-              <Login />
+       <Link href={"https://www.gestaofinanceirapro.com.br"}  className={styles.Link}>
+        <img
+          src="https://i.imgur.com/33Qljej.png"
+          alt="icone do gestão financeira pro"
+          className={styles.img}
+        />
+      </Link>
     
     <div className={styles.container}>
       <div className={styles.content}>

@@ -1,11 +1,18 @@
 import React from 'react';
 import styles from './Contact.module.css';
 import Login from '../Login';
+import Link from 'next/link';
 
 const Contato = () => {
   return (
     <>
-          <Login />
+     <Link href={"https://www.gestaofinanceirapro.com.br"}  className={styles.Link}>
+        <img
+          src="https://i.imgur.com/33Qljej.png"
+          alt="icone do gestão financeira pro"
+          className={styles.img}
+        />
+      </Link>
     <div className={styles.contactContainer}>
   
       <h1 className={styles.title}>Entre em Contato</h1>

@@ -45,9 +45,14 @@
   }
   
 
-    
-  @media screen and (min-width: 700px) {
+  .img{
+    width: 33vw;
+}
 
+@media screen  and (min-width: 700px){
+    .img{
+        width: 14vw;
+    }
     .contactContainer{
         margin-top: -1%;
     }

@@ -1,7 +1,16 @@
 import React from 'react';
 import styles from './PoliticaDePrivacidade.module.css'
+import Link from 'next/link';
 const PoliticaDePrivacidade = () => {
   return (
+    <>
+    <Link href={"https://www.gestaofinanceirapro.com.br"}  className={styles.Link}>
+        <img
+          src="https://i.imgur.com/33Qljej.png"
+          alt="icone do gestão financeira pro"
+          className={styles.img}
+        />
+      </Link>
     <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }} className={styles.container}>
       <h1>Política de Privacidade</h1>
       <p className={styles.p}>
@@ -37,6 +46,8 @@ const PoliticaDePrivacidade = () => {
         Se você tiver dúvidas sobre esta Política de Privacidade, entre em contato conosco pelo e-mail: gestaofinanceiraprocontato@gmail.com
       </p>
     </div>
+    
+    </>
   );
 };
 

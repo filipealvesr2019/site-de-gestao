@@ -1,7 +1,15 @@
 .heading{
     margin-top: 2rem;
 }
-@media screen and (min-width: 700px) {
+
+.img{
+    width: 33vw;
+}
+
+@media screen  and (min-width: 700px){
+    .img{
+        width: 14vw;
+    }
     .p{
         width: 40vw;
     }
