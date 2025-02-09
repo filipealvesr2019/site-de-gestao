@@ -32,8 +32,11 @@ export default function Home() {
 
   return (
     <div className={styles.container}>
-      <Script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4020379299787957"
-     crossorigin="anonymous"></Script>
+       <Head>
+       
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4020379299787957"
+     crossorigin="anonymous"></script>
+      </Head>
    
       <Script
         id="google-analytics"
