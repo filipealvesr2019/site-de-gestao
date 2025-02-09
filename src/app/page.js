@@ -3,7 +3,6 @@ import Login from "./Login";
 import Script from "next/script";
 import UserAuth from "../components/UserAuth/UserAuth";
 import LandinPage from "../components/LandinPage/LandinPage";
-import { useEffect } from "react";
 export const metadata = {
   title: "Gestão Financeira Pro", // Define o título da página
   description:
@@ -30,17 +29,15 @@ export default function Home() {
     canonical: "https://www.gestaofinanceirapro.com.br", // Página canônica
   },
   };
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js";
-    script.async = true;
-    script.dataset.adClient = "ca-pub-4020379299787957";
-    document.body.appendChild(script);
-  }, []);
+
   return (
     <div className={styles.container}>
       
-
+      <Script
+        async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4020379299787957"
+        strategy="afterInteractive"
+      />
    
       <Script
         id="google-analytics"
