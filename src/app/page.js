@@ -34,8 +34,7 @@ export default function Home() {
     <div className={styles.container}>
       <Script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4020379299787957"
      crossorigin="anonymous"></Script>
-      <Script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8598842085999320"
-     crossorigin="anonymous"></Script>
+   
       <Script
         id="google-analytics"
         strategy="afterInteractive"
