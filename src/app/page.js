@@ -29,7 +29,13 @@ export default function Home() {
     canonical: "https://www.gestaofinanceirapro.com.br", // Página canônica
   },
   };
-
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js";
+    script.async = true;
+    script.dataset.adClient = "ca-pub-4020379299787957";
+    document.body.appendChild(script);
+  }, []);
   return (
     <div className={styles.container}>
       
