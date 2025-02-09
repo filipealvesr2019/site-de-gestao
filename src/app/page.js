@@ -37,6 +37,7 @@ export default function Home() {
         async
         src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4020379299787957"
         strategy="afterInteractive"
+        crossOrigin="anonymous"
       />
    
       <Script
