@@ -1,4 +1,5 @@
 /* styles/globals.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 * {
     margin: 0;
     padding: 0;
@@ -13,5 +14,6 @@
   body {
     margin: 0;
     background-color: #D7E9FF;
+    font-family: 'inter', sans-serif;
 
   }
