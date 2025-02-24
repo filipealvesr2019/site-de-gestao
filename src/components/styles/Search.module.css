@@ -1,0 +1,93 @@
+.page {
+  min-height: 100vh;
+  background: var(--background);
+}
+
+.main {
+  padding: 48px 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.searchHeader {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.title {
+  font-size: 2.5rem;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+  font-weight: 700;
+}
+
+.query {
+  color: var(--accent-color);
+}
+
+.resultsCount {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+  align-items: stretch;
+}
+
+.noResults {
+  text-align: center;
+  padding: 48px 24px;
+  background: var(--card-bg);
+  border-radius: 12px;
+  color: var(--text-secondary);
+}
+
+.noResults p {
+  margin: 8px 0;
+  font-size: 1.1rem;
+}
+
+.noResults p:first-child {
+  color: var(--text-primary);
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .main {
+    padding: 80px 16px 32px;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .resultsCount {
+    font-size: 1rem;
+  }
+
+  .grid {
+    gap: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 1.75rem;
+  }
+
+  .noResults {
+    padding: 32px 16px;
+  }
+
+  .noResults p {
+    font-size: 1rem;
+  }
+
+  .noResults p:first-child {
+    font-size: 1.1rem;
+  }
+} 

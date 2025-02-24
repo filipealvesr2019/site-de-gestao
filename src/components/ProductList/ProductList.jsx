@@ -642,19 +642,9 @@ function ProductList() {
   return (
     <div className={styles.container}>
 
-{/* <Link href={"https://www.profitablecpmrate.com/xtg3ptzy?key=83e76d4b462360a364a7b6b7708d01e4"}>
-     <div className={styles.TopBannerDesktop}>
-      <img src="https://i.imgur.com/PXtJII6.png" alt="" />
-     </div>
-
-</Link> */}
 
 
-
-     <div className={styles.TopBannerMobile}>
-     <iframe src="//a.magsrv.com/iframe.php?idzone=5534646&size=300x250" width="300" height="250" scrolling="no" marginwidth="0" marginheight="0" frameborder="0"></iframe>
-
-     </div>
+ 
 
       {showAlert && (
         <SuccessAlert message={alertMessage} onClose={closeAlert} />

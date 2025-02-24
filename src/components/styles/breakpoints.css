@@ -1,0 +1,236 @@
+/* Mobile First - Breakpoints */
+:root {
+  /* Breakpoints padrão */
+  --mobile-sm: 320px;    /* Mobile pequeno */
+  --mobile-md: 375px;    /* Mobile médio */
+  --mobile-lg: 425px;    /* Mobile grande */
+  --tablet: 768px;       /* Tablets */
+  --laptop: 1024px;      /* Laptops */
+  --desktop: 1280px;     /* Desktop */
+  --desktop-lg: 1440px;  /* Desktop grande */
+  --desktop-xl: 1920px;  /* Desktop extra grande */
+}
+
+/* Mobile First - Estilos base para dispositivos pequenos */
+@media screen and (max-width: 320px) {
+  :root {
+    --container-padding: 16px;
+    --font-size-base: 14px;
+    --card-width: 100%;
+  }
+}
+
+/* Mobile Médio */
+@media screen and (min-width: 375px) {
+  :root {
+    --container-padding: 20px;
+    --font-size-base: 15px;
+  }
+}
+
+/* Mobile Grande */
+@media screen and (min-width: 425px) {
+  :root {
+    --container-padding: 24px;
+    --font-size-base: 16px;
+  }
+}
+
+/* Tablets */
+@media screen and (min-width: 768px) {
+  :root {
+    --container-padding: 32px;
+    --card-width: calc(50% - 16px);
+  }
+
+  /* Layout específico para tablets */
+  .featuredPost {
+    grid-template-columns: 1fr;
+  }
+
+  .mainPost {
+    height: 400px;
+  }
+
+  .secondaryPosts {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Laptops */
+@media screen and (min-width: 1024px) {
+  :root {
+    --container-padding: 40px;
+    --card-width: calc(33.333% - 20px);
+  }
+
+  /* Layout para laptops */
+  .featuredPost {
+    grid-template-columns: 1.5fr 1fr;
+  }
+
+  .mainPost {
+    height: 500px;
+  }
+
+  .secondaryPosts {
+    flex-direction: column;
+  }
+}
+
+/* Desktop */
+@media screen and (min-width: 1280px) {
+  :root {
+    --container-padding: 48px;
+    --card-width: calc(25% - 24px);
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+}
+
+/* Desktop Grande */
+@media screen and (min-width: 1440px) {
+  :root {
+    --container-padding: 64px;
+  }
+
+  .container {
+    max-width: 1400px;
+  }
+}
+
+/* Desktop Extra Grande */
+@media screen and (min-width: 1920px) {
+  .container {
+    max-width: 1800px;
+  }
+}
+
+/* Orientação do dispositivo */
+@media screen and (orientation: landscape) and (max-height: 500px) {
+  .mainPost {
+    height: 300px;
+  }
+}
+
+/* Suporte a Dark Mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: #0a0a0a;
+    --text-color: #ffffff;
+    --card-background: #1a1a1a;
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  :root {
+    --text-color: #ffffff;
+    --background-color: #000000;
+  }
+}
+
+/* Reduzir animações se o usuário preferir */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Classes utilitárias para responsividade */
+.hide-on-mobile {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .hide-on-mobile {
+    display: block;
+  }
+  
+  .hide-on-desktop {
+    display: none;
+  }
+}
+
+/* Grid responsivo */
+.grid {
+  display: grid;
+  gap: var(--grid-gap, 24px);
+  padding: var(--container-padding);
+}
+
+/* Grid para diferentes breakpoints */
+@media screen and (min-width: 375px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Container responsivo */
+.container {
+  width: 100%;
+  padding-left: var(--container-padding);
+  padding-right: var(--container-padding);
+  margin: 0 auto;
+}
+
+/* Tipografia responsiva */
+:root {
+  --font-size-base: 16px;
+  --scale-ratio: 1.2;
+}
+
+@media screen and (min-width: 768px) {
+  :root {
+    --scale-ratio: 1.25;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  :root {
+    --scale-ratio: 1.333;
+  }
+}
+
+/* Espaçamentos responsivos */
+:root {
+  --space-unit: 8px;
+}
+
+.spacing {
+  padding: calc(var(--space-unit) * 2);
+}
+
+@media screen and (min-width: 768px) {
+  .spacing {
+    padding: calc(var(--space-unit) * 3);
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .spacing {
+    padding: calc(var(--space-unit) * 4);
+  }
+} 

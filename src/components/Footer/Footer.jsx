@@ -3,23 +3,8 @@ import styles from "./Footer.module.css";
 export default function Footer() {
   return (
     <>
-      <div className={styles.BottomBannerMobile} >
-        <iframe
-          src="//a.magsrv.com/iframe.php?idzone=5534646&size=300x250"
-          width="300"
-          height="250"
-          scrolling="no"
-          marginwidth="0"
-          marginheight="0"
-          frameborder="0"
-        ></iframe>
-      </div>
-
    
-        {/* <div className={styles.BottomBannerDesktop}>
-          <img src="https://i.imgur.com/PXtJII6.png" alt="" />
-        </div> */}
-
+  
       <footer className={styles.footer}>
         <div className={styles.div}>
         <p>pra ajudar o projeto:</p>
@@ -73,6 +58,16 @@ Política de Privacidade -
             }}
           >
           Contato
+          </a>
+          <a
+            href="/blog"
+            style={{
+              marginLeft: "10px",
+              color: "#0070f3",
+              textDecoration: "none",
+            }}
+          >
+          Blog
           </a>
 </p>
 </section>
