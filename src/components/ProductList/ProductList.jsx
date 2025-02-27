@@ -788,10 +788,10 @@ function ProductList() {
             Filtragem Personalizada
           </button>
           <button onClick={handlePrintInvoice} className={styles.buttons}>
-            Imprimir Nota
+            Imprimir Recibo
           </button>
           <button onClick={handleDownloadInvoice} className={styles.buttons}>
-            Baixar Nota Fiscal
+            Baixar Nota Recibo
           </button>
         </div>
       </div>
@@ -825,7 +825,7 @@ function ProductList() {
             >
               <option value="">Selecionar Ação</option>
               <option value="imprimir">Imprimir Nota</option>
-              <option value="baixar">Baixar Nota Fiscal</option>
+              <option value="baixar">Baixar Nota Recibo</option>
             </select>
           </div>
         </div>
