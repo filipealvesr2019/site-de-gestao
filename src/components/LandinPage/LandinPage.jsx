@@ -125,12 +125,12 @@ export default function LandinPage() {
         <div className={styles.containerC}>
           <div className={styles.containerC__texts}>
             <h1 className={styles.heading}>
-              Imprima ou baixe Notas Fiscais de Receitas ou Despesas
+              Imprima ou baixe Recibos de Receitas ou Despesas
             </h1>
           </div>
           <img
             src="https://i.imgur.com/bKJJOIv.png"
-            alt="foto de nota fiscal de referencia"
+            alt="foto de Recibo fiscal de referencia"
             className={styles.container__product__img}
           />
         </div>

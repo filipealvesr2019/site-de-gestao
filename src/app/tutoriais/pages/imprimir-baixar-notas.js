@@ -9,7 +9,7 @@ export default function ImprimirBaixarNotas() {
   return (
     <div className={styles.page}>
       <Head>
-        <title>Imprimir ou Baixar Notas - Gestão Financeira Pro</title>
+        <title>Imprimir ou Baixar Recibos - Gestão Financeira Pro</title>
         <meta 
           name="description" 
           content="Aprenda a gerar relatórios impressos e documentos fiscais diretamente do sistema." 
@@ -30,7 +30,7 @@ export default function ImprimirBaixarNotas() {
             </div>
           </div>
 
-          <h1 className={styles.title}>Como Imprimir ou Baixar Notas</h1>
+          <h1 className={styles.title}>Como Imprimir ou Baixar Recibos</h1>
           <p className={styles.description}>
             Guia completo para geração de relatórios impressos e documentos fiscais.
           </p>
@@ -40,7 +40,7 @@ export default function ImprimirBaixarNotas() {
               <h2>Opções Disponíveis</h2>
               <div className={styles.featureGrid}>
                 <div className={styles.featureCard}>
-                  <h3>📄 Imprimir Nota</h3>
+                  <h3>📄 Imprimir Recibo</h3>
                   <p>Gera um relatório formatado para impressão física</p>
                   <div className={styles.buttonDemo}>
                     <button className={buttonStyles.printButton}>
@@ -53,12 +53,12 @@ export default function ImprimirBaixarNotas() {
                 </div>
 
                 <div className={styles.featureCard}>
-                  <h3>💾 Baixar Nota Recibo</h3>
+                  <h3>💾 Baixar Recibo</h3>
                   <p>Exporta documento fiscal em formato PDF</p>
                   <div className={styles.imageContainer}>
                     <Image
                       src="/image/notasimgembaixar.png"
-                      alt="Opção de download de nota fiscal"
+                      alt="Opção de download de Recibo"
                       width={600}
                       height={400}
                       className={styles.image}
@@ -75,7 +75,7 @@ export default function ImprimirBaixarNotas() {
                 <li>Clique no menu "Exportar/Imprimir"</li>
                 <li>Escolha entre:
                   <ul className={styles.optionsList}>
-                    <li>🖨️ Imprimir Nota</li>
+                    <li>🖨️ Imprimir Recibo</li>
                     <li>📥 Baixar PDF</li>
                   </ul>
                 </li>

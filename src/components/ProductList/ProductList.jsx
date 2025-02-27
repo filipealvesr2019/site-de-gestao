@@ -532,9 +532,9 @@ function ProductList() {
       selectedProducts.includes(product._id)
     );
 
-    // Lógica para gerar a nota com os produtos selecionados
+    // Lógica para gerar a Recibo com os produtos selecionados
     if (selectedItems.length === 0) {
-      alert("Nenhum produto selecionado para gerar a nota.");
+      alert("Nenhum produto selecionado para gerar a Recibo.");
       return;
     }
 
@@ -549,10 +549,10 @@ function ProductList() {
 
     const diferenca = totalReceitas - totalDespesas;
 
-    // Gerar a HTML da nota
+    // Gerar a HTML da Recibo
     const invoiceContent = `
       <div style="font-family: Arial, sans-serif; padding: 20px;">
-        <h2>Nota Fiscal</h2>
+        <h2>Recibo</h2>
         <p><strong>Data de Emissão:</strong> ${new Date().toLocaleDateString()}</p>
         <table style="width: 100%; border-collapse: collapse;">
           <thead>
@@ -588,7 +588,7 @@ function ProductList() {
       </div>
     `;
 
-    // Criar uma nova janela e carregar o conteúdo da nota nela
+    // Criar uma nova janela e carregar o conteúdo da Recibo nela
     const printWindow = window.open("", "_blank", "width=800,height=600");
     printWindow.document.write(invoiceContent);
     printWindow.document.close();
@@ -602,7 +602,7 @@ function ProductList() {
     );
 
     if (selectedItems.length === 0) {
-      alert("Nenhum produto selecionado para gerar a nota.");
+      alert("Nenhum produto selecionado para gerar a Recibo.");
       return;
     }
 
@@ -619,7 +619,7 @@ function ProductList() {
 
     const doc = new jsPDF();
     doc.setFont("helvetica", "normal");
-    doc.text("Nota Fiscal", 20, 20);
+    doc.text("Recibo", 20, 20);
     doc.text(`Data de Emissão: ${new Date().toLocaleDateString()}`, 20, 30);
     doc.autoTable({
       startY: 40,
@@ -633,7 +633,7 @@ function ProductList() {
 
     doc.text(`Total: R$${diferenca}`, 20, doc.lastAutoTable.finalY + 30);
 
-    doc.save("nota_fiscal.pdf");
+    doc.save("recibo.pdf");
   };
   const handleFocus = (event) => {
     event.target.showPicker(); // Abre o seletor de data
@@ -791,7 +791,7 @@ function ProductList() {
             Imprimir Recibo
           </button>
           <button onClick={handleDownloadInvoice} className={styles.buttons}>
-            Baixar Nota Recibo
+            Baixar Recibo
           </button>
         </div>
       </div>
@@ -824,8 +824,8 @@ function ProductList() {
               disabled={!hasSelectedProducts}
             >
               <option value="">Selecionar Ação</option>
-              <option value="imprimir">Imprimir Nota</option>
-              <option value="baixar">Baixar Nota Recibo</option>
+              <option value="imprimir">Imprimir Recibo</option>
+              <option value="baixar">Baixar Recibo</option>
             </select>
           </div>
         </div>
