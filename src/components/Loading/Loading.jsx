@@ -5,7 +5,7 @@ const Loading = () => {
   return (
     <div className="loading-container">
       <div className="loading-g">
-        <img src="https://i.imgur.com/7uIeCEv.png" alt="icone do loading" className="loading-Image" />
+        <img src="https://res.cloudinary.com/dcodt2el6/image/upload/v1746141497/simbolo_ekhl9m.png" alt="icone do loading" className="loading-Image" />
       </div>
     </div>
   );

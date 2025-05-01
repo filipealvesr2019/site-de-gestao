@@ -272,7 +272,7 @@ height: 5vh;
 }
 
 .stylesTotalReceitas {
-  background-color: #a0f5ce;
+  background-color: #62F454;
   border-radius: 10px;
   text-align: center;
   padding: 1rem;
@@ -280,7 +280,7 @@ height: 5vh;
 }
 
 .stylesTotalDespesas {
-  background-color: #fdb1b1;
+  background-color: #E54848;
   border-radius: 10px;
   text-align: center;
   padding: 1rem;
@@ -289,7 +289,7 @@ height: 5vh;
 }
 
 .stylesDiferenca {
-  background-color: #a4e2fb;
+  background-color: #00C0EA;
   border-radius: 10px;
   text-align: center;
   padding: 1rem;

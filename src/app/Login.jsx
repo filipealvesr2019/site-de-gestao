@@ -21,7 +21,7 @@ export default function Login() {
       <div className={styles.login}>
         <Link href={"https://www.gestaofinanceirapro.com.br"}>
         
-        <img src="https://i.imgur.com/33Qljej.png" alt="icone do gestão financeira pro" className={styles.login__img}/>
+        <img src="https://res.cloudinary.com/dcodt2el6/image/upload/v1746141281/LogoPrincipal_zuddxw.png" alt="icone do gestão financeira pro" className={styles.login__img}/>
         </Link>
 
         <SignedOut>

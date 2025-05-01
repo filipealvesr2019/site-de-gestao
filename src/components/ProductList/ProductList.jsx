@@ -670,15 +670,6 @@ function ProductList() {
         )}
       </span>
       <div className={styles.cardsContainer}>
-        <div className={styles.stylesTotalReceitas}>
-          <h3>
-            {filterType === "relatorioPesornalizado"
-              ? "Total de Receitas:"
-              : " Total de Receitas do Mês:"}{" "}
-            R$
-            {isNaN(totalReceitasPagas) ? "0" : totalReceitasPagas}
-          </h3>
-        </div>
         <div className={styles.stylesTotalDespesas}>
           <h3>
             {filterType === "relatorioPesornalizado"
@@ -686,6 +677,15 @@ function ProductList() {
               : " Total de despesas do Mês: "}{" "}
             R$
             {isNaN(totalDespesas) ? "0" : totalDespesas}
+          </h3>
+        </div>
+        <div className={styles.stylesTotalReceitas}>
+          <h3>
+            {filterType === "relatorioPesornalizado"
+              ? "Total de Receitas:"
+              : " Total de Receitas do Mês:"}{" "}
+            R$
+            {isNaN(totalReceitasPagas) ? "0" : totalReceitasPagas}
           </h3>
         </div>
         <div className={styles.stylesDiferenca}>
