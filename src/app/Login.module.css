@@ -19,7 +19,7 @@
     margin: 1rem;
 }
 .login__img{
-    width: 33vw;
+    width: 30vw;
 }
 @media screen  and (min-width: 700px){
     .button{
@@ -35,6 +35,6 @@
     height: 6vh;
     }
     .login__img{
-        width: 10vw;
+        width: 8vw;
     }
 }
