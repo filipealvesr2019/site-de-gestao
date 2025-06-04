@@ -1,0 +1,182 @@
+/* Unboxd Blog Component Styles */
+.unboxdBlogContainer {
+  max-width: 100%;
+  margin: 0 auto;
+  
+  padding: 2rem;
+  background-color: #f9f9f9;
+}
+
+.blogHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.blogHeader h1 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.monthSelector {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.monthButton {
+  background-color: transparent;
+  color: #151e41;
+  font-size: 0.9rem;
+  cursor: pointer;
+  padding: 0.35rem 0.75rem;
+  transition: color 0.3s ease;
+  border-radius: 20px;
+}
+
+.monthButton:hover {
+  color: #151e41;
+  
+  background-color: rgba(0,0,0,0.05);
+ 
+}
+
+.activeMonth {
+  color: #151e41;
+  font-weight: bold;
+  position: relative;
+  background-color: rgba(5, 22, 43, 0.048);
+}
+
+.activeMonth::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #151e41;
+}
+
+.blogPostGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.blogPostLink {
+  text-decoration: none;
+  color: inherit;
+}
+
+.blogPostCard {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.blogPostCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  
+}
+
+.blogPostImageContainer {
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+}
+
+.blogPostImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.blogPostCard:hover .blogPostImage {
+  transform: scale(1.05);
+}
+
+.blogPostContent {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.blogPostCategory {
+  display: inline-block;
+  background-color: #151e41;
+  color: white;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  margin-bottom: 0.5rem;
+  align-self: flex-start;
+}
+
+.blogPostTitle {
+  font-size: 1.1rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.blogPostDescription {
+  color: #666;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.blogPostGrid{
+ 
+  margin-bottom: 80px;
+}
+
+.blogPostDate {
+  display: block;
+  color: #888;
+  font-size: 0.8rem;
+  margin-top: auto;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .unboxdBlogContainer {
+    padding: 1rem;
+  }
+
+  .blogHeader h1 {
+    font-size: 1.7rem;
+  }
+
+  .monthSelector {
+    gap: 0.3rem;
+  }
+
+  .blogPostGrid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+} 

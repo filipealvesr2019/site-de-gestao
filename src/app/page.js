@@ -32,7 +32,8 @@ export default function Home() {
 
   return (
     <div className={styles.container}>
-      
+       
+<script type="text/javascript" src="//www.highperformanceformat.com/c2856abc2d227e69e7d1a294f07c8929/invoke.js"></script>
       <meta
         name="google-adsense-account"
         content="ca-pub-4020379299787957"
