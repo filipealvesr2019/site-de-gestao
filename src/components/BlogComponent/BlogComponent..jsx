@@ -48,7 +48,7 @@ export function BlogComponent() {
       <div className={styles.blogHeader}>
         <Image 
           src="/images/logoblog.png" 
-          alt="Logo do Blog eFrases" 
+          alt="Logo do Gestão financeira pro" 
           width={300} 
           height={70} 
         />
