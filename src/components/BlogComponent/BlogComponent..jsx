@@ -49,8 +49,8 @@ export function BlogComponent() {
         <Image 
           src="/images/logoblog.png" 
           alt="Logo do Gestão financeira pro" 
-          width={300} 
-          height={70} 
+          width={200} 
+          height={130} 
         />
        <br />
        <br />
