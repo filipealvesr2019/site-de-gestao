@@ -47,10 +47,10 @@ export function BlogComponent() {
       <br /> <br />
       <div className={styles.blogHeader}>
         <Image 
-          src="/images/logoblog.png" 
+          src="/images/blog.gfp.png" 
           alt="Logo do Gestão financeira pro" 
-          width={150} 
-          height={150} 
+          width={300} 
+          height={200} 
         />
        <br />
        <br />
@@ -69,7 +69,7 @@ export function BlogComponent() {
       </div>
        
       <div className={styles.blogPostGrid}>
-        {filteredPosts.map(post => (
+        {/* {filteredPosts.map(post => (
           <Link 
             href={`/posts/${post.id}`} 
             key={post.id}
@@ -85,7 +85,7 @@ export function BlogComponent() {
             
           </Link>
           
-        ))}
+        ))} */}
       </div>
      
     </div>

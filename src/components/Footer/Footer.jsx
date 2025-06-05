@@ -57,7 +57,7 @@ Política de Privacidade -
               textDecoration: "none",
             }}
           >
-          Contato
+          Contato -
           </a>
           <a
             href="/blog"
