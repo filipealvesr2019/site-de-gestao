@@ -19,6 +19,17 @@ const BlogPost = () => {
   });
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+const slugify = (text) =>
+  text
+    .toString()
+    .normalize('NFD') // separa acentos
+    .replace(/[\u0300-\u036f]/g, '') // remove acentos
+    .toLowerCase()
+    .trim()
+    .replace(/\s+/g, '-') // troca espaços por hífens
+    .replace(/[^\w\-]+/g, '') // remove caracteres especiais
+    .replace(/\-\-+/g, '-'); // remove múltiplos hífens
+
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -26,7 +37,7 @@ const BlogPost = () => {
 
       try {
         // Fetch the HTML content
-        const response = await fetch(`/blog-posts/${slug}.html`);
+        const response = await fetch(`/blog-posts/${slugify(slug)}.html`);
         
         if (!response.ok) {
           throw new Error('Post não encontrado');

@@ -7,12 +7,12 @@ import styles from './BlogComponent.module.css';
 
 const CATEGORIES = [
   'Todos',
-  'Criatividade', 
-  'Escrita', 
-  'Frases', 
-  'Comunicação', 
-  'Poesia', 
-  'Digital'
+  'Dinheiro', 
+  'Educação Financeira', 
+  'Guardar Dinheiro', 
+  'Crenças Financeiras', 
+  'Ferramentas GFP', 
+  'Tutoriais'
 ];
 
 const BlogPost = ({ title, description, date, imageUrl, category }) => (
@@ -69,7 +69,7 @@ export function BlogComponent() {
       </div>
        
       <div className={styles.blogPostGrid}>
-        {/* {filteredPosts.map(post => (
+        {filteredPosts.map(post => (
           <Link 
             href={`/posts/${post.id}`} 
             key={post.id}
@@ -85,7 +85,7 @@ export function BlogComponent() {
             
           </Link>
           
-        ))} */}
+        ))}
       </div>
      
     </div>
