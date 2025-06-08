@@ -20,6 +20,15 @@ const BlogPost = () => {
   });
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+useEffect(() => {
+  console.log("Slug da URL:", slug);
+  if (!slug) return;
+
+  const normalizedSlug = normalizeSlug(slug);
+  console.log("Slug normalizado:", normalizedSlug);
+  
+  // ...
+}, [slug]);
 
 // Função para normalizar o slug
   const normalizeSlug = (slug) => {
