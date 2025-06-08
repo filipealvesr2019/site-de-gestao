@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image'; // ✅ Adicionado
 import { blogPosts } from './blogPosts';
 import styles from './BlogComponent.module.css';
+import Script from 'next/script';
 
 const CATEGORIES = [
   'Todos',
@@ -44,6 +45,18 @@ export function BlogComponent() {
 
   return (
     <div className={styles.unboxdBlogContainer}>
+      
+      <Script
+        id="google-analytics"
+        strategy="afterInteractive"
+        src={`https://www.googletagmanager.com/gtag/js?idG-WFDBEQEJZP`} // Substitua pelo seu Measurement ID
+      />
+      <Script id="google-analytics-init" strategy="afterInteractive">
+        {`window.dataLayer = window.dataLayer || []; 
+          function gtag(){dataLayer.push(arguments);} 
+          gtag('js', new Date()); 
+          gtag('config', 'G-WFDBEQEJZP', { page_path: window.location.pathname });`}
+      </Script>
       <br /> <br />
       <div className={styles.blogHeader}>
         <Image 

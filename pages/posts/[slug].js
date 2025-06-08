@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import styles from './BlogPost.module.css';
 import Link from 'next/link';
+import Script from 'next/script';
 
 <Link href="/blog" className={styles.backToBlog}>
           ← Voltar para o Blog
@@ -94,6 +95,17 @@ const slugify = (text) =>
 
   return (
     <div title={postMetadata.title}>
+       <Script
+        id="google-analytics"
+        strategy="afterInteractive"
+        src={`https://www.googletagmanager.com/gtag/js?idG-WFDBEQEJZP`} // Substitua pelo seu Measurement ID
+      />
+      <Script id="google-analytics-init" strategy="afterInteractive">
+        {`window.dataLayer = window.dataLayer || []; 
+          function gtag(){dataLayer.push(arguments);} 
+          gtag('js', new Date()); 
+          gtag('config', 'G-WFDBEQEJZP', { page_path: window.location.pathname });`}
+      </Script>
       {/* Link para voltar ao blog no topo da página */}
       <Link href="/blog" className={styles.backToBlog}>
         ← Voltar para o Blog
