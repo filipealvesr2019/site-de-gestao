@@ -1,7 +1,9 @@
 export const blogPosts = [
 
 {
-    id: 'comece-de-graca',
+
+    id: 1,
+    linkUrl: 'comece-de-graca',
     title: 'De Graça, Comece Hoje o Caminho para Ficar no Azul',
     description: 'As palavras certas podem ser como pequenos raios de sol em dias nublados, iluminando caminhos que pareciam perdidos na escuridão.',
     date: '08 JUN 2025',
@@ -9,7 +11,8 @@ export const blogPosts = [
     imageUrl: 'https://imgur.com/zoBUGkh.jpg'
 },  
 {
-    id: 'por-tras-do-gfp',
+    id: 2,
+    linkUrl: 'por-tras-do-gfp',
     title: 'A Inspiração do Zé do Queijo | Gestão Financeira Pro',
     description: 'As palavras certas podem ser como pequenos raios de sol em dias nublados, iluminando caminhos que pareciam perdidos na escuridão.',
     date: '08 JUN 2025',
