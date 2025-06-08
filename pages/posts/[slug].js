@@ -20,23 +20,29 @@ const BlogPost = () => {
   });
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-const slugify = (text) =>
-  text
-    .toString()
-    .normalize('NFD') // separa acentos
-    .replace(/[\u0300-\u036f]/g, '') // remove acentos
-    .toLowerCase()
-    .trim()
-    .replace(/\s+/g, '-') // troca espaços por hífens
-    .replace(/[^\w\-]+/g, '') // remove caracteres especiais
-    .replace(/\-\-+/g, '-'); // remove múltiplos hífens
-
+  
+// Função para normalizar o slug
+  const normalizeSlug = (slug) => {
+    if (!slug) return slug;
+    
+    // Remove caracteres especiais e substitui espaços por hífens
+    return slug
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '') // Remove acentos
+      .replace(/[^a-z0-9\s-]/g, '') // Remove caracteres especiais exceto espaços e hífens
+      .replace(/\s+/g, '-') // Substitui espaços por hífens
+      .replace(/-+/g, '-') // Remove hífens duplicados
+      .trim();
+  };
 
   useEffect(() => {
     const fetchPost = async () => {
       if (!slug) return;
 
       try {
+          // Normaliza o slug para buscar o arquivo correto
+        const normalizedSlug = normalizeSlug(slug);
         // Fetch the HTML content
         const response = await fetch(`/blog-posts/${slugify(slug)}.html`);
         
