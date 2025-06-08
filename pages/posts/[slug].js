@@ -20,7 +20,7 @@ const BlogPost = () => {
   });
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-  
+
 // Função para normalizar o slug
   const normalizeSlug = (slug) => {
     if (!slug) return slug;
@@ -44,7 +44,7 @@ const BlogPost = () => {
           // Normaliza o slug para buscar o arquivo correto
         const normalizedSlug = normalizeSlug(slug);
         // Fetch the HTML content
-        const response = await fetch(`/blog-posts/${slugify(slug)}.html`);
+        const response = await fetch(`/blog-posts/${normalizedSlug}.html`);
         
         if (!response.ok) {
           throw new Error('Post não encontrado');
