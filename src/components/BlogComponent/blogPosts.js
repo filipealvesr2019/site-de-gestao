@@ -4,7 +4,7 @@ export const blogPosts = [
     title: 'A Inspiração do Zé do Queijo | Gestão Financeira Pro',
     description: 'As palavras certas podem ser como pequenos raios de sol em dias nublados, iluminando caminhos que pareciam perdidos na escuridão.',
     date: '08 JUN 2025',
-    category: 'Frases',
+    category: 'Ferramentas GFP',
     imageUrl: 'https://i.imgur.com/Wf505Su.jpg'
 },
 {
@@ -12,7 +12,7 @@ export const blogPosts = [
     title: 'De Graça, Comece Hoje o Caminho para Ficar no Azul',
     description: 'As palavras certas podem ser como pequenos raios de sol em dias nublados, iluminando caminhos que pareciam perdidos na escuridão.',
     date: '08 JUN 2025',
-    category: 'Frases',
+    category: 'Educação Financeira',
     imageUrl: 'https://imgur.com/zoBUGkh.jpg'
 }
 ]; 
