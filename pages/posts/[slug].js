@@ -74,11 +74,11 @@ const BlogPost = () => {
 
   if (isLoading) {
     return (
-      <Layout title="Carregando Post">
+      <>
         <div className={styles.loadingContainer}>
           <p>Carregando post...</p>
         </div>
-      </Layout>
+      </>
     );
   }
 
