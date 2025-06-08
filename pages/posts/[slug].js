@@ -20,16 +20,11 @@ const BlogPost = () => {
   });
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-const slugify = (text) =>
-  text
-    .toString()
-    .normalize('NFD') // separa acentos
-    .replace(/[\u0300-\u036f]/g, '') // remove acentos
-    .toLowerCase()
-    .trim()
-    .replace(/\s+/g, '-') // troca espaços por hífens
-    .replace(/[^\w\-]+/g, '') // remove caracteres especiais
-    .replace(/\-\-+/g, '-'); // remove múltiplos hífens
+useEffect(() => {
+  if (!slug) return;
+  console.log("🔍 Slug atual:", slug);
+}, [slug]);
+
 
 
   useEffect(() => {
