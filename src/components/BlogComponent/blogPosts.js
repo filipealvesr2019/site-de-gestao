@@ -1,6 +1,6 @@
 export const blogPosts = [
  {
-    id: 'por-tras-do-GFP',
+    id: 'por-tras-do-gfp',
     title: 'A Inspiração do Zé do Queijo | Gestão Financeira Pro',
     description: 'As palavras certas podem ser como pequenos raios de sol em dias nublados, iluminando caminhos que pareciam perdidos na escuridão.',
     date: '08 JUN 2025',
