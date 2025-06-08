@@ -84,7 +84,7 @@ export function BlogComponent() {
       <div className={styles.blogPostGrid}>
         {filteredPosts.map(post => (
           <Link 
-            href={`/posts/${post.linkUrl}`} 
+            href={`/blog/${post.linkUrl}`} 
             key={post.id}
             className={styles.blogPostLink}
           >
