@@ -39,7 +39,7 @@ const slugify = (text) =>
       try {
         
         // Fetch the HTML content
-        const response = await fetch(`/blog-posts/${slugify(slug)}.html`);
+        const response = await fetch(`/blog-posts/${slug}.html`);
         
         if (!response.ok) {
           throw new Error('Post não encontrado');
