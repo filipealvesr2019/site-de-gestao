@@ -13,7 +13,7 @@ const CATEGORIES = [
   'Guardar Dinheiro', 
   'Crenças Financeiras', 
   'Ferramentas GFP', 
-  'Tutoriais'
+  'Tutorial'
 ];
 
 const BlogPost = ({ title, description, date, imageUrl, category }) => (

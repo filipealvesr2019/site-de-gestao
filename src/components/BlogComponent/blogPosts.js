@@ -19,4 +19,13 @@ export const blogPosts = [
     category: 'Ferramentas GFP',
     imageUrl: 'https://i.imgur.com/Wf505Su.jpg'
 },
+{
+     id: 3,
+    linkUrl: 'Como-o-GFP-pode-transformar-a-vida-de-mulheres-vendedoras',
+    title: 'Da Bagunça ao Controle: Como o GFP pode transformar a Vida de Mulheres Vendedoras',
+    description: 'Uma vendedora comum, como milhares de outras que vendem seus produtos para amigas e vizinhas no bairro, se viu em apuros. Imagine o volume de papel, de pequenas anotações, que ela acumulava. O controle do fluxo de caixa? Ah, esse era na base da sorte, um verdadeiro tiro no escuro. Se a pessoa não for organizada, a situação vira um caos.',
+    date: '12 JUN 2025',
+    category: 'Tutorial',
+    imageUrl: 'https://imgur.com/SLVlQlp.jpg'
+  }
 ]; 
