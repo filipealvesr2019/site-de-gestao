@@ -676,7 +676,7 @@ function ProductList() {
               ? "Total de Despesas: "
               : " Total de despesas do Mês: "}{" "}
             R$
-            {isNaN(totalDespesas) ? "0" : totalDespesas}
+            {isNaN(totalDespesas) ? "0" : totalDespesas.toFixed(2)}
           </h3>
         </div>
         <div className={styles.stylesTotalReceitas}>
@@ -685,7 +685,7 @@ function ProductList() {
               ? "Total de Receitas:"
               : " Total de Receitas do Mês:"}{" "}
             R$
-            {isNaN(totalReceitasPagas) ? "0" : totalReceitasPagas}
+            {isNaN(totalReceitasPagas) ? "0" : totalReceitasPagas.toFixed(2)}
           </h3>
         </div>
         <div className={styles.stylesDiferenca}>
@@ -694,7 +694,7 @@ function ProductList() {
               ? "Total de Diferença: "
               : " Total de Diferença do Mês: "}{" "}
             R$
-            {isNaN(diferenca) ? "0" : diferenca}
+            {isNaN(diferenca) ? "0" : diferenca.toFixed(2)}
           </h3>
         </div>
       </div>
