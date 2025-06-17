@@ -27,5 +27,16 @@ export const blogPosts = [
     date: '12 JUN 2025',
     category: 'Educação Financeira',
     imageUrl: 'https://imgur.com/SLVlQlp.jpg'
-  }
+  },
+{
+       id: 4,
+      linkUrl: 'tutorial-gerenciando-suas-financas-pessoais',
+  title: 'Tutorial: Gerenciando Suas Finanças Pessoais',
+  slug: 'tutorial-gerenciando-suas-financas-pessoais', // corrigido aqui: minúsculo, hífen, sem espaços
+  description: 'Descubra como pequenas doses de inspiração podem revolucionar sua rotina matinal e dar energia para enfrentar qualquer desafio.',
+  date: '17 JUN 2025',
+  category: 'Tutorial',
+  imageUrl: 'https://imgur.com/RuioarB.jpg'
+
+}
 ]; 

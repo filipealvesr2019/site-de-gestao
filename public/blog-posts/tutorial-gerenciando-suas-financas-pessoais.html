@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial: Gerenciando Suas Finanças Pessoais com o Gestão Financeira Pro</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .content {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .section {
+            margin-bottom: 50px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .section:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .section:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .section:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .section:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section h2 {
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+            position: relative;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: #764ba2;
+            transition: width 0.3s ease;
+        }
+
+        .section:hover h2::after {
+            width: 100px;
+        }
+
+        .section-image {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin: 20px auto;
+            display: block;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .section-image:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .section p {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            text-align: justify;
+            color: #555;
+        }
+
+        .section ol {
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+
+        .section li {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        .section li strong {
+            color: #2c3e50;
+        }
+
+
+        .highlight-box,
+        .highlight-box * {
+            color: white !important;
+        }
+
+        .highlight-box strong {
+            color: rgb(39, 39, 39) !important;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white !important;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 25px 0;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            position: relative;
+            overflow: hidden;
+
+        }
+
+        .highlight-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.6s ease;
+            opacity: 0;
+
+        }
+
+        .highlight-box:hover::before {
+            opacity: 1;
+            animation: shine 1.5s ease-in-out;
+
+        }
+
+        @keyframes shine {
+            0% {
+                transform: translateX(-100%) translateY(-100%) rotate(45deg);
+            }
+
+            100% {
+                transform: translateX(100%) translateY(100%) rotate(45deg);
+            }
+        }
+
+        .cta-section {
+            text-align: center;
+            margin-top: 50px;
+            padding: 40px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 20px;
+            color: white;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #667eea;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            background: #f8f9fa;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .header,
+            .content {
+                padding: 20px;
+            }
+
+            .section h2 {
+                font-size: 1.5rem;
+            }
+
+            .section p,
+            .section li {
+                font-size: 1rem;
+            }
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            z-index: 1000;
+            transition: width 0.3s ease;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+
+    <div class="container">
+        <div class="header">
+            <p>Aprenda a usar o Gestão Financeira Pro para ter controle total sobre suas receitas e despesas</p>
+        </div>
+
+        <div class="content">
+            <div class="section">
+                <h2>Introdução ao Gestão Financeira Pro</h2>
+                <img src="https://imgur.com/21nLBPK.jpg" alt="Controle Financeiro" class="section-image">
+                <p>No mundo atual, manter as finanças pessoais organizadas é um desafio para muitas pessoas. A falta de
+                    controle sobre receitas e despesas pode levar a dívidas, estresse e a impossibilidade de alcançar
+                    objetivos financeiros. É nesse cenário que ferramentas como o Gestão Financeira Pro se tornam
+                    indispensáveis.</p>
+
+                <p>Este sistema online e gratuito oferece uma solução simples e eficiente para gerenciar seu dinheiro,
+                    permitindo que você acompanhe tudo o que entra e sai do seu caixa diretamente do navegador, sem a
+                    necessidade de downloads ou instalações complicadas.</p>
+
+                <div class="highlight-box">
+                    <strong>💡 Dica Importante:</strong> O Gestão Financeira Pro foi desenvolvido para simplificar a
+                    vida financeira de seus usuários, desde aqueles que nunca tiveram experiência com controle
+                    financeiro até os mais experientes.
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Como Começar a Usar</h2>
+                <img src="https://imgur.com/iXLeGJG.png" alt="Como Começar" class="section-image">
+                <p>Para começar a utilizar o Gestão Financeira Pro, você não precisa de um cadastro complicado ou de
+                    downloads demorados. O acesso é direto pelo navegador, tornando o processo rápido e simples.</p>
+
+                <ol>
+                    <li><strong>Acesse o site:</strong> abra seu navegador de preferência e digite o endereço
+                        <code>https://www.gestaofinanceirapro.com.br/</code>. Você será direcionado para a página
+                        inicial do sistema. Adicione o site aos favoritos para não esquecer esse endereço.
+                    </li>
+
+                    <li><strong>Primeiro acesso:</strong> clique no botão azul "Entrar" para ser redirecionado à tela de
+                        login. Em seguida, crie sua conta para que o sistema possa salvar seus dados com segurança e
+                        ajudá-lo a organizar melhor sua vida financeira. Você pode acessar com sua conta do Gmail ou com
+                        outro e-mail de sua preferência.</li>
+
+                    <li><strong>Interface principal:</strong> a interface é limpa e organizada. Você encontrará seções
+                        para registrar receitas, despesas e visualizar um resumo do seu fluxo de caixa.</li>
+
+                    <li><strong>Familiarize-se com os menus:</strong> explore os menus e opções disponíveis para
+                        entender onde cada funcionalidade está localizada.</li>
+                </ol>
+
+            </div>
+
+            <div class="section">
+                <h2>Registrando Receitas e Despesas</h2>
+                <img src="https://plus.unsplash.com/premium_photo-1661340603255-11a6a2aa7609?q=80&w=871&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg"
+                    alt="Receitas e Despesas" class="section-image">
+                <p>O coração de qualquer controle financeiro é o registro preciso de todas as entradas (receitas) e
+                    saídas (despesas) de dinheiro. O Gestão Financeira Pro torna esse processo simples e rápido.</p>
+
+                <div class="highlight-box" id="importantes-edit">
+                    <strong>📊 Campos Importantes:</strong>
+                    <ul>
+                        <li>• <strong>Tipo:</strong> Receita ou Despesa</li>
+                        <li>• <strong>Descrição:</strong> Breve descrição da movimentação</li>
+                        <li>• <strong>Cliente:</strong> Nome do cliente ou fornecedor</li>
+                        <li>• <strong>Preço:</strong> Valor da movimentação</li>
+                        <li>• <strong>Data de Vencimento:</strong> Quando foi ou será pago</li>
+                        <li>• <strong>Status:</strong> Pago ou Pendente</li>
+                    </ul>
+                </div>
+
+                <p>É fundamental registrar todas as suas movimentações financeiras, por menores que sejam. A
+                    consistência no registro é a chave para ter uma visão precisa da sua saúde financeira.</p>
+            </div>
+
+            <div class="section">
+                <h2>Gerenciamento de Contas e Dívidas</h2>
+                <img src="https://plus.unsplash.com/premium_photo-1663100546543-f65369d64764?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.jpg" alt="Contas e Dívidas" class="section-image">
+                <p>Além de registrar receitas e despesas, o Gestão Financeira Pro permite que você gerencie suas contas
+                    a pagar e a receber, bem como suas dívidas. Isso é crucial para evitar atrasos, multas e para ter
+                    uma visão clara de seus compromissos financeiros futuros.</p>
+
+                <ol>
+                    <li><strong>Visualizando Contas:</strong> As movimentações com status 'Pendente' são automaticamente
+                        consideradas contas a pagar ou a receber.</li>
+                    <li><strong>Atualizando Status:</strong> Quando uma conta é paga, atualize o status para 'Pago' para
+                        manter seu fluxo de caixa atualizado.</li>
+                    <li><strong>Acompanhamento de Dívidas:</strong> Para dívidas de longo prazo, registre-as como
+                        despesas pendentes e acompanhe o pagamento das parcelas.</li>
+                </ol>
+            </div>
+
+            <div class="section">
+                <h2>Visualizando o Fluxo de Caixa</h2>
+                <img src="https://imgur.com/AUFyzEg.png" alt="Fluxo de Caixa" class="section-image">
+                <p>Uma das maiores vantagens de utilizar o Gestão Financeira Pro é a capacidade de visualizar seu fluxo
+                    de caixa de forma clara e objetiva. O sistema consolida todas as suas receitas e despesas,
+                    apresentando um resumo que o ajuda a entender para onde seu dinheiro está indo.</p>
+
+                <div class="highlight-box">
+                    <strong>📈 Recursos Disponíveis:</strong>
+                    <ul style="margin-top: 15px; list-style: none;">
+                        <li>• Resumo do fluxo de caixa em tempo real</li>
+                        <li>• Total de receitas e despesas do mês</li>
+                        <li>• Diferença entre receitas e despesas</li>
+                        <li>• Impressão e download de recibos</li>
+                        <li>• Análise detalhada de movimentações</li>
+                    </ul>
+                </div>
+
+                <p>Ter uma visão clara do seu fluxo de caixa é o primeiro passo para assumir o controle das suas
+                    finanças. O Gestão Financeira Pro torna essa tarefa acessível a todos, independentemente do seu
+                    nível de conhecimento em finanças.</p>
+            </div>
+
+            <div class="cta-section">
+                <h2>Comece Agora Mesmo!</h2>
+                <p>Não perca mais tempo com planilhas complicadas ou anotações desorganizadas. O Gestão Financeira Pro
+                    está pronto para transformar a forma como você gerencia suas finanças.</p>
+                <a href="https://www.gestaofinanceirapro.com.br/" class="cta-button" target="_blank">Acessar Gestão
+                    Financeira Pro</a>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>&copy; 2024 Tutorial Gestão Financeira Pro. Desenvolvido para ajudar você a ter controle total sobre suas
+                finanças.</p>
+        </div>
+    </div>
+
+    <script>
+        // Progress bar animation
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.body.offsetHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            document.getElementById('progressBar').style.width = scrollPercent + '%';
+        });
+
+        // Smooth scrolling for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add hover effects to sections
+        document.querySelectorAll('.section').forEach(section => {
+            section.addEventListener('mouseenter', function () {
+                this.style.transform = 'translateY(-5px)';
+                this.style.transition = 'transform 0.3s ease';
+            });
+
+            section.addEventListener('mouseleave', function () {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body>
+
+</html>
