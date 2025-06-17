@@ -12,7 +12,7 @@ const BlogPost = () => {
   const [postMetadata, setPostMetadata] = useState({
     h1Title: 'Carregando...',
     pageTitle: 'Carregando...',
-    author: 'eFrases',
+    author: 'Gestão Financeira Pro',
     date: '',
     readTime: '3 min de leitura'
   });
@@ -49,7 +49,7 @@ const BlogPost = () => {
 
           // Extrair título visível do h1
           const titleElement = tempDiv.querySelector('h1');
-          const h1Title = titleElement?.textContent || 'Sem título';
+          const h1Title = titleElement?.textContent || '';
           if (titleElement) titleElement.remove();
 
           // Extrair título para <title> do meta[name="page-title"]
