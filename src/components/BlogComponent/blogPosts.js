@@ -21,7 +21,7 @@ export const blogPosts = [
   },
   {
     id: 3,
-    linkUrl: "Como-o-GFP-pode-transformar-a-vida-de-mulheres-vendedoras",
+    linkUrl: "Como-o-gfp-pode-transformar-a-vida-de-mulheres-vendedoras",
     title:
       "Da Bagunça ao Controle: Como o GFP pode transformar a Vida de Mulheres Vendedoras",
     description:
