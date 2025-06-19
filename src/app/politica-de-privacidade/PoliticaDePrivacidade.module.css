@@ -1,26 +1,356 @@
-.heading{
-    margin-top: 2rem;
-}
-.Link{
-    display: flex;
-    padding: 1rem;
-  }
-.img{
-    width: 33vw;
+.container {
+width: 100%;
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
 }
 
-@media screen  and (min-width: 700px){
-    .img{
-        width: 14vw;
-    }
-    .p{
-        width: 40vw;
-    }
-    .container{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        width: 100%;
-        
-    }
+.content {
+  width: 100%;
+  background: white;
+  padding: 50px;
+  border-radius: 15px;
+  margin-top: 20px;
+  position: relative;
+  overflow: hidden;
 }
+
+.content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 30px;
+  text-align: center;
+  position: relative;
+  padding-bottom: 15px;
+}
+
+.title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  border-radius: 2px;
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #34495e;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #ecf0f1;
+  position: relative;
+}
+
+.subtitle::before {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 50px;
+  height: 2px;
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+}
+
+.text {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.8;
+  margin-bottom: 20px;
+  text-align: justify;
+  text-indent: 1.5em;
+}
+
+.text:first-of-type {
+  font-size: 1.1rem;
+  color: #444;
+  font-weight: 400;
+  text-align: center;
+  text-indent: 0;
+  margin-bottom: 30px;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border-left: 4px solid #667eea;
+}
+
+.text ul {
+  margin: 15px 0;
+  padding-left: 30px;
+  text-indent: 0;
+}
+
+.text li {
+  margin-bottom: 15px;
+  line-height: 1.7;
+  text-indent: 0;
+}
+
+.text strong {
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+.text a {
+  color: #667eea;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.text a:hover {
+  color: #764ba2;
+  border-bottom-color: #764ba2;
+}
+
+.Link {
+  display: flex;
+  justify-content: center;
+  padding: 2rem 1rem;
+  transition: transform 0.3s ease;
+  text-decoration: none;
+}
+
+.Link:hover {
+  transform: translateY(-2px);
+}
+
+.img {
+  width: 120px;
+  height: auto;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Melhorias para SEO e AdSense */
+.content {
+  /* Garante boa legibilidade para crawlers */
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* Espaçamento adequado para anúncios */
+.subtitle + .text {
+  margin-top: 25px;
+}
+
+/* Estrutura clara para conteúdo */
+.content h2 {
+  margin-top: 50px;
+  margin-bottom: 25px;
+}
+
+.content p {
+  margin-bottom: 25px;
+}
+
+/* Espaçamento para possível inserção de anúncios */
+.subtitle:nth-of-type(4n) {
+  margin-bottom: 40px;
+}
+
+.subtitle:nth-of-type(4n) + .text {
+  margin-top: 40px;
+}
+
+/* Responsividade aprimorada */
+@media screen and (max-width: 768px) {
+  .container {
+    padding: 20px 10px;
+  }
+  
+  .content {
+    padding: 30px 25px;
+    margin-top: 10px;
+  }
+  
+  .title {
+    font-size: 2rem;
+    margin-bottom: 25px;
+  }
+  
+  .subtitle {
+    font-size: 1.3rem;
+    margin-top: 30px;
+  }
+  
+  .text {
+    font-size: 0.95rem;
+    text-indent: 1em;
+  }
+  
+  .text ul {
+    padding-left: 20px;
+  }
+  
+  .img {
+    width: 100px;
+  }
+  
+  .Link {
+    padding: 1.5rem 1rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .content {
+    padding: 25px 20px;
+  }
+  
+  .title {
+    font-size: 1.8rem;
+  }
+  
+  .subtitle {
+    font-size: 1.2rem;
+  }
+  
+  .text {
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+  
+  .img {
+    width: 80px;
+  }
+}
+
+/* Modo escuro (opcional) */
+@media (prefers-color-scheme: dark) {
+  .container {
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+  }
+  
+  .content {
+    background: #2c3e50;
+    color: #ecf0f1;
+  }
+  
+  .title,
+  .subtitle {
+    color: #ecf0f1;
+  }
+  
+  .text {
+    color: #bdc3c7;
+  }
+  
+  .text:first-of-type {
+    background: #34495e;
+    color: #ecf0f1;
+  }
+  
+  .text strong {
+    color: #ecf0f1;
+  }
+  
+  .text a {
+    color: #3498db;
+  }
+  
+  .text a:hover {
+    color: #5dade2;
+  }
+}
+
+/* Estilos para impressão */
+@media print {
+  .container {
+    background: white;
+    padding: 0;
+  }
+  
+  .content {
+    box-shadow: none;
+    border-radius: 0;
+    padding: 20px;
+  }
+  
+  .Link {
+    display: none;
+  }
+  
+  .title,
+  .subtitle {
+    color: #000;
+  }
+  
+  .text {
+    color: #333;
+    font-size: 12pt;
+    line-height: 1.5;
+  }
+  
+  .text a {
+    color: #000;
+    text-decoration: underline;
+  }
+}
+
+/* Animações suaves */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.content {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* Otimizações adicionais para AdSense */
+.content ul {
+  margin: 20px 0;
+  padding-left: 25px;
+}
+
+.content li {
+  margin-bottom: 12px;
+  line-height: 1.7;
+}
+
+/* Melhor estruturação para leitores de tela e SEO */
+.content h1,
+.content h2 {
+  scroll-margin-top: 20px;
+}
+
+/* Espaçamento consistente para melhor experiência de leitura */
+.text + .text {
+  margin-top: 20px;
+}
+
+.subtitle + ul {
+  margin-top: 20px;
+}
+
