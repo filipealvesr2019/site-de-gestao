@@ -42,7 +42,7 @@ export const blogPosts = [
     imageUrl: "https://imgur.com/RuioarB.jpg",
   },
   {
-  id: 4,
+  id: 5,
   linkUrl: 'tutorial-basico-pessoas-comuns',
   title: 'Como Controlar Seu Dinheiro de Forma Simples: Guia para Iniciantes',
   slug: 'tutorial-basico-pessoas-comuns', // corrigido aqui: minúsculo, hífen, sem espaços
