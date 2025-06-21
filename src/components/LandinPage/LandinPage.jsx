@@ -1,7 +1,7 @@
 import styles from "./LandinPage.module.css";
 import Footer from "../Footer/Footer";
 import Link from "next/link";
-import Script from "next/script";
+
 export default function LandinPage() {
   return (
     <>

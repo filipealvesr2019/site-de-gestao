@@ -41,4 +41,14 @@ export const blogPosts = [
     category: "Tutorial",
     imageUrl: "https://imgur.com/RuioarB.jpg",
   },
+  {
+  id: 4,
+  linkUrl: 'tutorial-basico-pessoas-comuns',
+  title: 'Como Controlar Seu Dinheiro de Forma Simples: Guia para Iniciantes',
+  slug: 'tutorial-basico-pessoas-comuns', // corrigido aqui: minúsculo, hífen, sem espaços
+  description: ' Aprenda de forma fácil e prática como organizar suas finanças e ter mais tranquilidade no dia a dia',
+  date: '21 JUN 2025',
+  category: 'Tutorial',
+  imageUrl: 'https://imgur.com/KBsc928.jpg'
+},
 ];
