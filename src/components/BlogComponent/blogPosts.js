@@ -53,7 +53,7 @@ export const blogPosts = [
 },
 {
   id: 6,
-  linkUrl: 'Como-o-Gfp-pode-ajudar-a-vida-do-vendedor-de-tapioca',
+  linkUrl: 'como-o-gfp-pode-ajudar-a-vida-do-vendedor-de-tapioca',
   title: 'Como o Gfp Pode ajudar a Vida do Vendedor de Tapioca',
   slug: 'Como-o-Gfp-pode-ajudar-a-vida-do-vendedor-de-tapioca', // corrigido aqui: minúsculo, hífen, sem espaços
   description: 'A Importância da Organização Financeira, Independentemente da Sua Renda',
