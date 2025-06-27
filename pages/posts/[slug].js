@@ -35,7 +35,9 @@ const BlogPost = () => {
 
       try {
         const normalizedSlug = normalizeSlug(decodeURIComponent(slug));
-        const response = await fetch(`/blog-posts/${slug}.html`);
+        const response = await fetch(`/blog-posts/${normalizedSlug}.html`);
+      console.log('Slug normalizado:', normalizedSlug);
+      console.log('URL fetch:', `/blog-posts/${normalizedSlug}.html`);
 
         if (!response.ok) {
           throw new Error('Post não encontrado');
