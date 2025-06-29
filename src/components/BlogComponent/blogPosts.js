@@ -50,5 +50,15 @@ export const blogPosts = [
   date: '21 JUN 2025',
   category: 'Tutorial',
   imageUrl: 'https://imgur.com/KBsc928.jpg'
+},
+{
+  id: 6,
+  linkUrl: 'como-o-gfp-pode-ajudar-a-vida-do-vendedor-de-tapioca',
+  title: 'Como o Gfp Pode ajudar a Vida do Vendedor de Tapioca',
+  slug: 'como-o-gfp-pode-ajudar-a-vida-do-vendedor-de-tapioca', // corrigido aqui: minúsculo, hífen, sem espaços
+  description: 'A Importância da Organização Financeira, Independentemente da Sua Renda',
+  date: '27 JUN 2025',
+  category: 'Tutorial',
+  imageUrl: 'https://imgur.com/Zq1px3A.jpg'
 }
 ];
