@@ -3,7 +3,7 @@ import { BlogComponent } from '../BlogComponent/BlogComponent.';
 
 const BlogPage = () => {
   return (
-    <div title="Blog eFrases: o seu blog de frases e criatividade">
+    <div>
       <BlogComponent />
     </div>
   );

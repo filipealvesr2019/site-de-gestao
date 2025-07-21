@@ -9,16 +9,16 @@ export const blogPosts = [
     category: "Educação Financeira",
     imageUrl: "https://imgur.com/zoBUGkh.jpg",
   },
-  {
-    id: 2,
-    linkUrl: "por-tras-do-gfp",
-    title: "A Inspiração do Zé do Queijo | Gestão Financeira Pro",
-    description:
-      "As palavras certas podem ser como pequenos raios de sol em dias nublados, iluminando caminhos que pareciam perdidos na escuridão.",
-    date: "08 JUN 2025",
-    category: "Ferramentas GFP",
-    imageUrl: "https://i.imgur.com/Wf505Su.jpg",
-  },
+  // {
+  //   id: 2,
+  //   linkUrl: "por-tras-do-gfp",
+  //   title: "A Inspiração do Zé do Queijo | Gestão Financeira Pro",
+  //   description:
+  //     "As palavras certas podem ser como pequenos raios de sol em dias nublados, iluminando caminhos que pareciam perdidos na escuridão.",
+  //   date: "08 JUN 2025",
+  //   category: "Ferramentas GFP",
+  //   imageUrl: "https://i.imgur.com/Wf505Su.jpg",
+  // },
   {
     id: 3,
     linkUrl: "Como-o-GFP-pode-transformar-a-vida-de-mulheres-vendedoras",
@@ -30,27 +30,27 @@ export const blogPosts = [
     category: "Educação Financeira",
     imageUrl: "https://imgur.com/SLVlQlp.jpg",
   },
-  {
-    id: 4,
-    title: "Tutorial: Gerenciando Suas Finanças Pessoais",
-    linkUrl: "tutorial-gerenciando-suas-financas-pessoais",
-    slug: "tutorial-gerenciando-suas-financas-pessoais", // corrigido aqui: minúsculo, hífen, sem espaços
-    description:
-      "Descubra como pequenas doses de inspiração podem revolucionar sua rotina matinal e dar energia para enfrentar qualquer desafio.",
-    date: "17 JUN 2025",
-    category: "Tutorial",
-    imageUrl: "https://imgur.com/RuioarB.jpg",
-  },
-  {
-  id: 5,
-  linkUrl: 'tutorial-basico-pessoas-comuns',
-  title: 'Como Controlar Seu Dinheiro de Forma Simples: Guia para Iniciantes',
-  slug: 'tutorial-basico-pessoas-comuns', // corrigido aqui: minúsculo, hífen, sem espaços
-  description: ' Aprenda de forma fácil e prática como organizar suas finanças e ter mais tranquilidade no dia a dia',
-  date: '21 JUN 2025',
-  category: 'Tutorial',
-  imageUrl: 'https://imgur.com/KBsc928.jpg'
-},
+//   {
+//     id: 4,
+//     title: "Tutorial: Gerenciando Suas Finanças Pessoais",
+//     linkUrl: "tutorial-gerenciando-suas-financas-pessoais",
+//     slug: "tutorial-gerenciando-suas-financas-pessoais", // corrigido aqui: minúsculo, hífen, sem espaços
+//     description:
+//       "Descubra como pequenas doses de inspiração podem revolucionar sua rotina matinal e dar energia para enfrentar qualquer desafio.",
+//     date: "17 JUN 2025",
+//     category: "Tutorial",
+//     imageUrl: "https://imgur.com/RuioarB.jpg",
+//   },
+//   {
+//   id: 5,
+//   linkUrl: 'tutorial-basico-pessoas-comuns',
+//   title: 'Como Controlar Seu Dinheiro de Forma Simples: Guia para Iniciantes',
+//   slug: 'tutorial-basico-pessoas-comuns', // corrigido aqui: minúsculo, hífen, sem espaços
+//   description: ' Aprenda de forma fácil e prática como organizar suas finanças e ter mais tranquilidade no dia a dia',
+//   date: '21 JUN 2025',
+//   category: 'Tutorial',
+//   imageUrl: 'https://imgur.com/KBsc928.jpg'
+// },
 {
   id: 6,
   linkUrl: 'como-o-gfp-pode-ajudar-a-vida-do-vendedor-de-tapioca',
