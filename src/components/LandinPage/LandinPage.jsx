@@ -713,7 +713,7 @@ const GestaoFinanceiraPro = () => {
               <a href="/blog">
                 Blog
               </a>
-              <a href="#contact">
+              <a href="/contato">
                 Contato
               </a>
             </div>
