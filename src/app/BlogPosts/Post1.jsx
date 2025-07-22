@@ -1,7 +1,15 @@
 import Link from "next/link";
 import Head from "next/head";
+import { useRouter } from "next/router";
 
 export default function PostDeGracaComece() {
+      const router = useRouter();
+    
+      // Função para redirecionar para login
+  const handleAcessarSistema = () => {
+    router.push("/login");
+  };
+
     return (
         <>
             <Head>
@@ -225,7 +233,7 @@ export default function PostDeGracaComece() {
 
                     <div className="cta-container">
                         <p>Convidamos você a dar o primeiro passo. Acesse o Gestão Financeira Pro e comece a construir um futuro financeiro mais seguro e próspero. O caminho para o azul começa hoje, e ele é para todos.</p>
-                        <a href="https://www.gestaofinanceirapro.com.br/cadastro" className="cta-button" target="_blank" rel="noopener noreferrer">Comece Sua Jornada Financeira Agora</a>
+                        <a href="https://www.gestaofinanceirapro.com.br/cadastro" className="cta-button" target="_blank" rel="noopener noreferrer" onClick={handleAcessarSistema}>Comece Sua Jornada Financeira Agora</a>
                     </div>
                 </div>
                 <img src="https://imgur.com/zoBUGkh.jpg" alt="Caminho para Estabilidade Financeira" className="post-image" />

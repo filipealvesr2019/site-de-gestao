@@ -1,7 +1,16 @@
 import Link from "next/link";
 import Head from "next/head";
+import { useRouter } from "next/router";
 
 export default function PostGFPTapioca() {
+
+        const router = useRouter();
+        
+          // Função para redirecionar para login
+      const handleAcessarSistema = () => {
+        router.push("/login")
+      }
+    
     return (
         <>
             <Head>
@@ -209,6 +218,7 @@ export default function PostGFPTapioca() {
                     font-size: 1.1em;
                     margin-top: 20px;
                     transition: all 0.3s ease;
+                    cursor: pointer;
                 }
 
                 .cta-button:hover {
@@ -370,7 +380,7 @@ export default function PostGFPTapioca() {
                 <div className="cta-section">
                     <h3 style={{color: '#e8f5e8'}}>Pronto para Transformar Suas Finanças?</h3>
                     <p style={{marginLeft: '160px'}}>Acesse agora o Gestão Financeira Pro e comece a organizar sua vida financeira de forma simples e gratuita!</p>
-                    <a href="https://www.gestaofinanceirapro.com.br/" className="cta-button" target="_blank" rel="noopener noreferrer">Acessar o GFP Agora</a>
+                    <a  className="cta-button" target="_blank" rel="noopener noreferrer" onClick={handleAcessarSistema}>Acessar o GFP Agora</a>
                 </div>
             </div>
         </>

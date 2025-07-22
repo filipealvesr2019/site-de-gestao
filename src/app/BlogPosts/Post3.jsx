@@ -1,8 +1,17 @@
 import Link from "next/link";
 import Head from "next/head";
 import { useEffect } from "react";
+import { useRouter } from "next/router";
 
 export default function PostMulheresVendedoras() {
+
+    
+            const router = useRouter();
+            
+              // Função para redirecionar para login
+          const handleAcessarSistema = () => {
+            router.push("/login")
+          }
     useEffect(() => {
         const handleScroll = () => {
             const elements = document.querySelectorAll(".story-section, .highlight-box");
@@ -224,6 +233,7 @@ export default function PostMulheresVendedoras() {
                     margin-top: 15px;
                     transition: all 0.3s ease;
                     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+                    cursor: pointer;
                 }
 
                 .cta-button:hover {
@@ -340,7 +350,7 @@ export default function PostMulheresVendedoras() {
                         <div className="cta-section">
                             <h3>Você também pode ter essa transformação!</h3>
                             <p>Não deixe que a desorganização financeira prejudique o seu negócio. Conheça o Gestão Financeira Pro e descubra como é fácil ter controle total das suas vendas.</p>
-                            <a href="https://www.gestaofinanceirapro.com.br/" className="cta-button" target="_blank" rel="noopener noreferrer">
+                            <a  className="cta-button" target="_blank" rel="noopener noreferrer" onClick={handleAcessarSistema}>
                                 Conhecer o GFP Agora
                             </a>
                         </div>
