@@ -2086,7 +2086,7 @@
   .heroContent{
        display: flex;
   flex-direction: column-reverse;
-    gap: -25rem;
+   
   }
 
   .navMenu{
