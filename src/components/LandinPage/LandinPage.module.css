@@ -2086,7 +2086,13 @@
   .heroContent{
        display: flex;
   flex-direction: column-reverse;
+  justify-content: center;
    
+  }
+
+  .heroButtons{
+    display: flex;
+    justify-content: center;
   }
 
   .navMenu{
